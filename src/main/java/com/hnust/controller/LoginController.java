@@ -48,21 +48,21 @@ public class LoginController implements Initializable {
 
     public void loginButtonClick(ActionEvent event) {
         //dataStore.setToken("asdfasdf");
-        teacherService.teacherLogin(new Callback<Teacher>() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                System.out.println(((Teacher)response.body()).getToken());
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable throwable) {
-                System.out.println("请求失败");
-            }
-        },loginAccount.getText(),loginPassword.getText());
+//        teacherService.teacherLogin(new Callback<Teacher>() {
+//            @Override
+//            public void onResponse(Call call, Response response) {
+//                System.out.println(((Teacher)response.body()).getToken());
+//            }
+//
+//            @Override
+//            public void onFailure(Call call, Throwable throwable) {
+//                System.out.println("请求失败");
+//            }
+//        },loginAccount.getText(),loginPassword.getText());
 
         //跳转时先关闭窗口，切换效果会自然一点
-//        stage.close();
-//        MainApp.showView(MainView.class);
+        stage.close();
+        MainApp.showView(MainView.class);
     }
 
 }
