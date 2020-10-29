@@ -87,9 +87,12 @@ public class MainController implements Initializable{
      * @throws IOException
      */
     private void skipView(AbstractFxmlView view) throws IOException {
-        ObservableList<Node> scrolChildren = content.getChildren();
-        scrolChildren.clear();
-        scrolChildren.add(view.getView());
+        content.getChildren().clear();
+        content.getChildren().add(view.getView());
+        AnchorPane.setBottomAnchor(view.getView(),0.0);
+        AnchorPane.setTopAnchor(view.getView(),0.0);
+        AnchorPane.setLeftAnchor(view.getView(),0.0);
+        AnchorPane.setRightAnchor(view.getView(),0.0);
     }
 
     public void itemClick(MouseEvent mouseEvent) throws IOException {
