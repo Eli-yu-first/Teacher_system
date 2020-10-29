@@ -2,6 +2,7 @@
 .noBorder{
     -fx-padding: 0;
     -fx-background-insets: 0;
+    -fx-background-color: #ffffff;
 }
 
 .itemFont{
@@ -13,6 +14,10 @@
 .headerFont{
     -fx-font-size: 18;
     -fx-font-family: SimSun-ExtB;
+}
+
+#content{
+    -fx-effect: dropshadow(three-pass-box,#d7e4f7, 4.5,0, 0, 0);
 }
 
 

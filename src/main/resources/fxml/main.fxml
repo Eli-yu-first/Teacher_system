@@ -6,8 +6,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="mainWindow" prefHeight="700" prefWidth="1040"
-            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.hnust.controller.MainController">
+<?import javafx.scene.effect.DropShadow?>
+<AnchorPane fx:id="mainWindow" prefHeight="700" prefWidth="1040" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.hnust.controller.MainController">
     <!--左边-->
     <AnchorPane prefHeight="-Infinity" prefWidth="220" style="-fx-background-color: #3333cc" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
         <VBox alignment="CENTER" prefHeight="60" prefWidth="-Infinity" style="-fx-background-color: #3333cc" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
@@ -17,8 +17,7 @@
         <AnchorPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="100">
             <VBox spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
                 <HBox alignment="CENTER">
-                    <Text fill="WHITE" styleClass="headerFont"
-                          text="个人信息管理" />
+                    <Text fill="WHITE" styleClass="headerFont" text="个人信息管理" />
                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../image/main/open.png" />
@@ -30,9 +29,7 @@
                 </HBox>
                 <!--header1->item1+item2-->
                 <HBox alignment="CENTER_RIGHT">
-                    <Text fill="WHITE" onMouseClicked="#itemClick"
-                          styleClass="itemFont"
-                          text="个人资料" />
+                    <Text fill="WHITE" onMouseClicked="#itemClick" styleClass="itemFont" text="个人资料" />
                     <!--visible="false"-->
                     <ImageView fx:id="header1Item1Image" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true">
                         <image>
@@ -44,9 +41,7 @@
                     </ImageView>
                 </HBox>
                 <HBox alignment="CENTER_RIGHT">
-                    <Text fill="WHITE" onMouseClicked="#itemClick"
-                          styleClass="itemFont"
-                          text="我的课程组" />
+                    <Text fill="WHITE" onMouseClicked="#itemClick" styleClass="itemFont" text="我的课程组" />
                     <!--visible="false"-->
                     <ImageView fx:id="header1Item2Image" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" visible="false">
                         <image>
@@ -59,8 +54,7 @@
                 </HBox>
 
                 <HBox alignment="CENTER">
-                    <Text fill="WHITE" styleClass="headerFont"
-                          text="    题目管理" />
+                    <Text fill="WHITE" styleClass="headerFont" text="    题目管理" />
                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../image/main/open.png" />
@@ -72,9 +66,7 @@
                 </HBox>
                 <!--header2->item1+item2-->
                 <HBox alignment="CENTER_RIGHT">
-                    <Text fill="WHITE" onMouseClicked="#itemClick"
-                          styleClass="itemFont"
-                          text="题目列表" />
+                    <Text fill="WHITE" onMouseClicked="#itemClick" styleClass="itemFont" text="题目列表" />
                     <!--visible="false"-->
                     <ImageView fx:id="header2Item1Image" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" visible="false">
                         <image>
@@ -86,9 +78,7 @@
                     </ImageView>
                 </HBox>
                 <HBox alignment="CENTER_RIGHT">
-                    <Text fill="WHITE" onMouseClicked="#itemClick"
-                          styleClass="itemFont"
-                          text="批量导入" />
+                    <Text fill="WHITE" onMouseClicked="#itemClick" styleClass="itemFont" text="批量导入" />
                     <!--visible="false"-->
                     <ImageView fx:id="header2Item2Image" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" visible="false">
                         <image>
@@ -101,8 +91,7 @@
                 </HBox>
 
                 <HBox alignment="CENTER">
-                    <Text fill="WHITE" styleClass="headerFont"
-                          text="    学生管理" />
+                    <Text fill="WHITE" styleClass="headerFont" text="    学生管理" />
                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../image/main/open.png" />
@@ -114,9 +103,7 @@
                 </HBox>
                 <!--header3->item1+item2-->
                 <HBox alignment="CENTER_RIGHT">
-                    <Text fill="WHITE" onMouseClicked="#itemClick"
-                          styleClass="itemFont"
-                          text="总体数据查看" />
+                    <Text fill="WHITE" onMouseClicked="#itemClick" styleClass="itemFont" text="总体数据查看" />
                     <!--visible="false"-->
                     <ImageView fx:id="header3Item1Image" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" visible="false">
                         <image>
@@ -128,9 +115,7 @@
                     </ImageView>
                 </HBox>
                 <HBox alignment="CENTER_RIGHT">
-                    <Text fill="WHITE"  onMouseClicked="#itemClick"
-                          styleClass="itemFont"
-                          text="详细数据查看" />
+                    <Text fill="WHITE" onMouseClicked="#itemClick" styleClass="itemFont" text="详细数据查看" />
                     <!--visible="false"-->
                     <ImageView fx:id="header3Item2Image" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" visible="false">
                         <image>
@@ -143,8 +128,7 @@
                 </HBox>
 
                 <HBox alignment="CENTER">
-                    <Text fill="WHITE" styleClass="headerFont"
-                          text="    试卷管理" />
+                    <Text fill="WHITE" styleClass="headerFont" text="    试卷管理" />
                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../image/main/open.png" />
@@ -156,9 +140,7 @@
                 </HBox>
                 <!--header4->item1+item2-->
                 <HBox alignment="CENTER_RIGHT">
-                    <Text fill="WHITE" onMouseClicked="#itemClick"
-                          styleClass="itemFont"
-                          text="试卷列表" />
+                    <Text fill="WHITE" onMouseClicked="#itemClick" styleClass="itemFont" text="试卷列表" />
                     <!--visible="false"-->
                     <ImageView fx:id="header4Item1Image" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" visible="false">
                         <image>
@@ -169,10 +151,8 @@
                         </HBox.margin>
                     </ImageView>
                 </HBox>
-                <HBox alignment="CENTER_RIGHT" >
-                    <Text fill="WHITE"  onMouseClicked="#itemClick"
-                          styleClass="itemFont"
-                          text="手动生成试卷" />
+                <HBox alignment="CENTER_RIGHT">
+                    <Text fill="WHITE" onMouseClicked="#itemClick" styleClass="itemFont" text="手动生成试卷" />
                     <!--visible="false"-->
                     <ImageView fx:id="header4Item2Image" fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" visible="false">
                         <image>
@@ -200,10 +180,22 @@
         </HBox>
         <HBox style="-fx-border-width: 0 0 1 0;-fx-border-style: solid;-fx-border-color:  #b2b2b2" AnchorPane.bottomAnchor="5" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" />
     </AnchorPane>
+    <AnchorPane prefHeight="30" AnchorPane.topAnchor="70" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="220"
+    style="-fx-background-color: #ffffff">
+        <HBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="20">
+            <Label  fx:id="navFont" text="学生管理  /  个人信息管理" style="-fx-font-size: 13px;-fx-text-fill: #828282;-fx-font-family: SimSun-ExtB"/>
+        </HBox>
+    </AnchorPane>
     <!--中间-->
-    <AnchorPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="220" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="70">
-        <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="noBorder" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-            <AnchorPane fx:id="content" pickOnBounds="false" style="-fx-background-color: #99ccff" />
-        </ScrollPane>
+    <AnchorPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="220" style="-fx-background-color: #99ccff"
+                AnchorPane.rightAnchor="0" AnchorPane.topAnchor="100">
+        <AnchorPane AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20"
+                    style="-fx-background-color: #ffffff"
+                    AnchorPane.bottomAnchor="20" AnchorPane.topAnchor="20" fx:id="content" id="content">
+<!--            <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="noBorder" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">-->
+<!--                <AnchorPane fx:id="content" >-->
+<!--                </AnchorPane>-->
+<!--            </ScrollPane>-->
+        </AnchorPane>
     </AnchorPane>
 </AnchorPane>
