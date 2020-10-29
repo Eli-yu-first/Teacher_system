@@ -76,9 +76,8 @@ public class MainController implements Initializable{
         //System.out.println(dataStore.getToken());
         Screen s=Screen.getPrimary();
         Rectangle2D visualBound=s.getVisualBounds();
-
         stage=GUIState.getStage();
-        stage.setMinWidth(visualBound.getWidth()*0.8);
+        stage.setMinWidth(visualBound.getWidth()*0.85);
         stage.setMinHeight(visualBound.getHeight()*0.8);
         try {
             skipView(personDataView);
