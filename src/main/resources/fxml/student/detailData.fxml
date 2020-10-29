@@ -2,9 +2,63 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.hnust.controller.student.DetailDataController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Label>详细信息查看</Label>
+            fx:id="detail"
+            style="-fx-background-color: #FFF;-fx-border-width: 0">
+
+    <HBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="0">
+        <padding>
+            <Insets left="20" top="20"/>
+        </padding>
+        <Label text="课程" style="-fx-font-size: 1.2em;" />
+        <TextField style="-fx-end-margin: 40">
+            <HBox.margin>
+                <Insets right="30.0" />
+            </HBox.margin>
+        </TextField>
+        <Label text="班级" style="-fx-font-size: 1.2em;"/>
+        <TextField >
+            <HBox.margin>
+                <Insets right="30.0" />
+            </HBox.margin>
+        </TextField>
+        <Label text="姓名" style="-fx-font-size: 1.2em;" />
+        <TextField >
+            <HBox.margin>
+                <Insets right="30.0" />
+            </HBox.margin>
+        </TextField>
+        <Button styleClass="btn,btn-info" text="查询" prefWidth="120.0" style="-fx-font-size: 1.0em">
+            <HBox.margin>
+                <Insets right="30.0" />
+            </HBox.margin>
+        </Button>
+    </HBox>
+
+    <!--表格信息-->
+    <VBox fx:id="vBoxId" AnchorPane.leftAnchor="30" AnchorPane.topAnchor="100" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="20">
+        <TableView fx:id="tableDetail" style="-fx-background-color: #bfbfbf" VBox.vgrow="ALWAYS" maxHeight="Infinity" minHeight="300" minWidth="500">
+            <columns>
+                <TableColumn text="学号"></TableColumn>
+                <TableColumn text="课程"></TableColumn>
+                <TableColumn text="姓名"></TableColumn>
+                <TableColumn text="班级"></TableColumn>
+                <TableColumn text="性别"></TableColumn>
+                <TableColumn text="专业"></TableColumn>
+                <TableColumn text="做题总数"></TableColumn>
+                <TableColumn text="正确个数"></TableColumn>
+                <TableColumn text="正确率"></TableColumn>
+            </columns>
+        </TableView>
+        <HBox alignment="CENTER" spacing="10">
+            <Pagination></Pagination>
+            <Label text="跳 至" />
+            <TextField fx:id="toPage" prefWidth="45" />
+            <Label text="页" />
+        </HBox>
+    </VBox>
+
 </AnchorPane>
