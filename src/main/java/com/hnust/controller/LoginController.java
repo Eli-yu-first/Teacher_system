@@ -15,10 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
