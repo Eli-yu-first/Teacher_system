@@ -8,8 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            style="-fx-background-color: #000000"
+            style="-fx-background-color: #ffffff"
             fx:id="overAllDataWindow"
             fx:controller="com.hnust.controller.student.OverallDataController">
-    <Label>总体信息查看</Label>
 </AnchorPane>

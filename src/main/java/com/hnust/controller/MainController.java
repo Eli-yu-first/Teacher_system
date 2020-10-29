@@ -15,15 +15,18 @@ import de.felixroske.jfxsupport.GUIState;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -71,9 +74,12 @@ public class MainController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //System.out.println(dataStore.getToken());
+        Screen s=Screen.getPrimary();
+        Rectangle2D visualBound=s.getVisualBounds();
+
         stage=GUIState.getStage();
-        stage.setMinWidth(1700);
-        stage.setMinHeight(900);
+        stage.setMinWidth(visualBound.getWidth()*0.8);
+        stage.setMinHeight(visualBound.getHeight()*0.8);
         try {
             skipView(personDataView);
         } catch (IOException e) {
