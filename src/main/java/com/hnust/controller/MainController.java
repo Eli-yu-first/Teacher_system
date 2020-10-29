@@ -72,8 +72,8 @@ public class MainController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         //System.out.println(dataStore.getToken());
         stage=GUIState.getStage();
-        stage.setMinWidth(1500);
-        stage.setMinHeight(800);
+        stage.setMinWidth(1700);
+        stage.setMinHeight(900);
         try {
             skipView(personDataView);
         } catch (IOException e) {

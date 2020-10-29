@@ -24,11 +24,5 @@ public class SubjectListController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableSize.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        container.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                
-            }
-        });
     }
 }
