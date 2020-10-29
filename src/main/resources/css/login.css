@@ -1,0 +1,101 @@
+.root{
+    -fx-background-color: #3333cc;
+    -fx-background-image: url("/image/login/background.png");
+    -fx-background-size: 100%;
+    -fx-background-repeat: stretch;
+    -fx-background-position: center bottom;
+}
+
+#tea_register_font{
+    -fx-font-size: 25px;
+    -fx-text-fill: #dfeaf9;
+    -fx-font-family: "MicrosoftYaHei";
+    -fx-font-weight: bold;
+}
+
+#login-container{
+    -fx-background-color: white;
+    /*<effect>*/
+    /*<DropShadow color="#d7e4f7" height="10.0" radius="4.5" width="10.0" />*/
+    /*</effect>*/
+    -fx-effect: dropshadow(three-pass-box,#d7e4f7, 4.5,0, 0, 0);
+    /*设置圆角*/
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.label_text {
+    -fx-font-size: 15px;
+    -fx-text-fill: #4b88dc;
+    -fx-font-family: "SimSun";
+}
+
+.form-ceil {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 35px;
+}
+
+.normal_text {
+    -fx-font-size: 15px;
+    -fx-font-family: "SimSun";
+}
+
+.register_text{
+    -fx-font-size: 15px;
+    -fx-text-fill: #4b88dc;
+    -fx-font-family: "SimSun";
+}
+
+.register_text:hover{
+    -fx-cursor: hand;
+}
+
+.login_btn {
+   -fx-background-color: #3333cc;
+    -fx-text-fill: #d7e4f7;
+    -fx-font-size: 15px;
+    -fx-pref-height: 25px;
+    -fx-pref-width: 200px;
+    -fx-font-family: "MicrosoftYaHei";
+}
+
+.login_btn:hover{
+    -fx-cursor: hand;
+
+    /*blur-type:阴影类型*/
+    /*color:阴影颜色，16进制色，rgb色都支持*/
+
+    /*radius：阴影圆角*/
+
+    /*spread：阴影扩散大小或者长度*/
+
+    /*offsetX：水平偏移度*/
+
+    /*offsetY：垂直偏移度*/
+    -fx-effect: dropshadow(three-pass-box, #72b9da, 10.0,0, 0, 0);
+}
+
+.code_btn {
+    -fx-background-color: #3333cc;
+    -fx-text-fill: #d7e4f7;
+    -fx-pref-height: 35px;
+    -fx-pref-width: 100px;
+    -fx-font-size: 13px;
+    -fx-font-family: "MicrosoftYaHei";
+}
+
+.code_btn:hover{
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, #72b9da, 10.0,0, 0, 0);
+}
+
+.close_btn:hover,.min_btn:hover{
+    -fx-cursor: hand;
+   -fx-background-color: #4f70cc;
+}
+
+.close_btn:pressed,.min_btn:pressed{
+    -fx-cursor: hand;
+    -fx-background-color: #3333cc;
+}
+

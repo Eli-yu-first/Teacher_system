@@ -1,0 +1,20 @@
+
+.noBorder{
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+
+.itemFont{
+    -fx-cursor: hand;
+    -fx-font-size: 15;
+    -fx-font-family: SimSun-ExtB;
+}
+
+.headerFont{
+    -fx-font-size: 18;
+    -fx-font-family: SimSun-ExtB;
+}
+
+
+
+

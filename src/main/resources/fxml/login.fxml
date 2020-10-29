@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="loginWindow" prefHeight="700" prefWidth="950" stylesheets="@../css/login.css"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hnust.controller.LoginController">
+        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+            <Label id="tea_register_font" alignment="CENTER" text="教 师 登 录" textAlignment="CENTER" />
+            <GridPane id="login-container" alignment="CENTER" maxWidth="530" prefHeight="360.0" vgap="10.0" VBox.vgrow="NEVER">
+
+                <Label alignment="TOP_LEFT" styleClass="label_text" text="账号：" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+                <TextField fx:id="loginAccount" promptText="请输入账号" styleClass="form-ceil" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+
+                <Label styleClass="label_text" text="密码：" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+
+                <PasswordField fx:id="loginPassword" promptText="请输入密码" styleClass="form-ceil" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+
+                <Label styleClass="label_text" text="验证码：" GridPane.rowIndex="4" />
+                <TextField fx:id="loginCode" promptText="请输入验证码" styleClass="form-ceil" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <Button styleClass="code_btn" text="获取验证码" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="6">
+                    <Button alignment="CENTER" onAction="#loginButtonClick" styleClass="login_btn" text="登录" textAlignment="CENTER">
+                        <VBox.margin>
+                            <Insets bottom="10.0" top="10" />
+                        </VBox.margin>
+
+                    </Button>
+                    <HBox alignment="CENTER">
+                        <Label styleClass="normal_text">未有账号？</Label>
+                        <Label styleClass="register_text">注册</Label>
+                    </HBox>
+                </VBox>
+            <VBox.margin>
+                <Insets bottom="20.0" left="230.0" right="230.0" top="15.0" />
+            </VBox.margin>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+            </GridPane>
+        </VBox>
+
+
+</AnchorPane>
