@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.hnust.controller.paper.GeneratePaperController"
-            prefHeight="400.0" prefWidth="600.0">
-
-    <Label>手动生成试卷</Label>
+<?import javafx.scene.shape.Line?>
+<AnchorPane style="-fx-background-color: #FFF" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hnust.controller.paper.GeneratePaperController">
+    <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <HBox styleClass="ball">
+            <Label styleClass="ball_text" text="1">
+                <HBox.margin>
+                    <Insets top="18" left="22"></Insets>
+                </HBox.margin>
+            </Label>
+        </HBox>
+       <AnchorPane>
+           <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+           <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+           <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+       </AnchorPane>
+        <HBox styleClass="ball">
+            <Label styleClass="ball_text" text="2">
+                <HBox.margin>
+                    <Insets top="18" left="22"></Insets>
+                </HBox.margin>
+            </Label>
+        </HBox>
+        <AnchorPane>
+            <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+            <Label text="选择题目" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+            <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+        </AnchorPane>
+        <HBox styleClass="ball">
+            <Label styleClass="ball_text" text="3">
+                <HBox.margin>
+                    <Insets top="18" left="22"></Insets>
+                </HBox.margin>
+            </Label>
+        </HBox>
+        <AnchorPane>
+            <Label text="步骤三" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+            <Label text="生成试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+        </AnchorPane>
+    </HBox>
+<!--    <Label>手动生成试卷</Label>-->
 </AnchorPane>

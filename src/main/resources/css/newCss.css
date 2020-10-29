@@ -790,6 +790,7 @@
     -fx-background-color:#FFF;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
+    -fx-border-color: #c0c0c0;
     -fx-padding: 0.166667em 0.166667em 0.166667em 0.166667em; /* 2 2px 2 2px*/
     -fx-font-size: 1em; /* 12 */
 }
