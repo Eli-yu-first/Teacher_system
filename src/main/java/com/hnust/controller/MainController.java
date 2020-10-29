@@ -70,8 +70,8 @@ public class MainController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         //System.out.println(dataStore.getToken());
         stage=GUIState.getStage();
-        stage.setMinWidth(1040);
-        stage.setMinHeight(700);
+        stage.setMinWidth(1500);
+        stage.setMinHeight(800);
         try {
             skipView(personDataView);
         } catch (IOException e) {
@@ -139,5 +139,4 @@ public class MainController implements Initializable{
        header3Item1Image.setVisible(false);header3Item2Image.setVisible(false);
        header4Item1Image.setVisible(false);header4Item2Image.setVisible(false);
     }
-
 }

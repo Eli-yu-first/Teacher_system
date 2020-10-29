@@ -1,0 +1,1160 @@
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****                 Button 按钮样式                         *****
+           *****                                                        *****
+           ******************************************************************
+*/
+/*Button样式*/
+.btn {
+    -fx-font-weight: normal;
+    -fx-text-alignment: center;
+    -fx-cursor: default;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-background-insets: 0, 0, -1, 0;
+    -fx-padding: 6px 12px 6px 12px;
+    -fx-font-size: 14px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-min-width: 80;
+}
+.btn:hover, .btn:focused, .btn.focused {
+    -fx-text-fill: #333;
+    -fx-fill: #333;
+}
+.btn:pressed, .btn.pressed {
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.125), 5px, 0, 0, 3px);
+}
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    -fx-cursor: wait;
+    -fx-opacity: 0.65;
+}
+/*默认的Button，不加任何特殊样式*/
+.btn-default {
+    -fx-text-fill: #333;
+    -fx-fill: #333;
+    -fx-background-color: #bfbfbf;
+    -fx-border-color: #a9a9a9;
+}
+.btn-default:focused, .btn-default.focused {
+    -fx-text-fill: #333;
+    -fx-fill: #333;
+    -fx-background-color: #bfbfbf;
+    -fx-border-color: #a9a9a9;
+}
+.btn-default:hover {
+    -fx-text-fill: #333;
+    -fx-fill: #333;
+    -fx-background-color: #cdcdcd;
+    -fx-border-color: #a9a9a9;
+}
+.btn-default:pressed, .btn-default.pressed, .open > .btn-default.dropdown-toggle {
+    -fx-text-fill: #333;
+    -fx-fill: #333;
+    -fx-background-color: #939393;
+    -fx-border-color: #a9a9a9;
+}
+.btn-default:pressed:hover, .btn-default:pressed:focused, .btn-default:pressed.focused, .btn-default.pressed:hover, .btn-default.pressed:focused, .btn-default.pressed.focused, .open > .btn-default.dropdown-toggle:hover, .open > .btn-default.dropdown-toggle:focused, .open > .btn-default.dropdown-toggle.focused {
+    -fx-text-fill: #333;
+    -fx-fill: #333;
+    -fx-background-color: #939393;
+    -fx-border-color: #a9a9a9;
+}
+.btn-default:selected, .btn-default.selected {
+    -fx-text-fill: #333;
+    -fx-fill: #333;
+    -fx-background-color: #bfbfbf;
+    -fx-border-color: #a9a9a9;
+}
+.btn-default:selected:hover, .btn-default:selected:focused, .btn-default:selected.focused, .btn-default.selected:hover, .btn-default.selected:focused, .btn-default.selected.focused {
+    -fx-text-fill: #333;
+    -fx-fill: #333;
+    -fx-background-color: #bfbfbf;
+    -fx-border-color: #a9a9a9;
+}
+.btn-default:pressed, .btn-default.pressed, .open > .btn-default.dropdown-toggle {
+    background-image: none;
+}
+.btn-default.disabled, .btn-default.disabled:hover, .btn-default.disabled:focused, .btn-default.disabled.focused, .btn-default.disabled:pressed, .btn-default.disabled.pressed, .btn-default[disabled], .btn-default[disabled]:hover, .btn-default[disabled]:focused, .btn-default[disabled].focused, .btn-default[disabled]:pressed, .btn-default[disabled].pressed, fieldset[disabled] .btn-default, fieldset[disabled] .btn-default:hover, fieldset[disabled] .btn-default:focused, fieldset[disabled] .btn-default.focused, fieldset[disabled] .btn-default:pressed, fieldset[disabled] .btn-default.pressed {
+    -fx-background-color: #bfbfbf;
+    -fx-border-color: #a9a9a9;
+}
+.btn-default .badge {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #333;
+}
+/*紫色颜色按钮*/
+.btn-primary {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4b4cdc;
+    -fx-border-color: #5152DC;
+}
+.btn-primary:focused, .btn-primary.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4f50e4;
+    -fx-border-color: #5152DC;
+}
+.btn-primary:hover {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #5253f2;
+    -fx-border-color: #5152DC;
+}
+.btn-primary:pressed, .btn-primary.pressed, .open > .btn-primary.dropdown-toggle {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4f50e4;
+    -fx-border-color: #5152DC;
+}
+.btn-primary:pressed:hover, .btn-primary:pressed:focused, .btn-primary:pressed.focused, .btn-primary.pressed:hover, .btn-primary.pressed:focused, .btn-primary.pressed.focused, .open > .btn-primary.dropdown-toggle:hover, .open > .btn-primary.dropdown-toggle:focused, .open > .btn-primary.dropdown-toggle.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #2e2f8d;
+    -fx-border-color: #5152DC;
+}
+.btn-primary:selected, .btn-primary.selected {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4f50e4;
+    -fx-border-color: #5152DC;
+}
+.btn-primary:selected:hover, .btn-primary:selected:focused, .btn-primary:selected.focused, .btn-primary.selected:hover, .btn-primary.selected:focused, .btn-primary.selected.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4f50e4;
+    -fx-border-color: #5152DC;
+}
+.btn-primary:pressed, .btn-primary.pressed, .open > .btn-primary.dropdown-toggle {
+    background-image: none;
+}
+.btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focused, .btn-primary.disabled.focused, .btn-primary.disabled:pressed, .btn-primary.disabled.pressed, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focused, .btn-primary[disabled].focused, .btn-primary[disabled]:pressed, .btn-primary[disabled].pressed, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focused, fieldset[disabled] .btn-primary.focused, fieldset[disabled] .btn-primary:pressed, fieldset[disabled] .btn-primary.pressed {
+    -fx-background-color: #4f50e4;
+    -fx-border-color: #5152DC;
+}
+.btn-primary .badge {
+    -fx-text-fill: #337ab7;
+    -fx-fill: #337ab7;
+    -fx-background-color: #fff;
+}
+/*Button按钮，绿色*/
+.btn-success {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #53c41a;
+    -fx-border-color: #50bc19;
+}
+.btn-success:focused, .btn-success.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #53c41a;
+    -fx-border-color: #50bc19;
+}
+.btn-success:hover {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #56cc1b;
+    -fx-border-color: #52c21a;
+}
+.btn-success:pressed, .btn-success.pressed, .open > .btn-success.dropdown-toggle {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #53c41a;
+    -fx-border-color: #50bc19;
+}
+.btn-success:pressed:hover, .btn-success:pressed:focused, .btn-success:pressed.focused, .btn-success.pressed:hover, .btn-success.pressed:focused, .btn-success.pressed.focused, .open > .btn-success.dropdown-toggle:hover, .open > .btn-success.dropdown-toggle:focused, .open > .btn-success.dropdown-toggle.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #398439;
+    -fx-border-color: #255625;
+}
+.btn-success:selected, .btn-success.selected {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #53c41a;
+    -fx-border-color: #50bc19;
+}
+.btn-success:selected:hover, .btn-success:selected:focused, .btn-success:selected.focused, .btn-success.selected:hover, .btn-success.selected:focused, .btn-success.selected.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #53c41a;
+    -fx-border-color: #50bc19;
+}
+.btn-success:pressed, .btn-success.pressed, .open > .btn-success.dropdown-toggle {
+    background-image: none;
+}
+.btn-success.disabled, .btn-success.disabled:hover, .btn-success.disabled:focused, .btn-success.disabled.focused, .btn-success.disabled:pressed, .btn-success.disabled.pressed, .btn-success[disabled], .btn-success[disabled]:hover, .btn-success[disabled]:focused, .btn-success[disabled].focused, .btn-success[disabled]:pressed, .btn-success[disabled].pressed, fieldset[disabled] .btn-success, fieldset[disabled] .btn-success:hover, fieldset[disabled] .btn-success:focused, fieldset[disabled] .btn-success.focused, fieldset[disabled] .btn-success:pressed, fieldset[disabled] .btn-success.pressed {
+    -fx-background-color: #53c41a;
+    -fx-border-color: #50bc19;
+}
+.btn-success .badge {
+    -fx-text-fill: #5cb85c;
+    -fx-fill: #5cb85c;
+    -fx-background-color: #fff;
+}
+/*button样式蓝色按钮*/
+.btn-info {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4b88db;
+    -fx-border-color: #427bc7;
+}
+.btn-info:focused, .btn-info.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4b88db;
+    -fx-border-color: #427bc7;
+}
+.btn-info:hover {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4f92ed;
+    -fx-border-color: #1b6d85;
+}
+.btn-info:pressed, .btn-info.pressed, .open > .btn-info.dropdown-toggle {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4b88db;
+    -fx-border-color: #427bc7;
+}
+.btn-info:pressed:hover, .btn-info:pressed:focused, .btn-info:pressed.focused, .btn-info.pressed:hover, .btn-info.pressed:focused, .btn-info.pressed.focused, .open > .btn-info.dropdown-toggle:hover, .open > .btn-info.dropdown-toggle:focused, .open > .btn-info.dropdown-toggle.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #3564a5;
+    -fx-border-color: #2f5a93;
+}
+.btn-info:selected, .btn-info.selected {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4b88db;
+    -fx-border-color: #427bc7;
+}
+.btn-info:selected:hover, .btn-info:selected:focused, .btn-info:selected.focused, .btn-info.selected:hover, .btn-info.selected:focused, .btn-info.selected.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #4b88db;
+    -fx-border-color: #427bc7;
+}
+.btn-info:pressed, .btn-info.pressed, .open > .btn-info.dropdown-toggle {
+    background-image: none;
+}
+.btn-info.disabled, .btn-info.disabled:hover, .btn-info.disabled:focused, .btn-info.disabled.focused, .btn-info.disabled:pressed, .btn-info.disabled.pressed, .btn-info[disabled], .btn-info[disabled]:hover, .btn-info[disabled]:focused, .btn-info[disabled].focused, .btn-info[disabled]:pressed, .btn-info[disabled].pressed, fieldset[disabled] .btn-info, fieldset[disabled] .btn-info:hover, fieldset[disabled] .btn-info:focused, fieldset[disabled] .btn-info.focused, fieldset[disabled] .btn-info:pressed, fieldset[disabled] .btn-info.pressed {
+    -fx-background-color: #4b88db;
+    -fx-border-color: #427bc7;
+}
+.btn-info .badge {
+    -fx-text-fill: #5bc0de;
+    -fx-fill: #5bc0de;
+    -fx-background-color: #fff;
+}
+/*Button按钮，黄色*/
+.btn-warning {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #ffbe00;
+    -fx-border-color: #e8ae00;
+}
+.btn-warning:focused, .btn-warning.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #ffbe00;
+    -fx-border-color: #e8ae00;
+}
+.btn-warning:hover {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #ffca2e;
+    -fx-border-color: #e8ae00;
+}
+.btn-warning:pressed, .btn-warning.pressed, .open > .btn-warning.dropdown-toggle {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #ec971f;
+    -fx-border-color: #d58512;
+}
+.btn-warning:pressed:hover, .btn-warning:pressed:focused, .btn-warning:pressed.focused, .btn-warning.pressed:hover, .btn-warning.pressed:focused, .btn-warning.pressed.focused, .open > .btn-warning.dropdown-toggle:hover, .open > .btn-warning.dropdown-toggle:focused, .open > .btn-warning.dropdown-toggle.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #d58512;
+    -fx-border-color: #e8ae00;
+}
+.btn-warning:selected, .btn-warning.selected {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #ffbe00;
+    -fx-border-color: #e8ae00;
+}
+.btn-warning:selected:hover, .btn-warning:selected:focused, .btn-warning:selected.focused, .btn-warning.selected:hover, .btn-warning.selected:focused, .btn-warning.selected.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #ffbe00;
+    -fx-border-color: #e8ae00;
+}
+.btn-warning:pressed, .btn-warning.pressed, .open > .btn-warning.dropdown-toggle {
+    background-image: none;
+}
+.btn-warning.disabled, .btn-warning.disabled:hover, .btn-warning.disabled:focused, .btn-warning.disabled.focused, .btn-warning.disabled:pressed, .btn-warning.disabled.pressed, .btn-warning[disabled], .btn-warning[disabled]:hover, .btn-warning[disabled]:focused, .btn-warning[disabled].focused, .btn-warning[disabled]:pressed, .btn-warning[disabled].pressed, fieldset[disabled] .btn-warning, fieldset[disabled] .btn-warning:hover, fieldset[disabled] .btn-warning:focused, fieldset[disabled] .btn-warning.focused, fieldset[disabled] .btn-warning:pressed, fieldset[disabled] .btn-warning.pressed {
+    -fx-background-color: #ffbe00;
+    -fx-border-color: #e8ae00;
+}
+.btn-warning .badge {
+    -fx-text-fill: #f0ad4e;
+    -fx-fill: #f0ad4e;
+    -fx-background-color: #fff;
+}
+/*Button样式，红色*/
+.btn-danger {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #fe0000;
+    -fx-border-color: #e50101;
+}
+.btn-danger:focused, .btn-danger.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #fe0000;
+    -fx-border-color: #e50101;
+}
+.btn-danger:hover {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #fa5959;
+    -fx-border-color: #e50101;
+}
+.btn-danger:pressed, .btn-danger.pressed, .open > .btn-danger.dropdown-toggle {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #fe0000;
+    -fx-border-color: #e50101;
+}
+.btn-danger:pressed:hover, .btn-danger:pressed:focused, .btn-danger:pressed.focused, .btn-danger.pressed:hover, .btn-danger.pressed:focused, .btn-danger.pressed.focused, .open > .btn-danger.dropdown-toggle:hover, .open > .btn-danger.dropdown-toggle:focused, .open > .btn-danger.dropdown-toggle.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #ac2925;
+    -fx-border-color: #761c19;
+}
+.btn-danger:selected, .btn-danger.selected {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #c9302c;
+    -fx-border-color: #ac2925;
+}
+.btn-danger:selected:hover, .btn-danger:selected:focused, .btn-danger:selected.focused, .btn-danger.selected:hover, .btn-danger.selected:focused, .btn-danger.selected.focused {
+    -fx-text-fill: #fff;
+    -fx-fill: #fff;
+    -fx-background-color: #ac2925;
+    -fx-border-color: #761c19;
+}
+.btn-danger:pressed, .btn-danger.pressed, .open > .btn-danger.dropdown-toggle {
+    background-image: none;
+}
+.btn-danger.disabled, .btn-danger.disabled:hover, .btn-danger.disabled:focused, .btn-danger.disabled.focused, .btn-danger.disabled:pressed, .btn-danger.disabled.pressed, .btn-danger[disabled], .btn-danger[disabled]:hover, .btn-danger[disabled]:focused, .btn-danger[disabled].focused, .btn-danger[disabled]:pressed, .btn-danger[disabled].pressed, fieldset[disabled] .btn-danger, fieldset[disabled] .btn-danger:hover, fieldset[disabled] .btn-danger:focused, fieldset[disabled] .btn-danger.focused, fieldset[disabled] .btn-danger:pressed, fieldset[disabled] .btn-danger.pressed {
+    -fx-background-color: #fe0000;
+    -fx-border-color: #e50101;
+}
+.btn-danger .badge {
+    -fx-text-fill: #d9534f;
+    -fx-fill: #d9534f;
+    -fx-background-color: #fff;
+}
+/*使用按钮的大小尺寸*/
+.btn-lg {
+    -fx-padding: 10px 16px 10px 16px;
+    -fx-font-size: 18px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+.btn-sm {
+    -fx-padding: 5px 10px 5px 10px;
+    -fx-font-size: 12px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+}
+
+.btn-xs {
+    -fx-padding: 1px 5px 1px 5px;
+    -fx-font-size: 12px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+}
+
+.btn-block {
+    width: 100%;
+}
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****                 TextField 文本输入框框样式               *****
+           *****                                                        *****
+           ******************************************************************
+*/
+/*文本输入框*/
+.text-input{
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: #FFFFFF;
+    -fx-font-size: 1em; /* 12 */
+    -fx-border-color: #c0c0c0;
+}
+.text-input:hover{
+    -fx-background-color: #FFF;
+    -fx-border-color: #40A9FF;
+}
+.text-input:focused{
+    -fx-background-color: #FFF;
+    -fx-text-fill: #000000;
+    -fx-border-color: #40A9FF;
+}
+.text-input:disabled
+{
+    -fx-opacity: 1;
+    -fx-background-insets: 0, 2;
+    -fx-background-color: #878787;
+    -fx-text-fill: #000000;
+    -fx-prompt-text-fill: #FFF;
+}
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****                 CheckBox 选择框样式                     *****
+           *****                                                        *****
+           ******************************************************************
+*/
+.check-box {
+    -fx-text-fill: #000;
+}
+
+.check-box > .box > .mark {
+    -fx-shape: "M17.939,5.439L7.5,15.889l-5.439-5.449l0.879-0.879L7.5,14.111 l9.561-9.551L17.939,5.439z";
+    -fx-pref-width: 16px;
+    -fx-pref-height: 12px;
+    -fx-background-color: #FFF;
+    -fx-background-insets: 0;
+}
+
+/* unselected */
+.check-box > .box {
+    -fx-background-color: #FFF;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: #D9D9D9;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-padding: 0.166667em 0px 0.166667em 0px;     /* 2 0 2 0 */
+}
+
+/* hover */
+.check-box:hover > .box, .check-box:selected:hover > .box  {
+    -fx-border-color: #1890FF;
+}
+
+/* selected */
+.check-box:selected > .box{
+    -fx-background-color: #1890FF;
+    -fx-border-color: #1890FF;
+}
+
+.check-box:selected > .box > .mark{
+    -fx-background-color: #FFF;
+}
+
+/* pressed */
+.check-box:pressed > .box, .check-box:selected:pressed > .box
+{
+    -fx-background-color: #1890FF;
+    -fx-border-color: #1890FF;
+}
+
+/* indeterminate */
+.check-box:indeterminate > .box {
+    -fx-padding: 3px;
+    -fx-border-color: #1890FF;
+}
+
+.check-box:indeterminate > .box > .mark {
+    -fx-shape: null;
+    -fx-pref-width: 10px;
+    -fx-max-width: 10px;
+    -fx-min-width: 10px;
+    -fx-pref-height: 10px;
+    -fx-max-height: 10px;
+    -fx-min-height: 10px;
+    -fx-background-color: #1890FF;
+    /*-fx-background-insets: 3px;*/
+}
+/* focused */
+
+.check-box:focused > .box{
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    /* - first border is focus ring
+       - second border is control border */
+    -fx-border-color: #D9D9D9;
+    -fx-border-width: 1, 2;
+    /*noinspection CssInvalidFunction*/
+    -fx-border-style: segments(1, 2), solid;
+    -fx-border-insets: -3, 0;
+}
+
+/* -- focused - selected */
+.check-box:focused:selected > .box{
+    -fx-border-color: #1890FF;
+}
+
+/* -- focused - selected, hover */
+.check-box:focused:selected:hover > .box{
+    -fx-border-color: #1890FF;
+}
+
+/* -- focused - pressed */
+.check-box:focused:pressed > .box{
+    -fx-border-color: #1890FF;
+}
+
+.check-box:focused:selected:pressed > .box{
+    -fx-border-color: #1890FF;
+}
+
+.check-box:focused:indeterminate:pressed > .box{
+    -fx-border-color: #1890FF;
+}
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****                 TableView 表格样式                     *****
+           *****                                                        *****
+           ******************************************************************
+*/
+.table-view{
+    -fx-cell-focus-inner-border: #FFFFFF; /* focused */
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 0;
+    -fx-border-color: #FFF;
+    -fx-padding: 0;
+}
+.table-view .column-header {
+    -fx-alignment: center;
+    -fx-padding: 0em 0em 0em 1em;
+    -fx-background-color: #FAFAFA ;
+    -fx-font-size: 1.02em;
+    -fx-font-weight: bold;
+}
+.table-view .column-header {
+    -fx-background-color: #FAFAFA;
+}
+
+.table-view .column-header .label {
+    -fx-padding: 0.666666em 2em 0.666666em 0; /* 8 24 8 0 */
+}
+
+.table-cell {
+    -fx-padding: 0.833333em 2em 0.5em 1em; /* 10 24 6 12 */
+    -fx-alignment: center;
+    -fx-background-color: #FFF;
+    -fx-text-fill: #000000;
+}
+.table-view .column-header .label{
+    -fx-text-fill: #000;
+}
+
+.table-view .column-header:hover{
+    -fx-background-color: #E9E9E9;
+}
+
+.table-view .column-header:hover .label{
+    -fx-text-fill: #000;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #FFF;
+}
+
+/* Bottom border on tableview header area */
+.table-view > .column-header-background > .nested-column-header,
+.table-view > .column-header-background > .filler {
+    -fx-background-color: #FFF;
+    -fx-border-insets: 0 0 0 0;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #FFF;
+}
+
+.table-view .filler {
+    -fx-background-color:  #FFF;
+    -fx-background-insets: 0 0 0 0, 1 0 1 0;
+}
+.table-view .column-header.table-column-selected {
+    -fx-background-color: #E9E9E9;
+}
+/*单元格样式*/
+.table-cell {
+    -fx-font-size: 1em;  /* 12 */
+    -fx-alignment: center;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #E8E8E8;
+}
+/*鼠标放在单元格上的样式*/
+.table-cell:filled:hover {
+    /*-fx-background-color: #E6F7FF;*/
+}
+
+.table-cell .text {
+    /*-fx-fill: #000;*/
+}
+.table-cell:hover .text {
+    /*-fx-fill: red;*/
+}
+/*鼠标悬浮所在行样式*/
+.table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell:hover,
+.table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:hover .table-cell {
+    -fx-background-color: #E6F7FF;
+    -fx-text-fill: #000000;
+    -fx-border-width: 0;
+}
+
+.table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:hover .table-cell {
+    -fx-background-color: #E6F7FF;
+}
+
+.table-view > .column-header-background > .show-hide-columns-button,
+.tree-table-view > .column-header-background > .show-hide-columns-button {
+    -fx-background-color: #FAFAFA;
+    -fx-background-insets: 0;
+    -fx-padding: 0.166667em 0.333333em 0.166667em 0.333333em;
+}
+
+.table-view > .column-header-background > .show-hide-columns-button:hover,
+.tree-table-view > .column-header-background > .show-hide-columns-button:hover {
+    -fx-background-color: #E9E9E9;
+}
+
+.table-view .show-hide-column-image,
+.tree-table-view .show-hide-column-image {
+    -fx-background-color: #000000;
+    -fx-padding: 0.083333em; /* 3px */
+    -fx-scale-shape: false;
+    -fx-shape: "M33.561,25.389c0,0.828-0.672,1.5-1.5,1.5s-1.5-0.672-1.5-1.5c0-0.828,0.672-1.5,1.5-1.5S33.561,24.561,33.561,25.389z M32.061,30.532c-0.828,0-1.5,0.672-1.5,1.5c0,0.828,0.672,1.5,1.5,1.5s1.5-0.672,1.5-1.5C33.561,31.204,32.889,30.532,32.061,30.532z M32,37.107c-0.828,0-1.5,0.672-1.5,1.5c0,0.828,0.672,1.5,1.5,1.5s1.5-0.672,1.5-1.5C33.5,37.779,32.828,37.107,32,37.107z";
+}
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****                 ScrollBar 滚动条样式                    *****
+           *****                                                        *****
+           ******************************************************************
+*/
+/*滚动条样式*/
+/*滚动条*/
+.scroll-bar > .thumb{
+    -fx-background-color: #C1C1C1;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+/*滚动条放上去颜色*/
+.scroll-bar > .thumb:hover {
+    -fx-background-color: #A8A8A8;
+}
+/*滚动条鼠标点击颜色*/
+.scroll-bar > .thumb:pressed {
+    -fx-background-color: #787878;
+}
+/*滚动框背景颜色（剩余）*/
+.scroll-bar > .track {
+    -fx-background-color: #F1F1F1;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+.scroll-bar > .track-background {
+    -fx-background-insets: 0;
+}
+/*滚动条两边按钮*/
+.scroll-bar > .increment-button,
+.scroll-bar > .decrement-button {
+    -fx-background-color: #F1F1F1;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0.5em 0.25em 0.5em 0.25em; /* 6 3 6 3*/
+}
+/*滚动条水平放置*/
+.scroll-bar:horizontal > .increment-button,
+.scroll-bar:horizontal > .decrement-button {
+    -fx-padding: 0.25em 0.5em 0.25em 0.5em ; /* 3 6 3 6*/
+}
+/*滚动条向上向下按钮放上时颜色*/
+.scroll-bar > .increment-button:hover,
+.scroll-bar > .decrement-button:hover  {
+    -fx-background-color: #D2D2D2;
+}
+/*滚动条向上向下按钮点击时颜色*/
+.scroll-bar > .increment-button:pressed,
+.scroll-bar > .decrement-button:pressed {
+    -fx-background-color: #787878;
+}
+
+/* Disabled */
+.scroll-bar:disabled {
+    -fx-opacity: 0.4;
+}
+
+/* ARROW SHAPES */
+/*绘制向上箭头（滚动条横放）*/
+.scroll-bar:horizontal > .increment-button > .increment-arrow {
+    -fx-shape: "M14.4,18.611l3.633-3.637L14.4,11.338l0.352-0.352l3.992,3.988 l-3.992,3.988L14.4,18.611z";
+}
+/*绘制向下箭头（滚动条横放）*/
+.scroll-bar:horizontal > .decrement-button > .decrement-arrow {
+    -fx-shape: "M18.393,18.963L14.4,14.975l3.992-3.988l0.352,0.352l-3.633,3.637 l3.633,3.637L18.393,18.963z";
+}
+/*绘制向上箭头（滚动条竖放）*/
+.scroll-bar:vertical > .increment-button > .increment-arrow {
+    -fx-shape: "M20.561,13.154l-3.988,3.992l-3.988-3.992l0.352-0.352 l3.637,3.633l3.637-3.633L20.561,13.154z";
+}
+/*绘制向下箭头（滚动条竖放）*/
+.scroll-bar:vertical > .decrement-button > .decrement-arrow {
+    -fx-shape: "M20.209,17.146l-3.637-3.633l-3.637,3.633l-0.352-0.352 l3.988-3.992l3.988,3.992L20.209,17.146z";
+}
+
+.scroll-bar:vertical > .increment-button > .increment-arrow,
+.scroll-bar:vertical > .decrement-button > .decrement-arrow {
+    -fx-padding: 0.208333em 0.333333em 0.208333em 0.333333em; /* 2.5 4 2.5 4*/
+}
+.scroll-bar:horizontal > .increment-button > .increment-arrow,
+.scroll-bar:horizontal > .decrement-button > .decrement-arrow {
+    -fx-padding: 0.333333em 0.208333em 0.333333em 0.208333em; /* 4 2.5 4 2.5 */
+    -fx-translate-y: -1; /* HACK:  Somehow the arrow is not centered so we add this to center it */
+}
+/*上移下移按钮中图片颜色*/
+.scroll-bar > .decrement-button > .decrement-arrow,
+.scroll-bar > .increment-button > .increment-arrow{
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-background-color: #505050;
+    -fx-effect: null;
+}
+/*上移下移点击按钮颜色*/
+.scroll-bar > .increment-button:pressed > .increment-arrow,
+.scroll-bar > .decrement-button:pressed > .decrement-arrow {
+    -fx-background-color: #FFF;
+}
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****                 Pagination 分页器样式                   *****
+           *****                                                        *****
+           ******************************************************************
+*/
+/*分页器*/
+.pagination {
+    -fx-page-information-visible:false;
+    -fx-tooltip-visible: false;
+}
+.pagination > .pagination-control  .left-arrow-button,.right-arrow-button{
+    -fx-background-color: transparent;
+}
+.pagination > .pagination-control .left-arrow-button >.left-arrow {
+    -fx-shape: "M18.393,18.963L14.4,14.975l3.992-3.988l0.352,0.352l-3.633,3.637 l3.633,3.637L18.393,18.963z";
+}
+.pagination > .pagination-control .right-arrow-button >.right-arrow{
+    -fx-shape: "M14.4,18.611l3.633-3.637L14.4,11.338l0.352-0.352l3.992,3.988 l-3.992,3.988L14.4,18.611z";
+}
+.pagination > .pagination-control .number-button{
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000 ;
+    -fx-font-size: 1.2em;
+}
+.pagination > .pagination-control .number-button:selected{
+    -fx-background-color: #217BEC;
+    -fx-text-fill: #FFFFFF ;
+}
+.pagination > .pagination-control .number-button:hover{
+    -fx-background-color: #217BEC;
+    -fx-text-fill: #FFFFFF ;
+}
+.pagination > .pagination-control .number-button:pressed{
+    -fx-background-color: #217BEC;
+    -fx-text-fill: #FFFFFF ;
+}
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****                 ComboBox 下拉框样式                     *****
+           *****                                                        *****
+           ******************************************************************
+*/
+/*下拉框comboBox样式*/
+.combo-box-base  {
+    -fx-background-color:#FFF;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-padding: 0.166667em 0.166667em 0.166667em 0.166667em; /* 2 2px 2 2px*/
+    -fx-font-size: 1em; /* 12 */
+}
+.combo-box-base > .list-cell {
+    -fx-text-fill: #000;
+}
+/*comboBox鼠标放上时颜色*/
+.combo-box-base:hover {
+    -fx-border-color: #40A9FF;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+/*选中时样式*/
+.combo-box-base:focused {
+    -fx-background-color: #FFF;
+    -fx-background-insets: -1.4, 0, 1, 2;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+.combo-box-base:pressed,
+.combo-box-base:focused:pressed,
+.combo-box-base:showing,
+.combo-box-base:showing:hover,
+.combo-box-base:editable:showing {
+    -fx-border-color: #40A9FF;
+    -fx-background-color: #FFF;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+.combo-box-base:disabled {
+    -fx-opacity: .4;
+}
+/*下拉箭头样式*/
+.combo-box-base > .arrow-button {
+    -fx-background-color: transparent;
+}
+/*设置内边距*/
+.combo-box-base.combo-box > .arrow-button {
+    -fx-padding: 0.5em 0.667em 0.5em 0em; /* 6 8 6 0 */
+}
+.combo-box-base > .arrow-button > .arrow {
+    -fx-background-insets: 0 0 0 0, 0;
+}
+/*下拉框选项样式*/
+.combo-box-popup > .list-view {
+    -fx-effect: null;
+    -fx-border-color: #FFF;
+}
+/*下路框中未被选中的样式*/
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-font-size: 1em;
+    -fx-padding: 0.333333em 0 0.333333em 0.416667em; /* 4 0 4 5 */
+    -fx-background-color: #FFF;
+}
+/*下拉选项鼠标放上时样式*/
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:hover{
+    -fx-background-color: #E6F7FF;
+    -fx-text-fill: #000;
+}
+/*下拉框被选中时样式*/
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected{
+    -fx-background-color: #E6F7FF;
+    -fx-text-fill: #000000;
+}
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected:hover{
+    -fx-background-color: #E6F7FF;
+}
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****                     Radio 单选框样式                    *****
+           *****                                                        *****
+           ******************************************************************
+*/
+.radio-button {
+    -fx-text-fill: #000;
+}
+
+.radio-button > .radio  {
+    -fx-background-color: #FFF;
+    -fx-background-radius: 1.0em; /* large value to make sure this remains circular */
+    -fx-background-insets: 0;
+    /*noinspection CssInvalidFunction*/
+    -fx-border-style: solid, segments(1, 2);
+    -fx-border-radius: 1.0em, 0;
+    -fx-border-color:  #DFDFDF;
+    -fx-border-insets: 0px, -2px;
+    -fx-border-width: 2px, 1px;
+    -fx-padding: 3px; /* 4 -- padding from outside edge to the inner black dot */
+}
+
+.radio-button > .radio > .dot {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1.0em; /* large value to make sure this remains circular */
+    -fx-padding: 0.416667em; /* 5px -- radius of the inner black dot when selected */
+}
+
+/* hover */
+.radio-button:hover > .radio {
+    -fx-background-color: transparent;
+    -fx-border-color: #1890FF;
+}
+
+.radio-button:selected:hover > .radio > .dot {
+    -fx-background-color: #1890FF;
+}
+
+/* selected */
+.radio-button:selected > .radio {
+    -fx-border-color: #1890FF;
+}
+
+.radio-button:selected > .radio > .dot {
+    -fx-background-color: #1890FF;
+}
+
+/* pressed */
+.radio-button:pressed > .radio
+{
+    -fx-background-color: #1890FF;
+    -fx-border-color: #1890FF;
+}
+
+.radio-button:pressed:selected > .radio > .dot
+{
+    -fx-background-color: #1890FF;
+}
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****           Data Picker 时间选择器样式                    *****
+           *****                                                        *****
+           ******************************************************************
+*/
+.date-picker.combo-box-base {
+    -fx-background-color: #FFF;
+    -fx-background-insets: 0, 2;
+    -fx-border-color: #D9D9D9;
+}
+
+.date-picker.combo-box-base:hover {
+    -fx-background-color: #FFF;
+    -fx-border-color: #40A9FF;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 0;
+}
+
+.date-picker.combo-box-base:pressed {
+    -fx-background-insets: 0, 2;
+    -fx-border-color: #40A9FF;
+}
+
+.date-picker.combo-box-base:focused, .date-picker.combo-box-base:focused:hover {
+    -fx-background-color: #FFF;
+    -fx-background-insets: 0, 2;
+    -fx-border-color: #40A9FF;
+}
+
+/* "Textfield"  - most properties will be inherited by what was defined for the textfield */
+
+.date-picker > .text-field{
+    -fx-skin: "com.sun.javafx.scene.control.skin.TextFieldSkin";
+    -fx-border-width: 0;
+}
+
+.date-picker > .text-input{
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+.date-picker > .text-input > Pane {
+    -fx-background-color: #FFF;
+}
+
+/* Icon */
+
+.date-picker > .arrow-button {
+    -fx-background-color: #FFF;
+}
+
+.date-picker:focused > .arrow-button {
+    -fx-background-color: #FFF;
+    -fx-border-color: #FFF;
+    -fx-border-width: 0;
+}
+
+.date-picker:focused > .arrow-button > .arrow {
+    -fx-background-color: #EFEFEF;
+}
+
+.date-picker > .arrow-button > .arrow {
+    -fx-shape: "M24,8.136v14H8v-14h3v-1h1v1h8v-1h1v1H24z M9,9.136v2h14v-2h-2v1h-1v-1h-8v1h-1v-1H9z M23,21.137v-9H9v9H23zM11,15.136h1v1h-1V15.136z M11,17.137h1v1h-1V17.137z M11,19.137h1v1h-1V19.137z M14,13.136h1v1h-1V13.136z M14,15.136h1v1h-1V15.136z M14,17.137h1v1h-1V17.137z M14,19.137h1v1h-1V19.137z M17,13.136h1v1h-1V13.136z M17,15.136h1v1h-1V15.136z M17,17.137h1v1h-1V17.137z M17,19.137h1v1h-1V19.137z M20,13.136h1v1h-1V13.136z M20,15.136h1v1h-1V15.136z M20,17.137h1v1h-1V17.137z";
+    -fx-background-color: #EFEFEF;
+    -fx-background-insets: 0;
+    -fx-padding: 0.666667em 0.583333em 0.5em 0.416667em; /* 10 10 8 8 */
+    -fx-scale-shape: true;
+}
+
+.date-picker > .arrow-button:hover > .arrow {
+    -fx-background-color: #989898;
+}
+
+.date-picker > .arrow-button:pressed {
+    -fx-background-color: #FFF;
+}
+
+.date-picker > .arrow-button:pressed > .arrow {
+    -fx-background-color: #989898;
+}
+
+/* Disabled */
+
+.date-picker:disabled > .arrow-button {
+    -fx-background-color: #FFF;
+}
+
+/***************************** Date Picker popup ********************************/
+.date-picker-popup .button {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ButtonSkin"; /* Without also specifying this an exception sometimes happens when opening the DatePicker for the second time */
+}
+
+.date-picker-popup {
+    -fx-border-color: #FFF;
+    -fx-border-width: 2px;
+    -fx-effect: null;
+}
+
+.date-picker-popup {
+    -fx-background-color: #FFF;
+    -fx-background-insets: 0;
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: #FFF;
+    -fx-background-insets: 0;
+    -fx-font-size: 1.083333em;
+}
+
+.date-picker-popup > * > .spinner > .button {
+    -fx-padding: 0.25em 0.583333em 0.25em 0.583333em; /* 3 7 3 7 */
+}
+
+.date-picker-popup > * > .spinner > .button {
+    -fx-background-color: #FFF;
+    -fx-background-insets: 0;
+}
+
+.date-picker-popup > * > .spinner {
+    -fx-background-color: #FFF;
+    -fx-background-insets: 0;
+}
+
+.date-picker-popup > * > .spinner > .spinner-label {
+    -fx-text-fill: #000;
+}
+
+.date-picker-popup > * > .spinner > .button:hover {
+    -fx-background-color: #FFF;
+}
+
+.date-picker-popup > * > .spinner > .button:armed {
+    -fx-background-color: #FFF;
+}
+
+.date-picker-popup > * > .spinner > .button > .left-arrow,
+.date-picker-popup > * > .spinner > .button > .right-arrow {
+    -fx-background-color: #CACACA;
+    -fx-background-insets: 0;
+    -fx-effect: null;
+}
+
+.date-picker-popup > * > .spinner > .button:pressed > .left-arrow,
+.date-picker-popup > * > .spinner > .button:pressed > .right-arrow {
+    -fx-background-color: #989898;
+    -fx-background-insets: 0;
+}
+/*表单头（星期几）*/
+.date-picker-popup > .calendar-grid {
+    -fx-background-color: #FFF;
+    -fx-font-size: 0.9em;
+    -fx-padding: 0;
+}
+/*前一个月下一个月*/
+.date-picker-popup > * > .day-cell.previous-month,
+.date-picker-popup > * > .day-cell.next-month {
+    -fx-background-color: #FFF;
+    -fx-border-color: #FFF;
+    -fx-text-fill: #000;
+}
+
+.date-picker-popup > * > .day-cell.previous-month:hover,
+.date-picker-popup > * > .day-cell.next-month:hover {
+    -fx-background-color: #E6F7FF;
+}
+
+.date-picker-popup > * > .day-name-cell,
+.date-picker-popup > * > .week-number-cell {
+    -fx-font-size: 0.75em;
+    -fx-text-fill: #000;
+}
+
+.date-picker-popup > * > .day-name-cell {
+    -fx-font-size: 0.833333em; /* 10 */
+    -fx-padding: 0 0 0.75em 0;
+}
+
+/* Day Cells */
+.date-picker-popup > * > .day-cell {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-text-fill: #000;
+    -fx-padding: 0.5em 0.5em 0.5em 0.5em; /* 6 6 6 6 */
+}
+
+.date-picker-popup > * > .day-cell:hover {
+    -fx-background-color: #E6F7FF;;
+    -fx-text-fill: #000;
+}
+
+.date-picker-popup > * > .day-cell.selected {
+    -fx-background-color: #BAE7FF;
+    -fx-text-fill: #1890FF;
+    -fx-font-weight: bold;
+}
+
+.date-picker-popup > * > .day-cell.selected:hover {
+    -fx-background-color: #BAE7FF;
+}
+
+.date-picker-popup > * > .today:selected{
+    /*-fx-background-color: #BAE7FF;*/
+    /*-fx-text-fill: #1890FF;*/
+    /*-fx-font-weight: bold;*/
+}
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****                 hyperlink 超链接样式                    *****
+           *****                                                        *****
+           ******************************************************************
+*/
+.hyperlink {
+    -fx-padding: 0.166667em 0.25em 0.166667em 0em; /* 2 3 2 3 */
+    hyperlink_color: red;
+    -fx-text-fill: #0078D6;
+}
+
+.hyperlink,
+.hyperlink:focused,
+.hyperlink:hover,
+.hyperlink:visited,
+.hyperlink:hover:visited,
+.hyperlink:visited:armed {
+    -fx-underline: true;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #005BA1;
+}
+
+.hyperlink:pressed {
+    -fx-text-fill: #005BA1;
+}
+
+.hyperlink:disabled {
+    -fx-text-fill: blue;
+}

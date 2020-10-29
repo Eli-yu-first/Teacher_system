@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.hnust.controller.subject.SubjectListController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Label>题目列表</Label>
+             style="-fx-background-color: #FFF;-fx-border-width: 0" fx:id="container">
+        <HBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="0">
+            <padding>
+                <Insets left="20" />
+            </padding>
+            <Label style="-fx-font-size: 1.2em;" text="所属课程" />
+            <TextField style="-fx-end-margin: 50">
+                <HBox.margin>
+                    <Insets right="50.0" />
+                </HBox.margin>
+            </TextField>
+            <Label text="题目搜索" style="-fx-font-size: 1.2em;"/>
+            <TextField >
+                <HBox.margin>
+                    <Insets right="50.0" />
+                </HBox.margin>
+            </TextField>
+            <Button styleClass="btn,btn-info" text="搜索" prefWidth="120.0" style="-fx-font-size: 1.0em">
+                <HBox.margin>
+                    <Insets right="50.0" />
+                </HBox.margin>
+            </Button>
+            <Button styleClass="btn,btn-default" text="重置" prefWidth="120.0" style="-fx-font-size: 1.0em"/>
+        </HBox>
+        <HBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="50" AnchorPane.leftAnchor="0">
+            <padding>
+                <Insets left="40" />
+            </padding>
+            <Button styleClass="btn,btn-info" style="-fx-font-size: 1.0em;" prefWidth="120.0" text="新增题目"></Button>
+            <Button styleClass="btn,btn-default" style="-fx-font-size: 1.0em;"  prefWidth="120.0" text="导入题目"></Button>
+        </HBox>
+        <VBox AnchorPane.leftAnchor="30" AnchorPane.topAnchor="110" AnchorPane.bottomAnchor="0" fx:id="vbox1" AnchorPane.rightAnchor="20">
+            <TableView style="-fx-background-color: red" fx:id="tableSize" VBox.vgrow="ALWAYS" maxHeight="Infinity" minHeight="560" minWidth="500">
+                <columns>
+                    <TableColumn text="序号"></TableColumn>
+                    <TableColumn text="内容"></TableColumn>
+                    <TableColumn text="所属课程"></TableColumn>
+                    <TableColumn text="所属章节"></TableColumn>
+                    <TableColumn text="题目类型"></TableColumn>
+                    <TableColumn text="题目难度"></TableColumn>
+                    <TableColumn text="题目解析"></TableColumn>
+                    <TableColumn text="知识点"></TableColumn>
+                    <TableColumn text="答案"></TableColumn>
+                    <TableColumn text="课程目标"></TableColumn>
+                    <TableColumn text="权限"></TableColumn>
+                    <TableColumn text="操作"></TableColumn>
+                </columns>
+            </TableView>
+            <HBox style="-fx-background-color: red" alignment="CENTER" spacing="10">
+                <VBox.margin>
+                    <Insets top="20"></Insets>
+                </VBox.margin>
+                <Pagination></Pagination>
+                <Label text="跳 至" />
+                <TextField fx:id="toPage" prefWidth="45" />
+                <Label text="页" />
+            </HBox>
+        </VBox>
 </AnchorPane>
