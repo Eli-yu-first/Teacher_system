@@ -4,113 +4,91 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.shape.Line?>
-<AnchorPane style="-fx-background-color: #FFF" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hnust.controller.paper.GeneratePaperController">
-<!--   进程条-->
-    <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" fx:id="container">
-        <HBox styleClass="ball">
-            <Label styleClass="ball_text" text="1">
-                <HBox.margin>
-                    <Insets top="18" left="22"></Insets>
-                </HBox.margin>
-            </Label>
-        </HBox>
-       <AnchorPane>
-           <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-           <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-           <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline" fx:id="line1"/>
-       </AnchorPane>
-        <HBox styleClass="ball" alignment="CENTER">
-            <Label styleClass="ball_text" text="2" />
-        </HBox>
-        <AnchorPane>
-            <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-            <Label text="选择题目" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-            <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline" fx:id="line2"/>
-        </AnchorPane>
-        <HBox styleClass="ball" alignment="CENTER">
-            <Label styleClass="ball_text" text="3" />
-        </HBox>
-        <AnchorPane>
-            <Label text="步骤三" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-            <Label text="生成试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-        </AnchorPane>
-    </HBox>
-<!--    第一个页面（框一）-->
-    <VBox alignment="CENTER" spacing="50" AnchorPane.topAnchor="150" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" visible="false">
-<!--        考试年级、考试时间-->
-        <HBox spacing="70" alignment="CENTER">
-            <HBox prefWidth="450" alignment="CENTER_RIGHT">
-                <Label text="考试年级、专业：" styleClass="form_label"></Label>
-                <TextField prefWidth="250" prefHeight="35"></TextField>
+<ScrollPane style="-fx-background-color: #FFF" fx:id="container" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hnust.controller.paper.GeneratePaperController">
+    <AnchorPane fx:id="contain" style="-fx-background-color: #FFF">
+        <!--   进程条-->
+        <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" fx:id="contain_process" >
+            <HBox styleClass="ball_active">
+                <Label styleClass="ball_text" text="1">
+                    <HBox.margin>
+                        <Insets top="18" left="22"></Insets>
+                    </HBox.margin>
+                </Label>
             </HBox>
-            <HBox prefWidth="450" alignment="CENTER_LEFT">
-                <Label text="考试时间：" styleClass="form_label"></Label>
-                <TextField prefWidth="250" prefHeight="35" />
+            <AnchorPane>
+                <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline" fx:id="line1"/>
+            </AnchorPane>
+            <HBox styleClass="ball_inactive" alignment="CENTER">
+                <Label styleClass="ball_text" text="2" />
             </HBox>
-        </HBox>
-<!--        课程、开课单位-->
-        <HBox spacing="70" alignment="CENTER">
-            <HBox prefWidth="450" alignment="CENTER_RIGHT">
-                <Label text="课程：" styleClass="form_label"></Label>
-                <ComboBox prefWidth="250" prefHeight="35" />
+            <AnchorPane>
+                <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="选择题目" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline" fx:id="line2"/>
+            </AnchorPane>
+            <HBox styleClass="ball_inactive" alignment="CENTER">
+                <Label styleClass="ball_text" text="3" />
             </HBox>
-            <HBox prefWidth="450" alignment="CENTER_LEFT">
-                <Label text="开课单位：" styleClass="form_label"></Label>
-                <Label text="计算机科学与工程学院" styleClass="form_text" ></Label>
+            <AnchorPane>
+                <Label text="步骤三" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="生成试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+            </AnchorPane>
+        </HBox>
+        <!--    第一个页面（框一）-->
+        <VBox alignment="CENTER" spacing="50" AnchorPane.topAnchor="150" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" fx:id="contain_first" visible="true" >
+            <!--        考试年级、考试时间-->
+            <HBox spacing="70" alignment="CENTER">
+                <HBox prefWidth="450" alignment="CENTER_RIGHT">
+                    <Label text="考试年级、专业：" styleClass="form_label"></Label>
+                    <TextField prefWidth="250" prefHeight="35"></TextField>
+                </HBox>
+                <HBox prefWidth="450" alignment="CENTER_LEFT">
+                    <Label text="考试时间：" styleClass="form_label"></Label>
+                    <TextField prefWidth="250" prefHeight="35" />
+                </HBox>
             </HBox>
-        </HBox>
-<!--        命题日期、命题教师-->
-        <HBox spacing="70" alignment="CENTER">
-        <HBox prefWidth="450" alignment="CENTER_RIGHT">
-            <Label text="命题日期：" styleClass="form_label"></Label>
-            <TextField prefWidth="250" prefHeight="35" />
-        </HBox>
-        <HBox prefWidth="450" alignment="CENTER_LEFT">
-            <Label text="命题教师：" styleClass="form_label"></Label>
-            <Label text="李四" styleClass="form_text"></Label>
-        </HBox>
-        </HBox>
-<!--        预计考核通过率、试卷类型-->
-        <HBox spacing="70" alignment="CENTER">
-            <HBox prefWidth="450" alignment="CENTER_RIGHT">
-                <Label text="预计考核通过率：" styleClass="form_label"></Label>
-                <TextField prefWidth="250" prefHeight="35" />
+            <!--        课程、开课单位-->
+            <HBox spacing="70" alignment="CENTER">
+                <HBox prefWidth="450" alignment="CENTER_RIGHT">
+                    <Label text="课程：" styleClass="form_label"></Label>
+                    <ComboBox prefWidth="250" prefHeight="35" />
+                </HBox>
+                <HBox prefWidth="450" alignment="CENTER_LEFT">
+                    <Label text="开课单位：" styleClass="form_label"></Label>
+                    <Label text="计算机科学与工程学院" styleClass="form_text" ></Label>
+                </HBox>
             </HBox>
-        <HBox prefWidth="450" alignment="CENTER_LEFT">
-            <Label text="试卷类型：" styleClass="form_label"></Label>
-            <RadioButton> A卷</RadioButton>
-            <RadioButton> B卷</RadioButton>
-        </HBox>
-        </HBox>
-        <HBox alignment="CENTER">
-            <padding>
-                <Insets bottom="5"></Insets>
-            </padding>
-            <Button styleClass="btn,btn-primary" prefWidth="150" prefHeight="50">保存进入下一步</Button>
-        </HBox>
-    </VBox>
-<!--    第二个页面（框二）-->
-    <VBox AnchorPane.topAnchor="120" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" spacing="20">
-        <AnchorPane>
-            <HBox AnchorPane.leftAnchor="50" alignment="CENTER" spacing="20">
-                <Button styleClass="btn,btn-info,btn_appearance">添加题型</Button>
-                <Button styleClass="btn,btn-default,btn_appearance">设为隐藏</Button>
-                <Button styleClass="btn,btn-success,btn_appearance">修改分值</Button>
-                <Button styleClass="btn,btn-danger,btn_appearance">删除题目</Button>
+            <!--        命题日期、命题教师-->
+            <HBox spacing="70" alignment="CENTER">
+                <HBox prefWidth="450" alignment="CENTER_RIGHT">
+                    <Label text="命题日期：" styleClass="form_label"></Label>
+                    <TextField prefWidth="250" prefHeight="35" />
+                </HBox>
+                <HBox prefWidth="450" alignment="CENTER_LEFT">
+                    <Label text="命题教师：" styleClass="form_label"></Label>
+                    <Label text="李四" styleClass="form_text"></Label>
+                </HBox>
             </HBox>
-            <HBox AnchorPane.rightAnchor="50" alignment="CENTER" spacing="20">
-                <Button styleClass="btn,btn-success" prefHeight="40" style="-fx-font-size: 1.05em">返回上一步</Button>
-                <Button styleClass="btn,btn-warning,btn_appearance">试卷查重</Button>
-                <Button styleClass="btn,btn-default,btn_appearance">试卷预览</Button>
-                <Button styleClass="btn,btn-info" prefHeight="40" style="-fx-font-size: 1.05em">保存生成试卷</Button>
+            <!--        预计考核通过率、试卷类型-->
+            <HBox spacing="70" alignment="CENTER">
+                <HBox prefWidth="450" alignment="CENTER_RIGHT">
+                    <Label text="预计考核通过率：" styleClass="form_label"></Label>
+                    <TextField prefWidth="250" prefHeight="35" />
+                </HBox>
+                <HBox prefWidth="450" alignment="CENTER_LEFT">
+                    <Label text="试卷类型：" styleClass="form_label"></Label>
+                    <RadioButton> A卷</RadioButton>
+                    <RadioButton> B卷</RadioButton>
+                </HBox>
             </HBox>
-        </AnchorPane>
-        <AnchorPane>
-            <ScrollPane AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="350">
-                <Label>手动生成试卷</Label>
-            </ScrollPane>
-        </AnchorPane>
-    </VBox>
-    <!--    <Label>手动生成试卷</Label>-->
-</AnchorPane>
+            <HBox alignment="CENTER">
+                <padding>
+                    <Insets bottom="5"></Insets>
+                </padding>
+                <Button styleClass="btn,btn-primary" prefWidth="150" prefHeight="50" onAction="#next">保存进入下一步</Button>
+            </HBox>
+        </VBox>
+    </AnchorPane>
+</ScrollPane>
