@@ -7,12 +7,8 @@
 <?import javafx.scene.shape.Line?>
 <AnchorPane style="-fx-background-color: #FFF" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hnust.controller.paper.GeneratePaperController">
     <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-        <HBox styleClass="ball">
-            <Label styleClass="ball_text" text="1">
-                <HBox.margin>
-                    <Insets top="18" left="22"></Insets>
-                </HBox.margin>
-            </Label>
+        <HBox styleClass="ball" alignment="CENTER">
+            <Label styleClass="ball_text" text="1"/>
         </HBox>
        <AnchorPane>
            <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
