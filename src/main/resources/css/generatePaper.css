@@ -6,6 +6,8 @@
     -fx-background-radius: 30;
     -fx-pref-height: 60;
     -fx-pref-width: 60;
+    -fx-min-height: 60;
+    -fx-min-width: 60;
 }
 .ball_text{
     -fx-text-fill: #FFF;
@@ -26,4 +28,17 @@
 }
 .steps_sm{
     -fx-font-size: 0.8em;
+}
+.form_label{
+    -fx-font-weight: bold;
+    -fx-font-size: 1.2em;
+    -fx-font-family: "MicrosoftYaHei";
+}
+.form_text{
+    -fx-font-size: 1.1em;
+}
+.btn_appearance{
+    -fx-pref-width: 100;
+    -fx-pref-height: 40;
+    -fx-font-size: 1.05em;
 }
