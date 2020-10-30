@@ -96,7 +96,7 @@ public class MainController implements Initializable{
      * @param view
      * @throws IOException
      */
-    private void skipView(AbstractFxmlView view) throws IOException {
+    public void skipView(AbstractFxmlView view) throws IOException {
         content.getChildren().clear();
         content.getChildren().add(view.getView());
         AnchorPane.setBottomAnchor(view.getView(),0.0);
