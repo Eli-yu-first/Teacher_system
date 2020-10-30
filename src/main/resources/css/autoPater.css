@@ -1,0 +1,45 @@
+.ball01{
+    -fx-background-color: #1890FF;
+    -fx-border-color: #1890FF;
+    -fx-border-width:1;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-pref-height: 60;
+    -fx-pref-width: 60;
+}
+.ball02{
+    -fx-border-width:1;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-pref-height: 60;
+    -fx-pref-width: 60;
+    -fx-border-style: solid;
+    -fx-border-color: rgba(0, 0, 0, 0.80);
+}
+
+.ball_text01{
+    -fx-text-fill: #FFF;
+    -fx-font-size: 1.3em;
+    -fx-font-weight: bold;
+}
+.ball_text02{
+    -fx-text-fill: rgba(0, 0, 0, 0.80);
+    -fx-font-size: 1.3em;
+    -fx-font-weight: bold;
+}
+
+.hline{
+    -fx-max-height: 4;
+    -fx-min-height: 4;
+    -fx-pre-height: 4;
+    -fx-pref-width: 170 ;
+    /*-fx-background-color: #F7F7F7;*/
+    -fx-background-color: red;
+}
+.steps_bg{
+    -fx-font-weight: bold;
+    -fx-font-size: 1.2em;
+}
+.steps_sm{
+    -fx-font-size: 0.8em;
+}
