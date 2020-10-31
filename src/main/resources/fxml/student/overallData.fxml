@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            style="-fx-background-color: #ffffff"
-            fx:id="overAllDataWindow"
+<AnchorPane fx:id="overAllDataWindow" prefHeight="650"
+            prefWidth="1040" style="-fx-background-color: #ffffff"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.hnust.controller.student.OverallDataController">
+    <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <AnchorPane style="-fx-background-color: #ffffff">
+            <AnchorPane prefHeight="350" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+                <VBox alignment="CENTER_LEFT" prefHeight="30" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="15">
+                    <Label style="-fx-font-family: SimSun-ExtB;-fx-font-size: 16" text="学生总体做题正确率" />
+                </VBox>
+                <HBox style="-fx-border-width: 0 0 1 0;-fx-border-style: solid;-fx-border-color:  #b2b2b2" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="55" />
+                <FlowPane fx:id="studentAccuracy" hgap="40" prefHeight="200" vgap="40" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="60">
+                    <padding>
+                        <Insets bottom="20" left="20" right="20" top="20" />
+                    </padding>
+                    <!--存放数据饼图-->
+                </FlowPane>
+            </AnchorPane>
+            <!--15+20+20+15+250-->
+            <AnchorPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="350">
+                <VBox alignment="CENTER_LEFT" prefHeight="30" AnchorPane.leftAnchor="20"
+                      AnchorPane.rightAnchor="0" AnchorPane.topAnchor="15">
+                    <Label style="-fx-font-family: SimSun-ExtB;-fx-font-size: 16" text="各个班级的做题信息" />
+                </VBox>
+                <HBox style="-fx-border-width: 0 0 1 0;-fx-border-style: solid;-fx-border-color:  #b2b2b2"
+                      AnchorPane.leftAnchor="20"
+                      AnchorPane.rightAnchor="20" AnchorPane.topAnchor="55" />
+                <FlowPane fx:id="classSubjectCount" hgap="40" vgap="40" AnchorPane.leftAnchor="0"
+                          AnchorPane.rightAnchor="0" AnchorPane.topAnchor="60">
+                    <!--存放数据柱状图-->
+                    <padding>
+                        <Insets bottom="20"/>
+                    </padding>
+                    <BarChart style="-fx-font-family: SimSun-ExtB;-fx-font-size: 13"
+                              fx:id="charBar" prefHeight="320">
+                        <xAxis>
+                            <CategoryAxis side="LEFT" startMargin="30" endMargin="30"
+                            tickLength="0"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis upperBound="200" tickUnit="1" label="做题总数"/>
+                        </yAxis>
+                    </BarChart>
+                </FlowPane>
+            </AnchorPane>
+
+        </AnchorPane>
+    </ScrollPane>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package com.hnust.controller;
 
 import com.hnust.store.DataStore;
+import com.hnust.view.paper.AutoPaperView;
 import com.hnust.view.paper.GeneratePaperView;
 import com.hnust.view.paper.PaperListView;
 import com.hnust.view.personInfo.MyCourseGroupView;
@@ -33,6 +34,7 @@ import java.util.ResourceBundle;
 
 @FXMLController
 public class MainController implements Initializable{
+
     @FXML
     private Label navFont;
     @FXML
@@ -44,6 +46,7 @@ public class MainController implements Initializable{
 
     private Stage stage;
 
+    public ImageView header4Item3Image;
     public ImageView header1Item1Image;
     public ImageView header1Item2Image;
     public ImageView header2Item1Image;
@@ -69,6 +72,8 @@ public class MainController implements Initializable{
     private BatchImportView batchImportView;
     @Autowired
     private SubjectListView subjectListView;
+    @Autowired
+    private AutoPaperView autoPaperView;
 
     @SneakyThrows
     @Override
@@ -76,9 +81,8 @@ public class MainController implements Initializable{
         //System.out.println(dataStore.getToken());
         Screen s=Screen.getPrimary();
         Rectangle2D visualBound=s.getVisualBounds();
-
         stage=GUIState.getStage();
-        stage.setMinWidth(visualBound.getWidth()*0.8);
+        stage.setMinWidth(visualBound.getWidth()*0.85);
         stage.setMinHeight(visualBound.getHeight()*0.8);
         try {
             skipView(personDataView);
@@ -92,7 +96,7 @@ public class MainController implements Initializable{
      * @param view
      * @throws IOException
      */
-    private void skipView(AbstractFxmlView view) throws IOException {
+    public void skipView(AbstractFxmlView view) throws IOException {
         content.getChildren().clear();
         content.getChildren().add(view.getView());
         AnchorPane.setBottomAnchor(view.getView(),0.0);
@@ -149,6 +153,11 @@ public class MainController implements Initializable{
                 path = generatePaperView;
                 label="试卷管理  /  手动生成试卷";
                 break;
+            case "自动生成试卷":
+                header4Item3Image.setVisible(true);
+                path = autoPaperView;
+                label="试卷管理  /  自动生成试卷";
+                break;
         }
         navFont.setText(label);
         skipView(path);
@@ -159,5 +168,6 @@ public class MainController implements Initializable{
        header2Item1Image.setVisible(false);header2Item2Image.setVisible(false);
        header3Item1Image.setVisible(false);header3Item2Image.setVisible(false);
        header4Item1Image.setVisible(false);header4Item2Image.setVisible(false);
+       header4Item3Image.setVisible(false);
     }
 }
