@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.hnust.controller.personInfo.PersonDataController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Label>个人信息</Label>
+<AnchorPane prefHeight="498.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hnust.controller.personInfo.PersonDataController">
+    <VBox prefHeight="62.0" prefWidth="128.0" AnchorPane.LeftAnchor="269.0" AnchorPane.topAnchor="43.0">
+    <Label lineSpacing="2.0" prefHeight="44.0" prefWidth="127.0" text="个人信息" textAlignment="RIGHT">
+   <font>
+      <Font name="Goudy Stout" size="25.0" />
+   </font>
+   </Label>
+    </VBox>
+<VBox fx:id="vbox1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="325.0" prefWidth="78.0" AnchorPane.bottomAnchor="82.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="800.0" AnchorPane.topAnchor="87.0">
+    <Label lineSpacing="1.0" style="-fx-padding: 10" text="学 院" />
+    <TextField editable="false" style="-fx-background-color: CEDEF5" />
+    <Label style="-fx-padding: 10" text="教工号" />
+    <TextField editable="false" style="-fx-background-color: CEDEF5" />
+    <Label lineSpacing="1.0" style="-fx-padding: 10" text="姓 名" />
+    <TextField editable="false" style="-fx-background-color: CEDEF5" />
+    <Label style="-fx-padding: 10" text="手机号" />
+    <TextField editable="false" style="-fx-background-color: CEDEF5" />
+    <Label style="-fx-padding: 10" text="邮 箱" />
+    <TextField editable="false" style="-fx-background-color: CEDEF5" />
+
+</VBox>
+    <VBox prefHeight="62.0" prefWidth="210.0" AnchorPane.RightAnchor="250.0" AnchorPane.topAnchor="43.0">
+    <Label lineSpacing="2.0" prefHeight="44.0" prefWidth="180.0" text="我加入的课程组" textAlignment="RIGHT">
+        <font>
+            <Font name="Goudy Stout" size="25.0" />
+        </font>
+    </Label>
+    </VBox>
+   <VBox prefHeight="62.0" prefWidth="210.0" AnchorPane.LeftAnchor="250.0" AnchorPane.topAnchor="480.0">
+      <children>
+          <Button prefWidth="120.0" style="-fx-font-size: 1.0em;-fx-arc-height: 20" styleClass="btn,btn-info" text="更新信息" />
+      </children>
+   </VBox>
+   <VBox prefHeight="62.0" prefWidth="120.0" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="125.0">
+      <children>
+          <Button prefWidth="120.0" style="-fx-font-size: 1.0em;" styleClass="btn,btn-info" text="申请修改学院" />
+      </children>
+   </VBox>
+    <VBox prefHeight="318.0" prefWidth="454.0" styleClass="list-cell" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="144.0">
+        <children>
+            <ListView fx:id="CourseGroupListView" prefHeight="320.0" prefWidth="439.0" />
+        </children>
+    </VBox>
+    <Button prefHeight="40" prefWidth="180.0" style="-fx-font-size: 1.0em;-fx-arc-height: 30; -fx-background-color: #53C419" styleClass="btn,btn-info" text="➕申请加入课程组" AnchorPane.RightAnchor="250.0" AnchorPane.topAnchor="480.0" />
+   <VBox prefHeight="129.0" prefWidth="120.0" spacing="20" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="166.0">
+      <children>
+         <Button styleClass="btn,btn-info" text="查看"/>
+         <Button styleClass="btn,btn-info" style="-fx-background-color:#FE0000 " text="退出"/>
+      </children>
+   </VBox>
 </AnchorPane>
