@@ -18,7 +18,7 @@ public class MainApp extends AbstractJavaFxApplicationSupport {
     }
 
     public static void main(String[] args) {
-        launch(MainApp.class, MainView.class,new SplashScreenCustom(),args);
+        launch(MainApp.class, LoginView.class,new SplashScreenCustom(),args);
     }
 
 }

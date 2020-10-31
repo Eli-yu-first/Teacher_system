@@ -4,13 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="loginWindow" prefHeight="700" prefWidth="950" stylesheets="@../css/login.css"
-            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.hnust.controller.LoginController">
+<AnchorPane fx:id="loginWindow" prefHeight="700" prefWidth="950" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hnust.controller.LoginController">
         <VBox alignment="CENTER" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-            <Label id="tea_register_font" alignment="CENTER" text="教 师 登 录" textAlignment="CENTER" />
-            <GridPane id="login-container" alignment="CENTER" maxWidth="530" prefHeight="360.0" vgap="10.0" VBox.vgrow="NEVER">
-
+            <Label id="tea_register_font" fx:id="teaTitle" alignment="CENTER" text="教 师 登 录" textAlignment="CENTER" />
+            <GridPane id="login-container" fx:id="loginContainer" alignment="CENTER" hgap="10" managed="false" maxWidth="530" prefHeight="360.0" vgap="10" visible="false">
                 <Label alignment="TOP_LEFT" styleClass="label_text" text="账号：" GridPane.columnSpan="2" GridPane.rowIndex="0" />
                 <TextField fx:id="loginAccount" promptText="请输入账号" styleClass="form-ceil" GridPane.columnSpan="2" GridPane.rowIndex="1" />
 
@@ -31,7 +28,7 @@
                     </Button>
                     <HBox alignment="CENTER">
                         <Label styleClass="normal_text">未有账号？</Label>
-                        <Label styleClass="register_text">注册</Label>
+                        <Label styleClass="register_text" onMouseClicked="#shiftRegister">注册</Label>
                     </HBox>
                 </VBox>
             <VBox.margin>
@@ -50,6 +47,59 @@
             <RowConstraints />
             <RowConstraints />
          </rowConstraints>
+            </GridPane>
+            <GridPane id="login-container" fx:id="registerContainer" alignment="CENTER" hgap="20.0" minWidth="570" maxWidth="570" prefHeight="440.0" vgap="15.0">
+
+                <Label alignment="TOP_LEFT" styleClass="label_text" text="姓名：" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+                <TextField fx:id="registerName" promptText="请输入老师名字" styleClass="form-ceil" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+
+                <Label styleClass="label_text" text="教工号：" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="registerTeaNumber" maxWidth="220" promptText="请输入教工号" styleClass="form-ceil" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+                <Label styleClass="label_text" text="邮箱：" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="registerTeaEmail" maxWidth="220" promptText="请输入邮箱" styleClass="form-ceil" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Label styleClass="label_text" text="密码：" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <PasswordField fx:id="registerPassword" maxWidth="220" promptText="请输入密码" styleClass="form-ceil" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+
+                <Label styleClass="label_text" text="确认密码：" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <PasswordField fx:id="registerRepeatPassword" maxWidth="220" promptText="请确认密码" styleClass="form-ceil" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                <Label styleClass="label_text" text="手机号：" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                <PasswordField fx:id="registerPhone" maxWidth="220" promptText="请输入手机号" styleClass="form-ceil" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+
+                <Label styleClass="label_text" text="验证码：" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <HBox GridPane.columnIndex="1" GridPane.rowIndex="7" maxWidth="220">
+                    <PasswordField fx:id="registerCode"  promptText="请输入验证码" styleClass="form-ceil"  />
+                    <Button styleClass="code_btn" minWidth="100" text="获取验证码" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                </HBox>
+                <VBox alignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="8">
+                    <Button alignment="CENTER" onAction="#registerButtonClick" styleClass="login_btn" text="注册" textAlignment="CENTER">
+                        <VBox.margin>
+                            <Insets bottom="10.0" top="10" />
+                        </VBox.margin>
+                    </Button>
+                    <HBox alignment="CENTER">
+                        <Label styleClass="normal_text">已有账号？</Label>
+                        <Label styleClass="register_text" onMouseClicked="#shiftLogin">登录</Label>
+                    </HBox>
+                </VBox>
+                <VBox.margin>
+                    <Insets bottom="20.0" left="230.0" right="230.0" top="15.0" />
+                </VBox.margin>
+                <columnConstraints>
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
             </GridPane>
         </VBox>
 
