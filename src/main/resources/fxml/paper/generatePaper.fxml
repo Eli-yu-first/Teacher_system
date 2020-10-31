@@ -18,7 +18,7 @@
             <AnchorPane>
                 <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
                 <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline" fx:id="line1"/>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline_inactive" fx:id="line1"/>
             </AnchorPane>
             <HBox styleClass="ball_inactive" alignment="CENTER">
                 <Label styleClass="ball_text" text="2" />
@@ -26,7 +26,7 @@
             <AnchorPane>
                 <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
                 <Label text="选择题目" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline" fx:id="line2"/>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline_inactive" fx:id="line2"/>
             </AnchorPane>
             <HBox styleClass="ball_inactive" alignment="CENTER">
                 <Label styleClass="ball_text" text="3" />
