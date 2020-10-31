@@ -6,4 +6,5 @@ package com.hnust.service;
  * 描述：
  */
 public interface SubjectService {
+
 }
