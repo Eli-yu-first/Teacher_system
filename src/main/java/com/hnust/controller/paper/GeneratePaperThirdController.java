@@ -45,6 +45,10 @@ public class GeneratePaperThirdController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        listenChange();//页面大小
+    }
+    //根据窗口改变，进行监听设置页面大小
+    public void listenChange(){
         container.setFitToWidth(true);
         //通过监听最外层容器的宽度，来改变内层Anchor的宽度
         container.widthProperty().addListener(new ChangeListener<Number>() {

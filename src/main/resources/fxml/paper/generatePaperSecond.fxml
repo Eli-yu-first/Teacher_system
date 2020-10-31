@@ -19,7 +19,7 @@
             <AnchorPane>
                 <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
                 <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline" fx:id="line1"/>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline_active" fx:id="line1"/>
             </AnchorPane>
             <HBox styleClass="ball_active" alignment="CENTER">
                 <Label styleClass="ball_text" text="2" />
@@ -27,7 +27,7 @@
             <AnchorPane>
                 <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
                 <Label text="选择题目" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline" fx:id="line2"/>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline_inactive" fx:id="line2"/>
             </AnchorPane>
             <HBox styleClass="ball_inactive" alignment="CENTER">
                 <Label styleClass="ball_text" text="3" />
@@ -42,7 +42,7 @@
             <!--           按钮-->
             <AnchorPane>
                 <HBox AnchorPane.leftAnchor="50" alignment="CENTER" spacing="20">
-                    <Button styleClass="btn,btn-info,btn_appearance">添加题型</Button>
+                    <Button styleClass="btn,btn-info,btn_appearance" onAction="#addPaperKind">添加题型</Button>
                     <Button styleClass="btn,btn-default,btn_appearance">设为隐藏</Button>
                     <Button styleClass="btn,btn-success,btn_appearance">修改分值</Button>
                     <Button styleClass="btn,btn-danger,btn_appearance">删除题目</Button>
@@ -77,6 +77,10 @@
                                     <CheckBox AnchorPane.topAnchor="15" AnchorPane.leftAnchor="10"/>
                                     <Label text="1.这是一个选择题（）" AnchorPane.topAnchor="15" AnchorPane.leftAnchor="50" styleClass="question"></Label>
                                     <Label text="A. 1  B. 2  C. 3  D. 4" AnchorPane.topAnchor="50" AnchorPane.leftAnchor="50" styleClass="question"></Label>
+                                    <HBox AnchorPane.rightAnchor="20" AnchorPane.topAnchor="10" alignment="CENTER" spacing="5">
+                                        <Label text="分值："></Label>
+                                        <Label text="3分"></Label>
+                                    </HBox>
                                 </AnchorPane>
                                 <VBox spacing="10">
                                     <padding>

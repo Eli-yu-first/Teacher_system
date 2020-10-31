@@ -9,7 +9,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -50,6 +53,10 @@ public class GeneratePaperSecondController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        listenChange();
+    }
+    //根据窗口改变，进行监听设置页面大小
+    public void listenChange(){
         //通过监听最外层容器的宽度，来改变内层Anchor的宽度
         container.widthProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -86,6 +93,26 @@ public class GeneratePaperSecondController implements Initializable {
                 scp_paper_contain.setPrefHeight((double) newValue-2);
             }
         });
+    }
+    //添加题型
+    public void addPaperKind(){
+
+        List<String> choices = new ArrayList<>();
+        choices.add("选择题");
+        choices.add("填空题");
+        choices.add("简答题");
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("选择题", choices);
+        dialog.setTitle("添加题型");
+        dialog.setHeaderText("请选择要添加的题目类型：");
+        dialog.setContentText("题型列表:");
+        dialog.setGraphic(null);
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            System.out.println("Your choice: " + result.get());
+        }
+
+
     }
     public void next() throws IOException {
         mainController.skipView(generatePaperThirdView);
