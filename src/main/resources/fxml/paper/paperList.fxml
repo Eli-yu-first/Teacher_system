@@ -5,10 +5,61 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.hnust.controller.paper.PaperListController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Label>试卷列表</Label>
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-color: #FFF;-fx-border-width: 0" fx:id="container">
+    <HBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="0">
+        <padding>
+            <Insets left="20" top="20"/>
+        </padding>
+        <Label style="-fx-font-size: 1.2em" text="课程:"/>
+        <TextField style="-fx-end-margin: 50">
+            <HBox.margin>
+                <Insets right="50.0"/>
+            </HBox.margin>
+        </TextField>
+        <Button styleClass="btn,btn-info" text="搜索" prefWidth="120.0" style="-fx-font-size: 1.0em">
+            <HBox.margin>
+                <Insets right="150.0"/>
+            </HBox.margin>
+        </Button>
+        <Button styleClass="btn,btn-info" text="自动生成试卷" prefWidth="175.0" style="-fx-font-size: 1.0em">
+            <HBox.margin>
+                <Insets right="50.0"/>
+            </HBox.margin>
+        </Button>
+        <Button styleClass="btn,btn-success" text="手动生成试卷" prefWidth="175.0" style="-fx-font-size: 1.0em">
+            <HBox.margin>
+                <Insets right="50.0"/>
+            </HBox.margin>
+        </Button>
+    </HBox>
+    <HBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="65" AnchorPane.leftAnchor="0">
+        <padding>
+            <Insets left="40"/>
+        </padding>
+        <Button styleClass="btn,btn-info" style="-fx-font-size: 1.0em" prefWidth="120.0" text="设为样卷"/>
+        <Button styleClass="btn,btn-danger" style="-fx-font-size: 1.0em" prefWidth="100.0" text="删除"/>
+        <Button styleClass="btn,btn-info" style="-fx-font-size: 1.0em" prefWidth="120.0" text="取消样卷"/>
+    </HBox>
+    <VBox AnchorPane.leftAnchor="30" AnchorPane.topAnchor="110" AnchorPane.bottomAnchor="0" fx:id="vbox1" AnchorPane.rightAnchor="20">
+        <TableView fx:id="tableView" VBox.vgrow="ALWAYS" maxHeight="-Infinity" minHeight="300" minWidth="500">
+            <columns>
+                <TableColumn text="科目" prefWidth="300.0" fx:id="columnSubject"></TableColumn>
+                <TableColumn text="创建人" prefWidth="300.0" fx:id="columnPerson"></TableColumn>
+                <TableColumn text="创建时间" prefWidth="300.0" fx:id="columnTime"></TableColumn>
+                <TableColumn text="操作" prefWidth="300.0" fx:id="columnOperate"></TableColumn>
+            </columns>
+        </TableView>
+        <HBox alignment="CENTER" spacing="5">
+            <Pagination></Pagination>
+            <Label text="跳 至" />
+            <TextField fx:id="toPage" prefWidth="45" />
+            <Label text="页" />
+        </HBox>
+    </VBox>
 </AnchorPane>
