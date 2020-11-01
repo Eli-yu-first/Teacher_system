@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hnust.controller.paper.component.PaperKindController" styleClass="paper_title" prefHeight="50">
+    <CheckBox AnchorPane.topAnchor="13" AnchorPane.leftAnchor="10"/>
+    <Label text="一、选择题" styleClass="paper_title_bg" AnchorPane.topAnchor="9" AnchorPane.leftAnchor="40"></Label>
+    <HBox spacing="10" AnchorPane.topAnchor="15" AnchorPane.rightAnchor="200">
+            <Label text="较易：" styleClass="paper_title_sm"></Label>
+            <Label text="0"></Label>
+            <Label text="中等："></Label>
+            <Label text="1"></Label>
+            <Label text="较难："></Label>
+            <Label text="1"></Label>
+        </HBox>
+    <Button styleClass="btn,btn-info,btn_appearance" text="添加题目" AnchorPane.topAnchor="5" AnchorPane.rightAnchor="5"></Button>
+</AnchorPane>
