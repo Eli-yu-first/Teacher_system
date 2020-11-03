@@ -1160,3 +1160,32 @@
 .hyperlink:disabled {
     -fx-text-fill: blue;
 }
+/*
+           ******************************************************************
+           *****                                                        *****
+           *****                ListView      列表视图                   *****
+           *****                                                        *****
+           ******************************************************************
+*/
+.list-view {
+    -fx-background-color: #FFF;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+
+    -fx-border-color: #FFF;
+    -fx-border-width: 1px;
+    -fx-text-fill: #000;
+    -fx-font-size: 1em; /* 12 */
+}
+
+.list-view:focused {
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-padding: 0.666667em 1em 0.666667em 1em; /* 8 12 8 12 */
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #000;
+}
+
