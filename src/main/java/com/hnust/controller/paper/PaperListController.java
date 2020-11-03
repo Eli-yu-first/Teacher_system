@@ -83,11 +83,11 @@ public class PaperListController implements Initializable {
                 }
             }
         });
-        page.currentPageIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                System.out.println("Current Page : "+(newValue.intValue()+1));
-            }
-        });
+//        page.currentPageIndexProperty().addListener(new ChangeListener<Number>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//                System.out.println("Current Page : "+(newValue.intValue()+1));
+//            }
+//        });
     }
 }
