@@ -4,54 +4,203 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.hnust.controller.paper.AutoPaperController">
-    <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-        <HBox styleClass="ball01">
-            <Label styleClass="ball_text01" text="1">
-                <HBox.margin>
-                    <Insets top="18" left="22"></Insets>
-                </HBox.margin>
-            </Label>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.hnust.controller.paper.AutoPaperController" fx:id="auto1">
+    <AnchorPane visible="false">
+        <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+            <HBox styleClass="ball01">
+                <Label styleClass="ball_text01" text="1">
+                    <HBox.margin>
+                        <Insets top="18" left="22"></Insets>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+            </AnchorPane>
+            <HBox styleClass="ball02">
+                <Label styleClass="ball_text02" text="2">
+                    <HBox.margin>
+                        <Insets top="18" left="22"></Insets>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="设置试卷题目信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+            </AnchorPane>
+            <HBox styleClass="ball02">
+                <Label styleClass="ball_text02" text="3">
+                    <HBox.margin>
+                        <Insets top="18" left="22"></Insets>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤三" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="查看试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+            </AnchorPane>
+            <HBox styleClass="ball02">
+                <Label styleClass="ball_text02" text="4">
+                    <HBox.margin>
+                        <Insets top="18" left="22"></Insets>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤四" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="生成试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+            </AnchorPane>
         </HBox>
-        <AnchorPane>
-            <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-            <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-            <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
-        </AnchorPane>
-        <HBox styleClass="ball02">
-            <Label styleClass="ball_text02" text="2">
-                <HBox.margin>
-                    <Insets top="18" left="22"></Insets>
-                </HBox.margin>
-            </Label>
+
+        <HBox AnchorPane.topAnchor="130" AnchorPane.rightAnchor="150" spacing="50" alignment="CENTER">
+            <RadioButton fx:id="r1" style="-fx-font-size: 1.2em">A卷</RadioButton>
+            <RadioButton fx:id="r2" style="-fx-font-size: 1.2em">B卷</RadioButton>
+            <Button text="下一步" styleClass="btn,btn-primary"  onMouseClicked="#btnClick"  fx:id="btn"/>
         </HBox>
-        <AnchorPane>
-            <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-            <Label text="设置试卷题目信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-            <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
-        </AnchorPane>
-        <HBox styleClass="ball02">
-            <Label styleClass="ball_text02" text="3">
-                <HBox.margin>
-                    <Insets top="18" left="22"></Insets>
-                </HBox.margin>
-            </Label>
+
+        <VBox alignment="CENTER" spacing="10" AnchorPane.topAnchor="180" AnchorPane.leftAnchor="130">
+            <HBox>
+                <padding>
+                    <Insets top="30"/>
+                </padding>
+                <Label text="开课单位： " style="-fx-font-size: 1.2em;" />
+                <TextField text="计算机科学与工程学院" style="-fx-end-margin: 40" styleClass="text-area"></TextField>
+            </HBox>
+
+            <HBox>
+                <padding>
+                    <Insets top="30"/>
+                </padding>
+                <Label text="课程： " style="-fx-font-size: 1.2em;" />
+                <ComboBox prefWidth="230" fx:id="comboBox" styleClass="combo-box">
+                    <HBox.margin>
+                        <Insets right="50.0" />
+                    </HBox.margin>
+                </ComboBox>
+            </HBox>
+
+            <HBox>
+                <padding>
+                    <Insets top="30"/>
+                </padding>
+                <Label text="考试年级及专业： " style="-fx-font-size: 1.2em;" />
+                <TextField style="-fx-end-margin: 40"></TextField>
+            </HBox>
+
+            <HBox>
+                <padding>
+                    <Insets top="30"/>
+                </padding>
+                <Label text="预计考核通过率： " style="-fx-font-size: 1.2em;" />
+                <TextField style="-fx-end-margin: 40"></TextField>
+            </HBox>
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="10" AnchorPane.topAnchor="180" AnchorPane.leftAnchor="730">
+            <HBox>
+                <padding>
+                    <Insets top="30"/>
+                </padding>
+                <Label text="命题教师： " style="-fx-font-size: 1.2em;" />
+                <TextField text="李四" style="-fx-end-margin: 40" styleClass="text-area"></TextField>
+            </HBox>
+
+            <HBox>
+                <padding>
+                    <Insets top="30"/>
+                </padding>
+                <Label text="课程编号： " style="-fx-font-size: 1.2em;" />
+                <TextField style="-fx-end-margin: 40"></TextField>
+            </HBox>
+
+            <HBox>
+                <padding>
+                    <Insets top="30"/>
+                </padding>
+                <Label text="考试时间： " style="-fx-font-size: 1.2em;" />
+                <TextField style="-fx-end-margin: 40"></TextField>
+            </HBox>
+
+            <HBox>
+                <padding>
+                    <Insets top="30"/>
+                </padding>
+                <Label text="命题日期： " style="-fx-font-size: 1.2em;" />
+                <TextField style="-fx-end-margin: 40"></TextField>
+            </HBox>
+
+        </VBox>
+
+    </AnchorPane>
+
+    <AnchorPane visible="true">
+        <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="0">
+            <HBox styleClass="ball02">
+                <Label styleClass="ball_text02" text="1">
+                    <HBox.margin>
+                        <Insets top="18" left="22"></Insets>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+            </AnchorPane>
+            <HBox styleClass="ball01">
+                <Label styleClass="ball_text01" text="2">
+                    <HBox.margin>
+                        <Insets top="18" left="22"></Insets>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="设置试卷题目信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+            </AnchorPane>
+            <HBox styleClass="ball02">
+                <Label styleClass="ball_text02" text="3">
+                    <HBox.margin>
+                        <Insets top="18" left="22"></Insets>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤三" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="查看试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+            </AnchorPane>
+            <HBox styleClass="ball02">
+                <Label styleClass="ball_text02" text="4">
+                    <HBox.margin>
+                        <Insets top="18" left="22"></Insets>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤四" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="生成试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+            </AnchorPane>
         </HBox>
-        <AnchorPane>
-            <Label text="步骤三" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-            <Label text="查看试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-            <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
-        </AnchorPane>
-        <HBox styleClass="ball02">
-            <Label styleClass="ball_text02" text="4">
-                <HBox.margin>
-                    <Insets top="18" left="22"></Insets>
-                </HBox.margin>
-            </Label>
+
+        <HBox AnchorPane.topAnchor="130" AnchorPane.rightAnchor="150" spacing="50" alignment="CENTER">
+            <Button text="上一步" styleClass="btn,btn-primary"/>
+            <Button text="添 加" styleClass="btn,btn-primary" onMouseClicked="#addQueTypeBtn" fx:id="addQueType"></Button>
+            <Button text="下一步" styleClass="btn,btn-primary"/>
         </HBox>
-        <AnchorPane>
-            <Label text="步骤四" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-            <Label text="生成试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-        </AnchorPane>
-    </HBox>
+        <VBox  AnchorPane.topAnchor="160" AnchorPane.rightAnchor="150" spacing="50" alignment="CENTER">
+            <children>
+                <Text fx:id="target" />
+            </children>
+        </VBox>
+
+
+    </AnchorPane>
 </AnchorPane>
+
