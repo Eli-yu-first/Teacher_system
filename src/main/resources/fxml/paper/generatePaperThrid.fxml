@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<ScrollPane style="-fx-background-color: #FFF" fx:id="container" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hnust.controller.paper.GeneratePaperThirdController">
+    <AnchorPane fx:id="contain" style="-fx-background-color: #FFF">
+        <!--   进程条-->
+        <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" fx:id="contain_process" >
+            <HBox styleClass="ball_active">
+                <Label styleClass="ball_text" text="1">
+                    <HBox.margin>
+                        <Insets top="18" left="22"></Insets>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline_active" fx:id="line1"/>
+            </AnchorPane>
+            <HBox styleClass="ball_active" alignment="CENTER">
+                <Label styleClass="ball_text" text="2" />
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="选择题目" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline_active" fx:id="line2"/>
+            </AnchorPane>
+            <HBox styleClass="ball_active" alignment="CENTER">
+                <Label styleClass="ball_text" text="3" />
+            </HBox>
+            <AnchorPane>
+                <Label text="步骤三" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+                <Label text="生成试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+            </AnchorPane>
+        </HBox>
+        <!--        第三个页面（框三）-->
+        <VBox spacing="10" AnchorPane.topAnchor="120" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" fx:id="contain_third">
+            <HBox spacing="30" alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets right="20"></Insets>
+                </padding>
+                <Button text="返回上一步" styleClass="btn,btn-info,btn_vbg" onAction="#back"></Button>
+                <Button text="确定保存" styleClass="btn,btn-primary,btn_vbg" onAction="#next"></Button>
+            </HBox>
+            <HBox alignment="CENTER">
+                <ImageView>
+                    <Image url="/image/app2.png"></Image>
+                </ImageView>
+            </HBox>
+        </VBox>
+    </AnchorPane>
+</ScrollPane>

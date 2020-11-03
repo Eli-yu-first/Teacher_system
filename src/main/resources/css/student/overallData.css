@@ -1,0 +1,37 @@
+/*饼状图样式设置*/
+.chart-pie.data0{
+    -fx-background-color: #ff0000;
+}
+
+.chart-pie.data1{
+    -fx-background-color: #409eff;
+}
+/*  #69d389  #BFBFBF  #FFBF00*/
+
+.chart{
+    -fx-pref-width: 250;
+    -fx-pref-height: 250;
+    -fx-font-family: SimSun-ExtB;
+    -fx-animated: true;
+}
+
+/*柱状图样式设置*/
+.chart-bar.series0{
+    -fx-bar-fill: #409eff
+}
+
+.chart-bar.series1{
+    -fx-bar-fill: #69d389
+}
+
+.chart-bar.series2{
+    -fx-bar-fill: #BFBFBF
+}
+
+.chart-bar.series3{
+    -fx-bar-fill: #ff0000
+}
+
+.chart-bar.series4{
+    -fx-bar-fill: #FFBF00
+}

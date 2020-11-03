@@ -2,28 +2,34 @@ package com.hnust.controller.paper;
 
 import com.hnust.controller.MainController;
 import com.hnust.view.paper.GeneratePaperSecondView;
+import com.hnust.view.paper.GeneratePaperView;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @program: demo
+ * @author: 彭鑫淼
+ * @description: 未知
+ * @create: 2020-10-30 17:53
+ */
 @FXMLController
-public class GeneratePaperController implements Initializable {
+public class GeneratePaperThirdController implements Initializable {
     @Autowired
     MainController mainController;
+    @Autowired
+    GeneratePaperView generatePaperView;
     @Autowired
     GeneratePaperSecondView generatePaperSecondView;
     @FXML
@@ -39,10 +45,11 @@ public class GeneratePaperController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listenChange();
+        listenChange();//页面大小
     }
     //根据窗口改变，进行监听设置页面大小
     public void listenChange(){
+        container.setFitToWidth(true);
         //通过监听最外层容器的宽度，来改变内层Anchor的宽度
         container.widthProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -67,6 +74,9 @@ public class GeneratePaperController implements Initializable {
         });
     }
     public void next() throws IOException {
+        mainController.skipView(generatePaperView);
+    }
+    public void back() throws IOException{
         mainController.skipView(generatePaperSecondView);
     }
 }

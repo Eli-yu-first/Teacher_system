@@ -24,6 +24,17 @@
     -fx-border-radius: 10;
 }
 
+#register-container{
+    -fx-background-color: white;
+    /*<effect>*/
+    /*<DropShadow color="#d7e4f7" height="10.0" radius="4.5" width="10.0" />*/
+    /*</effect>*/
+    -fx-effect: dropshadow(three-pass-box,#d7e4f7, 4.5,0, 0, 0);
+    /*设置圆角*/
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
 .label_text {
     -fx-font-size: 15px;
     -fx-text-fill: #4b88dc;

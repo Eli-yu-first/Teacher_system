@@ -10,9 +10,12 @@ import de.felixroske.jfxsupport.FXMLController;
 import de.felixroske.jfxsupport.GUIState;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.net.URL;
@@ -26,6 +29,16 @@ public class LoginController implements Initializable {
     public PasswordField loginPassword;
     public TextField loginCode;
     public AnchorPane loginWindow;
+    public TextField registerName;
+    public TextField registerTeaNumber;
+    public TextField registerTeaEmail;
+    public PasswordField registerPassword;
+    public PasswordField registerRepeatPassword;
+    public PasswordField registerPhone;
+    public PasswordField registerCode;
+    public GridPane loginContainer;
+    public GridPane registerContainer;
+    public Label teaTitle;
     private Stage stage;
     @Autowired
     private LoginView loginView;
@@ -61,4 +74,24 @@ public class LoginController implements Initializable {
         MainApp.showView(MainView.class);
     }
 
+    public void registerButtonClick(ActionEvent actionEvent) {
+
+    }
+
+
+    public void shiftRegister(MouseEvent mouseEvent) {
+        teaTitle.setText("教 师 注 册");
+        loginContainer.setManaged(false);
+        loginContainer.setVisible(false);
+        registerContainer.setManaged(true);
+        registerContainer.setVisible(true);
+    }
+
+    public void shiftLogin(MouseEvent mouseEvent) {
+        teaTitle.setText("教 师 登 录");
+        loginContainer.setManaged(true);
+        loginContainer.setVisible(true);
+        registerContainer.setManaged(false);
+        registerContainer.setVisible(false);
+    }
 }
