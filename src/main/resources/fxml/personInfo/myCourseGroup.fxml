@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.hnust.controller.personInfo.MyCourseGroupController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Label>我的课程组</Label>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Line?>
+<AnchorPane prefHeight="499.0"
+            prefWidth="774.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hnust.controller.personInfo.MyCourseGroupController">
+    <HBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="0">
+
+        <padding>
+            <Insets left="20" top="20" />
+        </padding>
+    </HBox>
+
+        <Label layoutX="162.0" layoutY="35.0" style="-fx-font-size: 1.2em;" text="组长教工号：886534">
+      <font>
+         <Font size="10.0" />
+      </font>
+   </Label>
+
+     <Label layoutX="23.0" layoutY="35.0" style="-fx-font-size: 1.2em;" text="组长姓名：张三">
+      <font>
+         <Font size="10.0" />
+      </font>
+   </Label>
+   <Button onAction="#ToSubjectList" layoutX="440.0" layoutY="28" mnemonicParsing="false" styleClass="btn,btn-default" text="查看题库" />
+   <Button layoutX="555.0" layoutY="28" mnemonicParsing="false" styleClass="btn,btn-primary" text="课程组指标点" textFill="#04020d" />
+   <Button layoutX="700.0" layoutY="28" mnemonicParsing="false" styleClass="btn,btn-danger" text="申请退出" />
+
+    <VBox prefHeight="1" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" style="-fx-background-color:#eeeeee;" layoutY="75"/>
+    <Label layoutX="23.0" layoutY="96.0" text="课程组" />
+    <ComboBox layoutX="78.0" layoutY="90.0" prefWidth="200" fx:id="courseGroup">
+        <HBox.margin>
+            <Insets right="50.0" />
+        </HBox.margin>
+    </ComboBox>
+   <Label layoutX="314.0" layoutY="96.0" text="组成员搜索" />
+   <TextField layoutX="389.0" layoutY="92.0" />
+   <Button layoutX="585.0" layoutY="87.0" mnemonicParsing="false" styleClass="btn,btn-primary" text="搜索" />
+   <Button layoutX="703.0" layoutY="87.0" mnemonicParsing="false" styleClass="btn,btn-default" text="重置" />
+
+    <VBox AnchorPane.leftAnchor="30" AnchorPane.topAnchor="130" AnchorPane.bottomAnchor="0" fx:id="vbox1" AnchorPane.rightAnchor="20">
+        <TableView style="-fx-background-color: #dddddd" fx:id="tableSize" VBox.vgrow="ALWAYS" maxHeight="Infinity" minHeight="300" minWidth="500">
+            <columns>
+                <TableColumn text="序号"></TableColumn>
+                <TableColumn text="教工号"></TableColumn>
+                <TableColumn text="姓名"></TableColumn>
+                <TableColumn text="电话"></TableColumn>
+            </columns>
+        </TableView>
+        <HBox alignment="CENTER" spacing="10">
+            <Pagination></Pagination>
+            <Label text="跳 至" />
+            <TextField fx:id="toPage" prefWidth="45" />
+            <Label text="页" />
+        </HBox>
+    </VBox>
 </AnchorPane>
