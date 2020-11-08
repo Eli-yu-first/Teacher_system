@@ -5,8 +5,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Text?>
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.hnust.controller.paper.AutoPaperController" fx:id="auto1">
-    <AnchorPane visible="false">
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hnust.controller.paper.AutoPaperController"
+            fx:id="auto1">
+
         <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
             <HBox styleClass="ball01">
                 <Label styleClass="ball_text01" text="1">
@@ -60,7 +63,7 @@
         <HBox AnchorPane.topAnchor="130" AnchorPane.rightAnchor="150" spacing="50" alignment="CENTER">
             <RadioButton fx:id="r1" style="-fx-font-size: 1.2em">A卷</RadioButton>
             <RadioButton fx:id="r2" style="-fx-font-size: 1.2em">B卷</RadioButton>
-            <Button text="下一步" styleClass="btn,btn-primary"  onMouseClicked="#btnClick"  fx:id="btn"/>
+            <Button text="下一步" styleClass="btn,btn-primary" onAction="#toAuto2"  fx:id="btn"/>
         </HBox>
 
         <VBox alignment="CENTER" spacing="10" AnchorPane.topAnchor="180" AnchorPane.leftAnchor="130">
@@ -136,71 +139,5 @@
 
         </VBox>
 
-    </AnchorPane>
-
-    <AnchorPane visible="true">
-        <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="0">
-            <HBox styleClass="ball02">
-                <Label styleClass="ball_text02" text="1">
-                    <HBox.margin>
-                        <Insets top="18" left="22"></Insets>
-                    </HBox.margin>
-                </Label>
-            </HBox>
-            <AnchorPane>
-                <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-                <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
-            </AnchorPane>
-            <HBox styleClass="ball01">
-                <Label styleClass="ball_text01" text="2">
-                    <HBox.margin>
-                        <Insets top="18" left="22"></Insets>
-                    </HBox.margin>
-                </Label>
-            </HBox>
-            <AnchorPane>
-                <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-                <Label text="设置试卷题目信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
-            </AnchorPane>
-            <HBox styleClass="ball02">
-                <Label styleClass="ball_text02" text="3">
-                    <HBox.margin>
-                        <Insets top="18" left="22"></Insets>
-                    </HBox.margin>
-                </Label>
-            </HBox>
-            <AnchorPane>
-                <Label text="步骤三" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-                <Label text="查看试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-                <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
-            </AnchorPane>
-            <HBox styleClass="ball02">
-                <Label styleClass="ball_text02" text="4">
-                    <HBox.margin>
-                        <Insets top="18" left="22"></Insets>
-                    </HBox.margin>
-                </Label>
-            </HBox>
-            <AnchorPane>
-                <Label text="步骤四" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
-                <Label text="生成试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
-            </AnchorPane>
-        </HBox>
-
-        <HBox AnchorPane.topAnchor="130" AnchorPane.rightAnchor="150" spacing="50" alignment="CENTER">
-            <Button text="上一步" styleClass="btn,btn-primary"/>
-            <Button text="添 加" styleClass="btn,btn-primary" onMouseClicked="#addQueTypeBtn" fx:id="addQueType"></Button>
-            <Button text="下一步" styleClass="btn,btn-primary"/>
-        </HBox>
-        <VBox  AnchorPane.topAnchor="160" AnchorPane.rightAnchor="150" spacing="50" alignment="CENTER">
-            <children>
-                <Text fx:id="target" />
-            </children>
-        </VBox>
-
-
-    </AnchorPane>
 </AnchorPane>
 

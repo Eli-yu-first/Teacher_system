@@ -1,3 +1,4 @@
+/*设置球为蓝色*/
 .ball01{
     -fx-background-color: #1890FF;
     -fx-border-color: #1890FF;
@@ -7,6 +8,7 @@
     -fx-pref-height: 60;
     -fx-pref-width: 60;
 }
+/*设置球为白色*/
 .ball02{
     -fx-border-width:1;
     -fx-border-radius: 30;

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hnust.controller.paper.AutoPaper3Controller">
+    <HBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="0">
+        <HBox styleClass="ball02">
+            <Label styleClass="ball_text02" text="1">
+                <HBox.margin>
+                    <Insets top="18" left="22"></Insets>
+                </HBox.margin>
+            </Label>
+        </HBox>
+        <AnchorPane>
+            <Label text="步骤一" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+            <Label text="设置试卷基本信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+            <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+        </AnchorPane>
+        <HBox styleClass="ball02">
+            <Label styleClass="ball_text02" text="2">
+                <HBox.margin>
+                    <Insets top="18" left="22"></Insets>
+                </HBox.margin>
+            </Label>
+        </HBox>
+        <AnchorPane>
+            <Label text="步骤二" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+            <Label text="设置试卷题目信息" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+            <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+        </AnchorPane>
+        <HBox styleClass="ball01">
+            <Label styleClass="ball_text01" text="3">
+                <HBox.margin>
+                    <Insets top="18" left="22"></Insets>
+                </HBox.margin>
+            </Label>
+        </HBox>
+        <AnchorPane>
+            <Label text="步骤三" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+            <Label text="查看试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+            <HBox  AnchorPane.topAnchor="25" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="70" styleClass="hline"/>
+        </AnchorPane>
+        <HBox styleClass="ball02">
+            <Label styleClass="ball_text02" text="4">
+                <HBox.margin>
+                    <Insets top="18" left="22"></Insets>
+                </HBox.margin>
+            </Label>
+        </HBox>
+        <AnchorPane>
+            <Label text="步骤四" AnchorPane.topAnchor="15" styleClass="steps_bg"></Label>
+            <Label text="生成试卷" AnchorPane.topAnchor="40" styleClass="step_sm"></Label>
+        </AnchorPane>
+
+    </HBox>
+
+    <HBox AnchorPane.rightAnchor="100" AnchorPane.topAnchor="120" spacing="100">
+        <HBox spacing="20">
+            <Button styleClass="btn,btn-primary" style="-fx-font-size: 1.2em">添加题型</Button>
+            <Button styleClass="btn,btn-default" style="-fx-font-size: 1.2em">设为隐藏</Button>
+            <Button styleClass="btn,btn-success" style="-fx-font-size: 1.2em">修改分值</Button>
+            <Button styleClass="btn,btn-danger" style="-fx-font-size: 1.2em">删除题目</Button>
+        </HBox>
+        <HBox spacing="20">
+            <Button styleClass="btn,btn-success" style="-fx-font-size: 1.2em" onAction="#toAuto2">返回上一步</Button>
+            <Button styleClass="btn,btn-warning" style="-fx-font-size: 1.2em">试卷查重</Button>
+            <Button styleClass="btn,btn-default" style="-fx-font-size: 1.2em">试卷预览</Button>
+            <Button styleClass="btn,btn-primary" style="-fx-font-size: 1.2em" onAction="#toAuto4">保存生成试卷</Button>
+        </HBox>
+
+    </HBox>
+
+
+</AnchorPane>

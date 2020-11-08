@@ -1,28 +1,17 @@
 package com.hnust.controller.paper;
 
-import com.hnust.view.paper.AutoPaperView;
-import de.felixroske.jfxsupport.AbstractFxmlView;
+import com.hnust.controller.MainController;
+import com.hnust.view.paper.AutoPaper2View;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -39,6 +28,10 @@ import java.util.ResourceBundle;
  */
 @FXMLController
 public class AutoPaperController implements Initializable {
+    @Autowired
+    MainController autoMainController;
+    @Autowired
+    AutoPaper2View autoPaper2View;
     @FXML
     ComboBox comboBox;
     @FXML
@@ -47,7 +40,7 @@ public class AutoPaperController implements Initializable {
     RadioButton r2;
 
     public Button addQueType;
-    public AnchorPane auto1,auto2;
+    public AnchorPane auto1;
     public Button btn;
 
     @FXML
@@ -68,44 +61,8 @@ public class AutoPaperController implements Initializable {
         r2.setToggleGroup(toggleGroup);
     }
 
-    public void btnClick(MouseEvent mouseEvent) {
-        auto1.setVisible(false);
-        /*auto2.setVisible(true);*/
+
+    public void toAuto2() throws IOException {
+        autoMainController.skipView(autoPaper2View);
     }
-
-    public void addQueTypeBtn(MouseEvent mouseEvent) {
-
-        List<String> choices = new ArrayList<>();
-        choices.add("填空");
-        choices.add("选择");
-        choices.add("判断");
-
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("填空", choices);
-        Optional<String> result =  dialog.showAndWait();
-        dialog.setResizable(true);
-        dialog.setTitle("添加题型");
-        dialog.setHeaderText(null);
-        dialog.setContentText("题型: ");
-        dialog.setGraphic(null);
-        dialog.setHeight(200);
-        dialog.setWidth(300);
-
-        if(result.get() == "填空") {
-
-        }
-    }
-    /*public AutoPaperController() throws IOException {
-
-        String data = "Hello World!";
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/fxml/paper/autoPaper.fxml"));
-        Parent root = loader.load();
-        AutoPaperController controller = loader.<AutoPaperController>getController();
-        controller.setData(data);
-    }*/
-
-    public void setData(String data) {
-        target.setText(data);
-    }
-
 }
