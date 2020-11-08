@@ -94,7 +94,7 @@ public class AutoPaperController implements Initializable {
 
         }
     }
-    public AutoPaperController() throws IOException {
+    /*public AutoPaperController() throws IOException {
 
         String data = "Hello World!";
 
@@ -102,7 +102,7 @@ public class AutoPaperController implements Initializable {
         Parent root = loader.load();
         AutoPaperController controller = loader.<AutoPaperController>getController();
         controller.setData(data);
-    }
+    }*/
 
     public void setData(String data) {
         target.setText(data);
