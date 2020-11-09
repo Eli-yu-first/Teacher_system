@@ -25,13 +25,20 @@
     -fx-font-size: 1.3em;
     -fx-font-weight: bold;
 }
-.hline{
+.hline_active{
     -fx-max-height: 5;
     -fx-min-height: 5;
     -fx-pre-height: 5;
     -fx-pref-width: 230 ;
     /*-fx-background-color: #F7F7F7;*/
-    -fx-background-color: red;
+    -fx-background-color: #53c41a;
+}
+.hline_inactive{
+    -fx-max-height: 5;
+    -fx-min-height: 5;
+    -fx-pre-height: 5;
+    -fx-pref-width: 230 ;
+    -fx-background-color: #F7F7F7;
 }
 .steps_bg{
     -fx-font-weight: bold;
