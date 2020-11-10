@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -78,10 +80,8 @@ public class OverallDataController implements Initializable {
         Visual1 data6=new Visual1("18计算机科学与技术二班","数字系统",212);
         Visual1 data7=new Visual1("18计算机科学与技术三班","数字系统",300);
         Visual1 data8=new Visual1("18计算机科学与技术四班","数字系统",120);
-
         visual1s.add(data1);visual1s.add(data2);visual1s.add(data3);visual1s.add(data4);
         visual1s.add(data5);visual1s.add(data6);visual1s.add(data7);visual1s.add(data8);
-
         LinkedHashSet<String> courseNames=new LinkedHashSet<>();
         List<XYChart.Series<String,Number>> xys=new ArrayList<>();
         //数据显示

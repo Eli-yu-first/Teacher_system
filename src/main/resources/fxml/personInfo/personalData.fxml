@@ -14,15 +14,15 @@
     </VBox>
 <VBox fx:id="vbox1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="325.0" prefWidth="78.0" AnchorPane.bottomAnchor="82.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="800.0" AnchorPane.topAnchor="87.0">
     <Label lineSpacing="1.0" style="-fx-padding: 10" text="学 院" />
-    <TextField editable="false" style="-fx-background-color: CEDEF5" />
+    <TextField editable="false" fx:id="collegeName" style="-fx-background-color: CEDEF5" />
     <Label style="-fx-padding: 10" text="教工号" />
-    <TextField editable="false" style="-fx-background-color: CEDEF5" />
+    <TextField editable="false" fx:id="teacherNumber" style="-fx-background-color: CEDEF5" />
     <Label lineSpacing="1.0" style="-fx-padding: 10" text="姓 名" />
-    <TextField editable="false" style="-fx-background-color: CEDEF5" />
+    <TextField editable="false" fx:id="teacherName" style="-fx-background-color: CEDEF5" />
     <Label style="-fx-padding: 10" text="手机号" />
-    <TextField editable="false" style="-fx-background-color: CEDEF5" />
+    <TextField editable="false" fx:id="teacherPhone" style="-fx-background-color: CEDEF5" />
     <Label style="-fx-padding: 10" text="邮 箱" />
-    <TextField editable="false" style="-fx-background-color: CEDEF5" />
+    <TextField editable="false" fx:id="teacherMail" style="-fx-background-color: CEDEF5" />
 
 </VBox>
     <VBox prefHeight="62.0" prefWidth="210.0" AnchorPane.RightAnchor="250.0" AnchorPane.topAnchor="43.0">
