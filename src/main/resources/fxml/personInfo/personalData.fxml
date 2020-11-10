@@ -42,16 +42,16 @@
           <Button prefWidth="120.0" style="-fx-font-size: 1.0em;" styleClass="btn,btn-info" text="申请修改学院" />
       </children>
    </VBox>
-    <VBox prefHeight="318.0" prefWidth="454.0" styleClass="list-cell" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="144.0">
+    <VBox prefHeight="270.0" prefWidth="454.0" styleClass="list-cell" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="144.0">
         <children>
-            <ListView fx:id="CourseGroupListView" prefHeight="320.0" prefWidth="439.0" />
+            <ListView fx:id="CourseGroupListView" prefHeight="270.0" prefWidth="440.0" />
         </children>
     </VBox>
     <Button prefHeight="40" prefWidth="180.0" style="-fx-font-size: 1.0em;-fx-arc-height: 30; -fx-background-color: #53C419" styleClass="btn,btn-info" text="➕申请加入课程组" AnchorPane.RightAnchor="250.0" AnchorPane.topAnchor="480.0" />
    <VBox prefHeight="129.0" prefWidth="120.0" spacing="20" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="166.0">
       <children>
-         <Button styleClass="btn,btn-info" text="查看"/>
-         <Button styleClass="btn,btn-info" style="-fx-background-color:#FE0000 " text="退出"/>
+         <Button styleClass="btn,btn-info" text="查看" />
+         <Button style="-fx-background-color:#FE0000 " styleClass="btn,btn-info" text="退出" />
       </children>
    </VBox>
 </AnchorPane>
