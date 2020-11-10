@@ -2,18 +2,27 @@ package com.hnust.controller.paper;
 
 import com.hnust.controller.MainController;
 import com.hnust.controller.paper.component.AddPaperKindController;
+import com.hnust.controller.paper.component.AddQuestionController;
+import com.hnust.domain.Question;
 import com.hnust.domain.Visual1;
 import com.hnust.view.paper.GeneratePaperThirdView;
 import com.hnust.view.paper.GeneratePaperView;
 import com.hnust.view.paper.component.AddPaperKindView;
+import com.hnust.view.paper.component.AddQuestionView;
 import de.felixroske.jfxsupport.FXMLController;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableDoubleValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.StageStyle;
@@ -22,8 +31,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 /**
  * @program: demo
@@ -41,6 +53,10 @@ public class GeneratePaperSecondController implements Initializable {
     private GeneratePaperView generatePaperView;
     @Autowired
     private AddPaperKindView addPaperKindView;
+    @Autowired
+    private AddQuestionView addQuestionView;
+    @Autowired
+    private AddQuestionController addQuestionController;
     //弹窗控制器
     @Autowired
     private AddPaperKindController addPaperKindController;
@@ -67,54 +83,57 @@ public class GeneratePaperSecondController implements Initializable {
     public AnchorPane scp_paper_contain;
     @FXML
     public VBox paper_contain;
-    @FXML
-    public VBox paper_contain_list;
     //容器宽度
     public Double width;
-    //添加弹窗
-    public Dialog dialog=null;
+    //容器高度
+    public Double height;
+    //标记位置，用来判断添加的是哪种题型
+    private Integer flag;
     //添加选择题型，选择题所有组件
-    public VBox vBox_chose;
-    public AnchorPane anchorPane_chose;
-    public ListView listView_chose;
-    public CheckBox checkBox_chose;
-    public Label title_chose;
-    public HBox hBox_chose;
-    public Label easy_chose;
-    public Label easy_num_chose;
-    public Label mid_chose;
-    public Label mid_num_chose;
-    public Label diff_chose;
-    public Label diff_num_chose;
-    public Button btn_chose;
+    private VBox vBox_chose;
+    private AnchorPane anchorPane_chose;
+    private ListView<Question> listView_chose;
+    private CheckBox checkBox_chose;
+    private Label title_chose;
+    private HBox hBox_chose;
+    private Label easy_chose;
+    private Label easy_num_chose;
+    private Label mid_chose;
+    private Label mid_num_chose;
+    private Label diff_chose;
+    private Label diff_num_chose;
+    private Button btn_chose;
+    private ObservableList list_chose= FXCollections.observableArrayList();
     //添加判断题型，选择题所有组件
-    public VBox vBox_judge;
-    public AnchorPane anchorPane_judge;
-    public ListView listView_judge;
-    public CheckBox checkBox_judge;
-    public Label title_judge;
-    public HBox hBox_judge;
-    public Label easy_judge;
-    public Label easy_num_judge;
-    public Label mid_judge;
-    public Label mid_num_judge;
-    public Label diff_judge;
-    public Label diff_num_judge;
-    public Button btn_judge;
+    private VBox vBox_judge;
+    private AnchorPane anchorPane_judge;
+    private ListView<Question> listView_judge;
+    private CheckBox checkBox_judge;
+    private Label title_judge;
+    private HBox hBox_judge;
+    private Label easy_judge;
+    private Label easy_num_judge;
+    private Label mid_judge;
+    private Label mid_num_judge;
+    private Label diff_judge;
+    private Label diff_num_judge;
+    private Button btn_judge;
+    private ObservableList list_judge= FXCollections.observableArrayList();
     //添加简答题型，选择题所有组件
-    public VBox vBox_short;
-    public AnchorPane anchorPane_short;
-    public ListView listView_short;
-    public CheckBox checkBox_short;
-    public Label title_short;
-    public HBox hBox_short;
-    public Label easy_short;
-    public Label easy_num_short;
-    public Label mid_short;
-    public Label mid_num_short;
-    public Label diff_short;
-    public Label diff_num_short;
-    public Button btn_short;
+    private VBox vBox_short;
+    private AnchorPane anchorPane_short;
+    private ListView<Question> listView_short;
+    private CheckBox checkBox_short;
+    private Label title_short;
+    private HBox hBox_short;
+    private Label easy_short;
+    private Label easy_num_short;
+    private Label mid_short;
+    private Label mid_num_short;
+    private Label diff_short;
+    private Label diff_num_short;
+    private Button btn_short;
+    private ObservableList list_short= FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         scp_paper.setFitToWidth(true);
@@ -127,7 +146,7 @@ public class GeneratePaperSecondController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 contain.setPrefWidth((double)newValue-2);
-                width=(double)newValue*0.2;
+                width=(double)newValue;
             }
         });
         //通过监听最外层容器的高度，来改变内层Anchor的高度
@@ -135,6 +154,7 @@ public class GeneratePaperSecondController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 contain.setPrefHeight((double)newValue-2);
+                height=(double)newValue;
             }
         });
         //设置线条的长度
@@ -160,9 +180,9 @@ public class GeneratePaperSecondController implements Initializable {
             }
         });
     }
-    //添加题型
+    //显示添加题型弹窗
     public void addPaperKind(){
-        dialog=new Dialog();
+        Dialog dialog=new Dialog();
         DialogPane dialogPane=new DialogPane();
         dialogPane.setStyle("-fx-background-color: #FFF;-fx-border-width: 2;-fx-border-color: #ADADAD");
         dialogPane.setContent(addPaperKindView.getView());
@@ -190,41 +210,44 @@ public class GeneratePaperSecondController implements Initializable {
     //添加题型
     public void addKind(String kind){
         if("选择题".equals(kind)&&vBox_chose==null){
-            addChose();
-            showData(listView_chose);
+            this.addChose();
         }
         if("判断题".equals(kind)&&vBox_judge==null){
-            addJudge();
-            showData(listView_judge);
+            this.addJudge();
         }
         if("简答题".equals(kind)&&vBox_short==null){
-            addShort();
-            showData(listView_short);
+            this.addShort();
         }
     }
     //试卷表格
-    public void showData(ListView view){
-        Visual1 v1=new Visual1("1","2",1);
-        Visual1 v2=new Visual1("1","2",1);
-        Visual1 v3=new Visual1("1","2",1);
-        Visual1 v4=new Visual1("1","2",1);
-        Visual1 v5=new Visual1("1","2",0);
-        Visual1 v6=new Visual1("1","2",1);
-        ObservableList list= FXCollections.observableArrayList();
-        list.addAll(v1,v2,v3,v4,v5,v6);
+    public void showData(ListView<Question>view,ObservableList list,List<Question> addList,CheckBox cb){
+        list.addAll(addList);
         view.setItems(list);
-        view.setPrefHeight(1500);
-        view.setCellFactory(new Callback<ListView, ListCell>() {
+        view.setPrefHeight((double)(232*list.size()));
+        view.setStyle("-fx-fixed-cell-size:230");
+        view.setCellFactory(new Callback<ListView<Question>, ListCell<Question>>() {
             @Override
-            public ListCell call(ListView param) {
-                ListCell cell=new ListCell(){
+            public ListCell<Question> call(ListView<Question> param) {
+                ListCell<Question> cell=new ListCell<Question>(){
                     @Override
-                    protected void updateItem(Object item, boolean empty) {
+                    protected void updateItem(Question item, boolean empty) {
                         super.updateItem(item, empty);
                         if(empty==false){
                             AnchorPane anchorPane=new AnchorPane();
                             CheckBox checkBox=new CheckBox();
-                            checkBox.setSelected(true);
+                            checkBox.setSelected(item.getChecked());
+                            checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                                if(newValue==true){
+                                    item.setChecked(true);
+                                    Boolean bl=view.getItems().stream().anyMatch(question -> question.getChecked()==false);
+                                    if(bl==false){
+                                        cb.setSelected(true);
+                                    }
+                                }else{
+                                    item.setChecked(false);
+                                    cb.setSelected(false);
+                                }
+                            });
                             AnchorPane.setTopAnchor(checkBox, 15.0);
                             AnchorPane.setLeftAnchor(checkBox, 10.0);
                             Label label1=new Label("1.这是一个选择题（）是一个选择题（是一个选择题（是一个选择题（是一个选择题（是一个选择题（是一个选择题（" +
@@ -238,7 +261,7 @@ public class GeneratePaperSecondController implements Initializable {
                             label2.getStyleClass().add("question");
                             label2.setWrapText(true);
                             VBox vBox=new VBox(label1,label2);
-                            vBox.setMaxWidth(width);
+                            vBox.setMaxWidth(width*0.2);
                             vBox.setSpacing(10);
                             AnchorPane.setTopAnchor(vBox, 15.0);
                             AnchorPane.setLeftAnchor(vBox, 50.0);
@@ -250,7 +273,14 @@ public class GeneratePaperSecondController implements Initializable {
                             hBox.setAlignment(Pos.CENTER);
                             AnchorPane.setRightAnchor(hBox, 20.0);
                             AnchorPane.setTopAnchor(hBox, 18.0);
-                            anchorPane.getChildren().addAll(checkBox,vBox,hBox);
+                            Label label5=new Label("较易");
+                            label5.setStyle("-fx-text-fill: green;-fx-font-weight: bold");
+                            HBox hBox1=new HBox(label5);
+                            hBox1.setSpacing(5.0);
+                            hBox1.setAlignment(Pos.CENTER);
+                            AnchorPane.setRightAnchor(hBox1, 33.0);
+                            AnchorPane.setTopAnchor(hBox1, 40.0);
+                            anchorPane.getChildren().addAll(checkBox,vBox,hBox,hBox1);
                             anchorPane.setMaxHeight(200);
                             anchorPane.setPrefHeight(200);
                             this.setGraphic(anchorPane);
@@ -263,9 +293,21 @@ public class GeneratePaperSecondController implements Initializable {
             }
         });
     }
-    //添加选择题类型
+    //添加题型选择题
     public void addChose(){
         checkBox_chose=new CheckBox();
+        checkBox_chose.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue==true){
+                listView_chose.getItems().stream().forEach(question -> question.setChecked(true));
+            }else{
+                if(listView_chose.getItems().stream().anyMatch(question -> question.getChecked()==false)){
+
+                }else{
+                    listView_chose.getItems().stream().forEach(question -> question.setChecked(false));
+                }
+            }
+            listView_chose.refresh();
+        });
         AnchorPane.setTopAnchor(checkBox_chose, 13.0);
         AnchorPane.setLeftAnchor(checkBox_chose,10.0);
         title_chose=new Label("一、选择题");
@@ -283,6 +325,7 @@ public class GeneratePaperSecondController implements Initializable {
         AnchorPane.setTopAnchor(hBox_chose, 15.0);
         AnchorPane.setRightAnchor(hBox_chose, 200.0);
         btn_chose=new Button("添加题目");
+        btn_chose.setOnAction(showAddQuestion());
         btn_chose.getStyleClass().addAll("btn","btn-info","btn_appearance");
         AnchorPane.setTopAnchor(btn_chose, 5.0);
         AnchorPane.setRightAnchor(btn_chose, 5.0);
@@ -293,9 +336,21 @@ public class GeneratePaperSecondController implements Initializable {
         vBox_chose=new VBox(anchorPane_chose,listView_chose);
         paper_contain.getChildren().add(vBox_chose);
     }
-    //添加判断题类型
+    //添加题型判断题
     public void addJudge(){
         checkBox_judge=new CheckBox();
+        checkBox_judge.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue==true){
+                listView_judge.getItems().stream().forEach(question -> question.setChecked(true));
+            }else{
+                if(listView_judge.getItems().stream().anyMatch(question -> question.getChecked()==false)){
+
+                }else{
+                    listView_judge.getItems().stream().forEach(question -> question.setChecked(false));
+                }
+            }
+            listView_judge.refresh();
+        });
         AnchorPane.setTopAnchor(checkBox_judge, 13.0);
         AnchorPane.setLeftAnchor(checkBox_judge,10.0);
         title_judge=new Label("二、判断题");
@@ -313,6 +368,7 @@ public class GeneratePaperSecondController implements Initializable {
         AnchorPane.setTopAnchor(hBox_judge, 15.0);
         AnchorPane.setRightAnchor(hBox_judge, 200.0);
         btn_judge=new Button("添加题目");
+        btn_judge.setOnAction(showAddQuestion());
         btn_judge.getStyleClass().addAll("btn","btn-info","btn_appearance");
         AnchorPane.setTopAnchor(btn_judge, 5.0);
         AnchorPane.setRightAnchor(btn_judge, 5.0);
@@ -320,12 +376,25 @@ public class GeneratePaperSecondController implements Initializable {
         anchorPane_judge.getStyleClass().add("paper_title");
         listView_judge=new ListView();
         listView_judge.setPrefHeight(0);
+        listView_judge.getStyleClass().addAll("outScroll");
         vBox_judge=new VBox(anchorPane_judge,listView_judge);
         paper_contain.getChildren().add(vBox_judge);
     }
-    //添加简答题型
+    //添加题型简答题
     public void addShort(){
         checkBox_short=new CheckBox();
+        checkBox_short.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue==true){
+                listView_short.getItems().stream().forEach(question -> question.setChecked(true));
+            }else{
+                if(listView_short.getItems().stream().anyMatch(question -> question.getChecked()==false)){
+
+                }else{
+                    listView_short.getItems().stream().forEach(question -> question.setChecked(false));
+                }
+            }
+            listView_short.refresh();
+        });
         AnchorPane.setTopAnchor(checkBox_short, 13.0);
         AnchorPane.setLeftAnchor(checkBox_short,10.0);
         title_short=new Label("三、简答题");
@@ -343,6 +412,7 @@ public class GeneratePaperSecondController implements Initializable {
         AnchorPane.setTopAnchor(hBox_short, 15.0);
         AnchorPane.setRightAnchor(hBox_short, 200.0);
         btn_short=new Button("添加题目");
+        btn_short.setOnAction(showAddQuestion());
         btn_short.getStyleClass().addAll("btn","btn-info","btn_appearance");
         AnchorPane.setTopAnchor(btn_short, 5.0);
         AnchorPane.setRightAnchor(btn_short, 5.0);
@@ -352,5 +422,61 @@ public class GeneratePaperSecondController implements Initializable {
         listView_short.setPrefHeight(0);
         vBox_short=new VBox(anchorPane_short,listView_short);
         paper_contain.getChildren().add(vBox_short);
+    }
+    //添加题目按钮点击事件
+    public EventHandler<ActionEvent> showAddQuestion(){
+        EventHandler<ActionEvent> eventHandler=new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                Dialog dialog=new Dialog();
+                DialogPane dialogPane=new DialogPane();
+                dialogPane.setStyle("-fx-background-color: #FFF;-fx-border-width: 2;-fx-border-color: #ADADAD");
+                dialogPane.setContent(addQuestionView.getView());
+                dialogPane.setPrefWidth(width);
+                dialogPane.setPrefHeight(height);
+                dialog.setDialogPane(dialogPane);
+                dialog.setTitle("选择题添加");
+                dialog.initStyle(StageStyle.UNDECORATED);
+                dialog.setGraphic(null);
+                ButtonType ok=new ButtonType("添加选中题型", ButtonBar.ButtonData.OK_DONE);
+                ButtonType cancel=new ButtonType("取消", ButtonBar.ButtonData.CANCEL_CLOSE);
+                dialog.getDialogPane().getButtonTypes().addAll(ok,cancel);
+                Optional<ButtonType> result=dialog.showAndWait();
+                if(result.get()==ok){
+                    if(((Button)event.getTarget())==btn_chose){
+                        showData(listView_chose, list_chose, addQuestionController.getAddList(),checkBox_chose);
+                    }
+                    else if(((Button)event.getTarget())==btn_judge){
+                        showData(listView_judge, list_judge, addQuestionController.getAddList(),checkBox_judge);
+                    }
+                    else if(((Button)event.getTarget())==btn_short){
+                        showData(listView_short, list_short, addQuestionController.getAddList(),checkBox_short);
+                    }
+                }
+            }
+        };
+        return eventHandler;
+    }
+    //获取当前flag
+    public Integer getFlag() {
+        return flag;
+    }
+    //修改分值
+    public void changeScore(){
+        ObservableList<Question> collection=this.listView_chose.getItems();
+        collection.stream().filter(question -> question.getChecked()==true).forEach(question -> System.out.println(question));
+        listView_chose.refresh();
+    }
+    //删除题目
+    public void deleteQuestion(){
+        if(list_chose.size()!=0&&listView_chose!=null){
+            listView_chose.getItems().stream().filter(question -> question.getChecked()==true).forEach(question -> System.out.println(question));
+        }
+        if(list_judge.size()!=0&&listView_judge!=null){
+            listView_judge.getItems().stream().filter(question -> question.getChecked()==true).forEach(question -> System.out.println(question));
+        }
+        if(list_short.size()!=0&&listView_short!=null){
+            listView_short.getItems().stream().filter(question -> question.getChecked()==true).forEach(question -> System.out.println(question));
+        }
     }
 }

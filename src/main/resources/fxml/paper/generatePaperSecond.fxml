@@ -44,8 +44,8 @@
                 <HBox AnchorPane.leftAnchor="50" alignment="CENTER" spacing="20">
                     <Button styleClass="btn,btn-info,btn_appearance" onAction="#addPaperKind">添加题型</Button>
                     <Button styleClass="btn,btn-default,btn_appearance">设为隐藏</Button>
-                    <Button styleClass="btn,btn-success,btn_appearance">修改分值</Button>
-                    <Button styleClass="btn,btn-danger,btn_appearance">删除题目</Button>
+                    <Button styleClass="btn,btn-success,btn_appearance" onAction="#changeScore">修改分值</Button>
+                    <Button styleClass="btn,btn-danger,btn_appearance" onAction="#deleteQuestion">删除题目</Button>
                 </HBox>
                 <HBox AnchorPane.rightAnchor="50" alignment="CENTER" spacing="20">
                     <Button styleClass="btn,btn-success" prefHeight="40" style="-fx-font-size: 1.05em" onAction="#back">返回上一步</Button>
@@ -58,9 +58,6 @@
                 <ScrollPane AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="350" AnchorPane.bottomAnchor="20"  AnchorPane.topAnchor="0" fx:id="scp_paper">
                     <AnchorPane fx:id="scp_paper_contain" style="-fx-background-color: #FFF">
                         <VBox  style="-fx-background-color: #FFF" spacing="15" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0" fx:id="paper_contain">
-                            <!--                        标题（选择题）-->
-                            <VBox spacing="10" fx:id="paper_contain_list">
-                            </VBox>
                         </VBox>
                     </AnchorPane>
                 </ScrollPane>
