@@ -46,6 +46,7 @@ public class PaperListController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableView.setItems(list);
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);//表格自适应
         columnSubject.setCellValueFactory(new PropertyValueFactory<Data,String>("Subject"));
         columnPerson.setCellValueFactory(new PropertyValueFactory<Data,String>("Person"));
         columnTime.setCellValueFactory(new PropertyValueFactory<Data,String>("Time"));
@@ -66,13 +67,15 @@ public class PaperListController implements Initializable {
                             h1.getStyleClass().add("color");
                             hBox.getChildren().addAll(h2,h3,h1);
                             this.setGraphic(hBox);
+                        }else {
+                            this.setGraphic(null);
                         }
                     }
                 };
                 return cell;
             }
         });
-        tableView.getColumns().addAll(columnSubject,columnPerson,columnTime,columnOperate);
+//        tableView.getColumns().addAll(columnSubject,columnPerson,columnTime,columnOperate);添加表头
         toPage.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {

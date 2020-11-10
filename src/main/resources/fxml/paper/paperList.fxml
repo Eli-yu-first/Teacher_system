@@ -39,6 +39,7 @@
         </Button>
     </HBox>
     <HBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="65" AnchorPane.leftAnchor="0">
+        <!--类似于margin,用于调间距-->
         <padding>
             <Insets left="40"/>
         </padding>
@@ -47,12 +48,15 @@
         <Button styleClass="btn,btn-info" style="-fx-font-size: 1.0em" prefWidth="120.0" text="取消样卷"/>
     </HBox>
     <VBox AnchorPane.leftAnchor="30" AnchorPane.topAnchor="110" AnchorPane.bottomAnchor="0" fx:id="vbox1" AnchorPane.rightAnchor="20">
-        <TableView fx:id="tableView" VBox.vgrow="ALWAYS" maxHeight="-Infinity" minHeight="300" minWidth="500">
+        <padding>
+            <Insets top="30" left="10" right="10"></Insets>
+        </padding>
+        <TableView fx:id="tableView"  minHeight="300" minWidth="500" styleClass="table" >
             <columns>
-                <TableColumn text="科目" prefWidth="300.0" fx:id="columnSubject"></TableColumn>
-                <TableColumn text="创建人" prefWidth="300.0" fx:id="columnPerson"></TableColumn>
-                <TableColumn text="创建时间" prefWidth="300.0" fx:id="columnTime"></TableColumn>
-                <TableColumn text="操作" prefWidth="300.0" fx:id="columnOperate"></TableColumn>
+                <TableColumn text="科目" fx:id="columnSubject"></TableColumn>
+                <TableColumn text="创建人" fx:id="columnPerson"></TableColumn>
+                <TableColumn text="创建时间"  fx:id="columnTime"></TableColumn>
+                <TableColumn text="操作"  fx:id="columnOperate"></TableColumn>
             </columns>
         </TableView>
         <HBox alignment="CENTER" spacing="5">

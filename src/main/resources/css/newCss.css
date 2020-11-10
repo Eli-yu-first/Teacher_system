@@ -1189,3 +1189,7 @@
     -fx-text-fill: #000;
 }
 
+.table {
+    -fx-table-layout:fixed;
+}
+
