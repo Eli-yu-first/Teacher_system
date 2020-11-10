@@ -62,7 +62,7 @@
 
         <HBox AnchorPane.rightAnchor="150" AnchorPane.topAnchor="120"  spacing="50" >
             <Button style="-fx-font-size: 1.2em" styleClass="btn,btn-danger" onAction="#addAutoType">添加</Button>
-            <Button style="-fx-font-size: 1.2em" styleClass="btn,btn-primary" onAction="#toAuto3">下一步</Button>
+            <Button style="-fx-font-size: 1.2em" styleClass="btn,btn-primary" onAction="#toAuto3"  fx:id="toNext">下一步</Button>
         </HBox>
         <VBox AnchorPane.topAnchor="180" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0" fx:id="contain_second">
             <AnchorPane  maxHeight="Infinity" VBox.vgrow="ALWAYS">

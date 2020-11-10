@@ -81,11 +81,11 @@ public class AutoPaper2Controller implements Initializable {
     public Label title_judge;
     public HBox hBox_judge;
     public Label easy_judge;
-    public Label easy_num_judge;
+    public TextField easy_num_judge;
     public Label mid_judge;
-    public Label mid_num_judge;
+    public TextField mid_num_judge;
     public Label diff_judge;
-    public Label diff_num_judge;
+    public TextField diff_num_judge;
     public Button btn_judge;
     //添加简答题型，选择题所有组件
     public VBox vBox_short;
@@ -95,17 +95,37 @@ public class AutoPaper2Controller implements Initializable {
     public Label title_short;
     public HBox hBox_short;
     public Label easy_short;
-    public Label easy_num_short;
+    public TextField easy_num_short;
     public Label mid_short;
-    public Label mid_num_short;
+    public TextField mid_num_short;
     public Label diff_short;
-    public Label diff_num_short;
+    public TextField diff_num_short;
     public Button btn_short;
+
+    //获取选择题的较易题目的个数
+    public String choice_easyNum;
+    //获取选择题中等题目的个数
+    public String choice_midNum;
+    //获取选择题较难的题目个数
+    public String choice_diffNum;
+    //获取判断题目的较易题目的个数
+    public String judge_easyNum;
+    //获取选择题中等题目的个数
+    public String judge_midNum;
+    // 获取选择题较难的题目个数
+    public String judge_diffNum;
+    //获取简答题目的较易题目的个数
+    public String short_easyNum;
+    //获取简答题中等题目的个数
+    public String short_midNum;
+    //获取简答题较难的题目个数
+    public String short_diffNum;
 
     public void initialize(URL location, ResourceBundle resources) {
         scp_autoPaper.setFitToWidth(true);
         listenChange();
     }
+
     //根据窗口改变，进行监听设置页面大小
     private void listenChange() {
         //通过监听最外层容器的宽度，来改变内层Anchor的宽度
@@ -142,6 +162,18 @@ public class AutoPaper2Controller implements Initializable {
 
     public void toAuto3() throws IOException {
         autoMainController2.skipView(autoPaper3View);
+        //获取选择题的个数
+        choice_easyNum = easy_num_chose.getText();
+        choice_midNum = mid_num_chose.getText();
+        choice_diffNum = diff_num_chose.getText();
+        //获取判断题的个数
+        judge_easyNum = easy_num_judge.getText();
+        judge_midNum = mid_num_judge.getText();
+        judge_diffNum = diff_num_judge.getText();
+        //获取简答题的个数
+        short_easyNum = easy_num_short.getText();
+        short_midNum = mid_num_short.getText();
+        short_diffNum = diff_num_short.getText();
     }
 
     //“添加题型按钮的点击事件”
@@ -168,15 +200,15 @@ public class AutoPaper2Controller implements Initializable {
     public void addKind(String type){
         if("选择题".equals(type)&&vBox_chose==null){
             addChose();
-            showData(listView_chose);
+            showData1(listView_chose);
         }
         if("判断题".equals(type)&&vBox_judge==null){
             addJudge();
-            showData(listView_judge);
+            showData2(listView_judge);
         }
         if("简答题".equals(type)&&vBox_short==null){
             addShort();
-            showData(listView_short);
+            showData3(listView_short);
         }
     }
 
@@ -201,7 +233,7 @@ public class AutoPaper2Controller implements Initializable {
         autoPaper_contain.getChildren().add(vBox_chose);
     }
 
-    public void showData(ListView view){
+    public void showData1(ListView view){
         Visual1 v1=new Visual1("1","2",1);
 
         ObservableList list= FXCollections.observableArrayList();
@@ -226,15 +258,15 @@ public class AutoPaper2Controller implements Initializable {
                             //输入较易的题目类型个数
                             easy_chose=new Label("较易:  ");
                             easy_num_chose=new TextField();
-                            easy_num_chose.setMaxWidth(100);
+                            easy_num_chose.setMaxWidth(120);
                             //输入中等的题目类型个数
                             mid_chose=new Label("中等:  ");
                             mid_num_chose=new TextField();
-                            mid_num_chose.setMaxWidth(100);
+                            mid_num_chose.setMaxWidth(120);
                             //输入较难的题目类型个数
                             diff_chose=new Label("较难:  ");
                             diff_num_chose=new TextField();
-                            diff_num_chose.setMaxWidth(100);
+                            diff_num_chose.setMaxWidth(120);
 
                             HBox hBox = new HBox(easy_chose,easy_num_chose);
                             HBox hBox1 = new HBox(mid_chose,mid_num_chose);
@@ -259,4 +291,119 @@ public class AutoPaper2Controller implements Initializable {
         });
     }
 
+    public void showData2(ListView view){
+        Visual1 v1=new Visual1("1","2",1);
+
+        ObservableList list= FXCollections.observableArrayList();
+        list.addAll(v1);
+        view.setItems(list);
+        view.setPrefHeight(200);
+        view.setCellFactory(new Callback<ListView, ListCell>() {
+            @Override
+            public ListCell call(ListView param) {
+                ListCell cell=new ListCell(){
+                    @Override
+                    protected void updateItem(Object item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if(empty==false){
+                            AnchorPane anchorPane=new AnchorPane();
+
+                            Label label1=new Label("题目类型: " + type);
+                            label1.getStyleClass().add("question");
+                            label1.setWrapText(true);
+                            label1.setMaxHeight(180);
+
+                            //输入较易的题目类型个数
+                            easy_judge=new Label("较易:  ");
+                            easy_num_judge=new TextField();
+                            easy_num_judge.setMaxWidth(120);
+                            //输入中等的题目类型个数
+                            mid_judge=new Label("中等:  ");
+                            mid_num_judge=new TextField();
+                            mid_num_judge.setMaxWidth(120);
+                            //输入较难的题目类型个数
+                            diff_judge=new Label("较难:  ");
+                            diff_num_judge=new TextField();
+                            diff_num_judge.setMaxWidth(120);
+
+                            HBox hBox = new HBox(easy_judge,easy_num_judge);
+                            HBox hBox1 = new HBox(mid_judge,mid_num_judge);
+                            HBox hBox2 = new HBox(diff_judge,diff_num_judge);
+                            VBox vBox=new VBox(label1,hBox,hBox1,hBox2);
+                            vBox.setMaxWidth(width);
+                            vBox.setSpacing(10);
+                            AnchorPane.setTopAnchor(vBox, 15.0);
+                            AnchorPane.setLeftAnchor(vBox, 50.0);
+                            AnchorPane.setRightAnchor(vBox, 125.0);
+                            anchorPane.getChildren().addAll(vBox);
+                            anchorPane.setMaxHeight(150);
+                            anchorPane.setPrefHeight(150);
+                            this.setGraphic(anchorPane);
+                        }else{
+                            this.setGraphic(null);
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+    }
+
+    public void showData3(ListView view){
+        Visual1 v1=new Visual1("1","2",1);
+
+        ObservableList list= FXCollections.observableArrayList();
+        list.addAll(v1);
+        view.setItems(list);
+        view.setPrefHeight(200);
+        view.setCellFactory(new Callback<ListView, ListCell>() {
+            @Override
+            public ListCell call(ListView param) {
+                ListCell cell=new ListCell(){
+                    @Override
+                    protected void updateItem(Object item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if(empty==false){
+                            AnchorPane anchorPane=new AnchorPane();
+
+                            Label label1=new Label("题目类型: " + type);
+                            label1.getStyleClass().add("question");
+                            label1.setWrapText(true);
+                            label1.setMaxHeight(180);
+
+                            //输入较易的题目类型个数
+                            easy_short=new Label("较易:  ");
+                            easy_num_short=new TextField();
+                            easy_num_short.setMaxWidth(120);
+                            //输入中等的题目类型个数
+                            mid_short=new Label("中等:  ");
+                            mid_num_short=new TextField();
+                            mid_num_short.setMaxWidth(120);
+                            //输入较难的题目类型个数
+                            diff_short=new Label("较难:  ");
+                            diff_num_short=new TextField();
+                            diff_num_short.setMaxWidth(120);
+
+                            HBox hBox = new HBox(easy_short,easy_num_short);
+                            HBox hBox1 = new HBox(mid_short,mid_num_short);
+                            HBox hBox2 = new HBox(diff_short,diff_num_short);
+                            VBox vBox=new VBox(label1,hBox,hBox1,hBox2);
+                            vBox.setMaxWidth(width);
+                            vBox.setSpacing(10);
+                            AnchorPane.setTopAnchor(vBox, 15.0);
+                            AnchorPane.setLeftAnchor(vBox, 50.0);
+                            AnchorPane.setRightAnchor(vBox, 125.0);
+                            anchorPane.getChildren().addAll(vBox);
+                            anchorPane.setMaxHeight(150);
+                            anchorPane.setPrefHeight(150);
+                            this.setGraphic(anchorPane);
+                        }else{
+                            this.setGraphic(null);
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+    }
 }

@@ -6,9 +6,13 @@ import com.hnust.view.paper.AutoPaper3View;
 import com.hnust.view.paper.AutoPaper4View;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,8 +27,10 @@ public class AutoPaper3Controller implements Initializable {
     @Autowired
     AutoPaper4View autoPaper4View;
 
-    public void initialize(URL location, ResourceBundle resources) {
+    public TextField easy_num_chose;
 
+    AutoPaper2Controller autoPaper2Controller = new AutoPaper2Controller();
+    public void initialize(URL location, ResourceBundle resources) {
     }
 
     public void toAuto2() throws IOException {

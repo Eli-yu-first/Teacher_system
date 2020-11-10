@@ -61,7 +61,7 @@
 
     </HBox>
 
-    <HBox AnchorPane.rightAnchor="100" AnchorPane.topAnchor="120" spacing="100">
+    <HBox alignment="CENTER" AnchorPane.leftAnchor="60" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="150" spacing="100">
         <HBox spacing="20">
             <Button styleClass="btn,btn-primary" style="-fx-font-size: 1.2em">添加题型</Button>
             <Button styleClass="btn,btn-default" style="-fx-font-size: 1.2em">设为隐藏</Button>
@@ -74,8 +74,6 @@
             <Button styleClass="btn,btn-default" style="-fx-font-size: 1.2em">试卷预览</Button>
             <Button styleClass="btn,btn-primary" style="-fx-font-size: 1.2em" onAction="#toAuto4">保存生成试卷</Button>
         </HBox>
-
     </HBox>
-
 
 </AnchorPane>
