@@ -89,3 +89,9 @@
     -fx-pref-height: 45px;
     -fx-font-family: "MicrosoftYaHei";
 }
+.btn_svbg{
+    -fx-font-size: 1em;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 35px;
+    -fx-font-family: "MicrosoftYaHei";
+}

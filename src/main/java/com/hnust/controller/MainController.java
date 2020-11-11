@@ -107,45 +107,45 @@ public class MainController implements Initializable{
 
     public void itemClick(MouseEvent mouseEvent) throws IOException {
         //设置全部隐藏
-        setAllItemImageInvisible();
-        //设置点击的显示
-        Text text=(Text) mouseEvent.getTarget();
-        AbstractFxmlView path=null;
-        String label=null;
-        switch (text.getText()) {
-            case "个人资料":
-                header1Item1Image.setVisible(true);
-                label="个人信息管理  /  个人资料";
-                path = personDataView;
-                break;
-            case "我的课程组":
-                header1Item2Image.setVisible(true);
-                path = myCourseGroupView;
-                label="个人信息管理  /  我的课程组";
-                break;
-            case "题目列表":
-                header2Item1Image.setVisible(true);
-                label="题目管理  /  题目列表";
-                path = subjectListView;
-                break;
-            case "批量导入":
-                header2Item2Image.setVisible(true);
-                path = batchImportView;
-                label="题目管理  /  批量导入";
-                break;
-            case "总体数据查看":
-                header3Item1Image.setVisible(true);
-                path = overallDataView;
-                label="学生管理  /  总体数据查看";
-                break;
-            case "详细数据查看":
-                header3Item2Image.setVisible(true);
-                path = detailDataView;
-                label="学生管理  /  详细数据查看";
-                break;
-            case "试卷列表":
-                header4Item1Image.setVisible(true);
-                path = paperListView;
+                setAllItemImageInvisible();
+                //设置点击的显示
+                Text text=(Text) mouseEvent.getTarget();
+                AbstractFxmlView path=null;
+                String label=null;
+                switch (text.getText()) {
+                    case "个人资料":
+                        header1Item1Image.setVisible(true);
+                        label="个人信息管理  /  个人资料";
+                        path = personDataView;
+                        break;
+                    case "我的课程组":
+                        header1Item2Image.setVisible(true);
+                        path = myCourseGroupView;
+                        label="个人信息管理  /  我的课程组";
+                        break;
+                    case "题目列表":
+                        header2Item1Image.setVisible(true);
+                        label="题目管理  /  题目列表";
+                        path = subjectListView;
+                        break;
+                    case "批量导入":
+                        header2Item2Image.setVisible(true);
+                        path = batchImportView;
+                        label="题目管理  /  批量导入";
+                        break;
+                    case "总体数据查看":
+                        header3Item1Image.setVisible(true);
+                        path = overallDataView;
+                        label="学生管理  /  总体数据查看";
+                        break;
+                    case "详细数据查看":
+                        header3Item2Image.setVisible(true);
+                        path = detailDataView;
+                        label="学生管理  /  详细数据查看";
+                        break;
+                    case "试卷列表":
+                        header4Item1Image.setVisible(true);
+                        path = paperListView;
                 label="试卷管理  /  试卷列表";
                 break;
             case "手动生成试卷":

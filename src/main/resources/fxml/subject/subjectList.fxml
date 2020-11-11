@@ -44,7 +44,7 @@
                     <Insets top="10" left="10" right="10"></Insets>
                 </padding>
 <!--                VBox.vgrow="ALWAYS" maxHeight="Infinity"-->
-                <TableView style="-fx-background-color: red" fx:id="tableSize"  minHeight="300" VBox.vgrow="ALWAYS" maxHeight="Infinity" minWidth="500" prefWidth="500">
+                <TableView style="-fx-background-color: red" fx:id="tableSize"  minHeight="300" VBox.vgrow="ALWAYS"  minWidth="500" prefWidth="500">
                     <columns>
                         <TableColumn text="序号"></TableColumn>
                         <TableColumn text="内容"></TableColumn>
