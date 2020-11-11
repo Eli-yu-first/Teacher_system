@@ -61,39 +61,25 @@ public class AutoPaper2Controller implements Initializable {
 
     //添加选择题型，选择题所有组件
     public VBox vBox_chose;
-    public AnchorPane anchorPane_chose;
     public ListView listView_chose;
-    public CheckBox checkBox_chose;
-    public Label title_chose;
-    public HBox hBox_chose;
     public Label easy_chose;
     public TextField easy_num_chose;
     public Label mid_chose;
     public TextField mid_num_chose;
     public Label diff_chose;
     public TextField diff_num_chose;
-    public Button btn_chose;
     //添加判断题型，选择题所有组件
     public VBox vBox_judge;
-    public AnchorPane anchorPane_judge;
     public ListView listView_judge;
-    public CheckBox checkBox_judge;
-    public Label title_judge;
-    public HBox hBox_judge;
     public Label easy_judge;
     public TextField easy_num_judge;
     public Label mid_judge;
     public TextField mid_num_judge;
     public Label diff_judge;
     public TextField diff_num_judge;
-    public Button btn_judge;
     //添加简答题型，选择题所有组件
     public VBox vBox_short;
-    public AnchorPane anchorPane_short;
     public ListView listView_short;
-    public CheckBox checkBox_short;
-    public Label title_short;
-    public HBox hBox_short;
     public Label easy_short;
     public TextField easy_num_short;
     public Label mid_short;
@@ -162,18 +148,29 @@ public class AutoPaper2Controller implements Initializable {
 
     public void toAuto3() throws IOException {
         autoMainController2.skipView(autoPaper3View);
-        //获取选择题的个数
+        /*//获取选择题的个数
         choice_easyNum = easy_num_chose.getText();
         choice_midNum = mid_num_chose.getText();
         choice_diffNum = diff_num_chose.getText();
-        //获取判断题的个数
+        //获取判断题的个数.
         judge_easyNum = easy_num_judge.getText();
         judge_midNum = mid_num_judge.getText();
         judge_diffNum = diff_num_judge.getText();
         //获取简答题的个数
         short_easyNum = easy_num_short.getText();
         short_midNum = mid_num_short.getText();
-        short_diffNum = diff_num_short.getText();
+        short_diffNum = diff_num_short.getText();*/
+        /*
+        System.out.println(choice_easyNum);
+        System.out.println(choice_midNum);
+        System.out.println(choice_diffNum);
+        System.out.println(judge_easyNum);
+        System.out.println(judge_midNum);
+        System.out.println(judge_diffNum);
+        System.out.println(short_easyNum);
+        System.out.println(short_midNum);
+        System.out.println(short_diffNum);*/
+
     }
 
     //“添加题型按钮的点击事件”
@@ -199,48 +196,28 @@ public class AutoPaper2Controller implements Initializable {
     //添加题型
     public void addKind(String type){
         if("选择题".equals(type)&&vBox_chose==null){
-            addChose();
-            showData1(listView_chose);
+            showData1();
         }
         if("判断题".equals(type)&&vBox_judge==null){
-            addJudge();
-            showData2(listView_judge);
+            showData2();
         }
         if("简答题".equals(type)&&vBox_short==null){
-            addShort();
-            showData3(listView_short);
+            showData3();
         }
     }
 
-    private void addShort() {
-        listView_short = new ListView();
-        listView_short.setPrefHeight(0);
-        vBox_short = new VBox(listView_short);
-        autoPaper_contain.getChildren().add(vBox_short);
-    }
-
-    private void addJudge() {
-        listView_judge = new ListView();
-        listView_judge.setPrefHeight(0);
-        vBox_judge = new VBox(listView_judge);
-        autoPaper_contain.getChildren().add(vBox_judge);
-    }
-
-    private void addChose() {
-        listView_chose=new ListView();
+    public void showData1(){
+        listView_chose = new ListView();
         listView_chose.setPrefHeight(0);
-        vBox_chose=new VBox(listView_chose);
+        vBox_chose = new VBox(listView_chose);
         autoPaper_contain.getChildren().add(vBox_chose);
-    }
-
-    public void showData1(ListView view){
         Visual1 v1=new Visual1("1","2",1);
 
         ObservableList list= FXCollections.observableArrayList();
         list.addAll(v1);
-        view.setItems(list);
-        view.setPrefHeight(200);
-        view.setCellFactory(new Callback<ListView, ListCell>() {
+        listView_chose.setItems(list);
+        listView_chose.setPrefHeight(200);
+        listView_chose.setCellFactory(new Callback<ListView, ListCell>() {
             @Override
             public ListCell call(ListView param) {
                 ListCell cell=new ListCell(){
@@ -291,14 +268,18 @@ public class AutoPaper2Controller implements Initializable {
         });
     }
 
-    public void showData2(ListView view){
+    public void showData2(){
+        listView_judge = new ListView();
+        listView_judge.setPrefHeight(0);
+        vBox_judge = new VBox(listView_judge);
+        autoPaper_contain.getChildren().add(vBox_judge);
         Visual1 v1=new Visual1("1","2",1);
 
         ObservableList list= FXCollections.observableArrayList();
         list.addAll(v1);
-        view.setItems(list);
-        view.setPrefHeight(200);
-        view.setCellFactory(new Callback<ListView, ListCell>() {
+        listView_judge.setItems(list);
+        listView_judge.setPrefHeight(200);
+        listView_judge.setCellFactory(new Callback<ListView, ListCell>() {
             @Override
             public ListCell call(ListView param) {
                 ListCell cell=new ListCell(){
@@ -349,14 +330,19 @@ public class AutoPaper2Controller implements Initializable {
         });
     }
 
-    public void showData3(ListView view){
+    public void showData3(){
+        listView_short=new ListView();
+        listView_short.setPrefHeight(0);
+        vBox_short=new VBox(listView_short);
+        autoPaper_contain.getChildren().add(vBox_short);
+
         Visual1 v1=new Visual1("1","2",1);
 
         ObservableList list= FXCollections.observableArrayList();
         list.addAll(v1);
-        view.setItems(list);
-        view.setPrefHeight(200);
-        view.setCellFactory(new Callback<ListView, ListCell>() {
+        listView_short.setItems(list);
+        listView_short.setPrefHeight(200);
+        listView_short.setCellFactory(new Callback<ListView, ListCell>() {
             @Override
             public ListCell call(ListView param) {
                 ListCell cell=new ListCell(){
