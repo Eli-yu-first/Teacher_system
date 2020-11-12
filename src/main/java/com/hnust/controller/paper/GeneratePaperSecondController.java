@@ -5,6 +5,7 @@ import com.hnust.controller.paper.component.AddPaperKindController;
 import com.hnust.controller.paper.component.AddQuestionController;
 import com.hnust.domain.Question;
 import com.hnust.domain.Visual1;
+import com.hnust.utils.NumberJudge;
 import com.hnust.view.paper.GeneratePaperThirdView;
 import com.hnust.view.paper.GeneratePaperView;
 import com.hnust.view.paper.component.AddPaperKindView;
@@ -35,6 +36,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -60,6 +62,9 @@ public class GeneratePaperSecondController implements Initializable {
     //弹窗控制器
     @Autowired
     private AddPaperKindController addPaperKindController;
+    //字符判断工具
+    @Autowired
+    private NumberJudge numberJudge;
     //大容器
     @FXML
     public ScrollPane container;
@@ -83,12 +88,52 @@ public class GeneratePaperSecondController implements Initializable {
     public AnchorPane scp_paper_contain;
     @FXML
     public VBox paper_contain;
+    //题目数
+    @FXML
+    public Label questionNumberLabel;
+    //总分
+    @FXML
+    public Label questionSumScoreLabel;
+    //简单
+    @FXML
+    public Label easyQuestionLabel;
+    //中等
+    @FXML
+    public Label midQuestionLabel;
+    //较难
+    @FXML
+    public Label diffQuestionLabel;
+    //选择
+    @FXML
+    public Label choseQuestionLabel;
+    //判断
+    @FXML
+    public Label judgeQuestionLabel;
+    //简答
+    @FXML
+    public Label shortQuestionLabel;
+
+    private long questionNumberCount=0;
+    private long questionSumScoreCount=0;
+    private long easyQuestionCount=0;
+    private long choseEasyQuestionCount=0;
+    private long judgeEasyQuestionCount=0;
+    private long shortEasyQuestionCount=0;
+    private long midQuestionCount=0;
+    private long choseMidQuestionCount=0;
+    private long judgeMidQuestionCount=0;
+    private long shortMidQuestionCount=0;
+    private long diffQuestionCount=0;
+    private long choseDiffQuestionCount=0;
+    private long judgeDiffQuestionCount=0;
+    private long shortDiffQuestionCount=0;
+    private long choseQuestionCount=0;
+    private long judgeQuestionCount=0;
+    private long shortQuestionCount=0;
     //容器宽度
     public Double width;
     //容器高度
     public Double height;
-    //标记位置，用来判断添加的是哪种题型
-    private Integer flag;
     //添加选择题型，选择题所有组件
     private VBox vBox_chose;
     private AnchorPane anchorPane_chose;
@@ -103,7 +148,7 @@ public class GeneratePaperSecondController implements Initializable {
     private Label diff_chose;
     private Label diff_num_chose;
     private Button btn_chose;
-    private ObservableList list_chose= FXCollections.observableArrayList();
+    private ObservableList<Question> list_chose= FXCollections.observableArrayList();
     //添加判断题型，选择题所有组件
     private VBox vBox_judge;
     private AnchorPane anchorPane_judge;
@@ -118,7 +163,7 @@ public class GeneratePaperSecondController implements Initializable {
     private Label diff_judge;
     private Label diff_num_judge;
     private Button btn_judge;
-    private ObservableList list_judge= FXCollections.observableArrayList();
+    private ObservableList<Question> list_judge= FXCollections.observableArrayList();
     //添加简答题型，选择题所有组件
     private VBox vBox_short;
     private AnchorPane anchorPane_short;
@@ -133,11 +178,12 @@ public class GeneratePaperSecondController implements Initializable {
     private Label diff_short;
     private Label diff_num_short;
     private Button btn_short;
-    private ObservableList list_short= FXCollections.observableArrayList();
+    private ObservableList<Question> list_short= FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         scp_paper.setFitToWidth(true);
         listenChange();
+        setAllLabel();
     }
     //根据窗口改变，进行监听设置页面大小
     public void listenChange(){
@@ -181,7 +227,7 @@ public class GeneratePaperSecondController implements Initializable {
         });
     }
     //显示添加题型弹窗
-    public void addPaperKind(){
+    public void addQuestionKind(){
         Dialog dialog=new Dialog();
         DialogPane dialogPane=new DialogPane();
         dialogPane.setStyle("-fx-background-color: #FFF;-fx-border-width: 2;-fx-border-color: #ADADAD");
@@ -195,20 +241,19 @@ public class GeneratePaperSecondController implements Initializable {
         dialog.getDialogPane().getButtonTypes().addAll(ok,cancel);
         Optional<ButtonType> result=dialog.showAndWait();
         if(result.get()==ok){
-            System.out.println(addPaperKindController.getKind());
-            addKind(addPaperKindController.getKind());
+            addQuestionKind(addPaperKindController.getKind());
         }
     }
-    //下一页
+    //跳转至下一页
     public void next() throws IOException {
         mainController.skipView(generatePaperThirdView);
     }
-    //上一页
+    //回退至上一页
     public void back() throws IOException {
         mainController.skipView(generatePaperView);
     }
-    //添加题型
-    public void addKind(String kind){
+    //显示添加题目类型弹窗（选择题、判断题、简答题）
+    public void addQuestionKind(String kind){
         if("选择题".equals(kind)&&vBox_chose==null){
             this.addChose();
         }
@@ -219,12 +264,11 @@ public class GeneratePaperSecondController implements Initializable {
             this.addShort();
         }
     }
-    //试卷表格
-    public void showData(ListView<Question>view,ObservableList list,List<Question> addList,CheckBox cb){
+    //为对应的ListView设置内容
+    public void showData(ListView<Question>view,ObservableList<Question> list,List<Question> addList,CheckBox cb){
         list.addAll(addList);
         view.setItems(list);
-        view.setPrefHeight((double)(232*list.size()));
-        view.setStyle("-fx-fixed-cell-size:230");
+        setListViewHeight(view,list);
         view.setCellFactory(new Callback<ListView<Question>, ListCell<Question>>() {
             @Override
             public ListCell<Question> call(ListView<Question> param) {
@@ -293,6 +337,11 @@ public class GeneratePaperSecondController implements Initializable {
             }
         });
     }
+    //根据ListView中元素的个数来动态设置对应列表高度设置
+    public void setListViewHeight(ListView<Question>view,ObservableList<Question> list){
+        view.setPrefHeight((double)(232*list.size()));
+        view.setStyle("-fx-fixed-cell-size:230");
+    }
     //添加题型选择题
     public void addChose(){
         checkBox_chose=new CheckBox();
@@ -334,7 +383,7 @@ public class GeneratePaperSecondController implements Initializable {
         listView_chose=new ListView();
         listView_chose.setPrefHeight(0);
         vBox_chose=new VBox(anchorPane_chose,listView_chose);
-        paper_contain.getChildren().add(vBox_chose);
+        paper_contain.getChildren().add(0, vBox_chose);
     }
     //添加题型判断题
     public void addJudge(){
@@ -378,7 +427,13 @@ public class GeneratePaperSecondController implements Initializable {
         listView_judge.setPrefHeight(0);
         listView_judge.getStyleClass().addAll("outScroll");
         vBox_judge=new VBox(anchorPane_judge,listView_judge);
-        paper_contain.getChildren().add(vBox_judge);
+        if(vBox_short==null&&vBox_chose==null){
+            paper_contain.getChildren().add(0,vBox_judge);
+        }else if((vBox_short==null&&vBox_chose!=null)||(vBox_short!=null&&vBox_chose!=null)){
+            paper_contain.getChildren().add(1,vBox_judge);
+        }else if(vBox_short!=null&&vBox_chose==null){
+            paper_contain.getChildren().add(0,vBox_judge);
+        }
     }
     //添加题型简答题
     public void addShort(){
@@ -421,7 +476,13 @@ public class GeneratePaperSecondController implements Initializable {
         listView_short=new ListView();
         listView_short.setPrefHeight(0);
         vBox_short=new VBox(anchorPane_short,listView_short);
-        paper_contain.getChildren().add(vBox_short);
+        if(vBox_judge==null&&vBox_chose==null){
+            paper_contain.getChildren().add(0,vBox_short);
+        }else if((vBox_judge==null&&vBox_chose!=null)||(vBox_judge!=null&&vBox_chose==null)){
+            paper_contain.getChildren().add(1,vBox_short);
+        }else if(vBox_judge!=null&&vBox_chose!=null){
+            paper_contain.getChildren().add(2,vBox_short);
+        }
     }
     //添加题目按钮点击事件
     public EventHandler<ActionEvent> showAddQuestion(){
@@ -432,6 +493,15 @@ public class GeneratePaperSecondController implements Initializable {
                 DialogPane dialogPane=new DialogPane();
                 dialogPane.setStyle("-fx-background-color: #FFF;-fx-border-width: 2;-fx-border-color: #ADADAD");
                 dialogPane.setContent(addQuestionView.getView());
+                if(((Button)event.getTarget())==btn_chose){
+                    addQuestionController.setInitAppearance("题型:选择题");
+                }
+                else if(((Button)event.getTarget())==btn_judge){
+                    addQuestionController.setInitAppearance("题型:判断题");
+                }
+                else if(((Button)event.getTarget())==btn_short){
+                    addQuestionController.setInitAppearance("题型:简答题");
+                }
                 dialogPane.setPrefWidth(width);
                 dialogPane.setPrefHeight(height);
                 dialog.setDialogPane(dialogPane);
@@ -452,31 +522,122 @@ public class GeneratePaperSecondController implements Initializable {
                     else if(((Button)event.getTarget())==btn_short){
                         showData(listView_short, list_short, addQuestionController.getAddList(),checkBox_short);
                     }
+                    changePanel();
+                    setAllLabel();
+                    addQuestionController.close();
+                }else{
+                    addQuestionController.close();
                 }
             }
         };
         return eventHandler;
     }
-    //获取当前flag
-    public Integer getFlag() {
-        return flag;
+    //设置分值面板
+    public void setAllLabel(){
+        questionNumberLabel.setText(String.valueOf(questionNumberCount));
+        questionSumScoreLabel.setText(String.valueOf(questionSumScoreCount));
+        easyQuestionLabel.setText(String.valueOf(easyQuestionCount));
+        midQuestionLabel.setText(String.valueOf(midQuestionCount));
+        diffQuestionLabel.setText(String.valueOf(diffQuestionCount));
+        choseQuestionLabel.setText(String.valueOf(choseQuestionCount));
+        judgeQuestionLabel.setText(String.valueOf(judgeQuestionCount));
+        shortQuestionLabel.setText(String.valueOf(shortQuestionCount));
+    }
+    //面板值变化
+    public void changePanel(){
+        if(vBox_chose!=null){
+            choseQuestionCount=listView_chose.getItems().size();
+            listView_chose.getItems().stream().forEach(question -> {
+                if(question.getDiff()==1){
+                    choseEasyQuestionCount++;
+                }
+                if (question.getDiff()==2){
+                    choseMidQuestionCount++;
+                }
+                if (question.getDiff()==3){
+                    choseDiffQuestionCount++;
+                }
+            });
+        }
+        if(vBox_judge!=null){
+            judgeQuestionCount=listView_judge.getItems().size();
+            listView_judge.getItems().stream().forEach(question -> {
+                if(question.getDiff()==1){
+                    judgeEasyQuestionCount++;
+                }
+                if (question.getDiff()==2){
+                    judgeMidQuestionCount++;
+                }
+                if (question.getDiff()==3){
+                    judgeDiffQuestionCount++;
+                }
+            });
+        }
+        if(vBox_short!=null){
+            shortQuestionCount=listView_short.getItems().size();
+            listView_short.getItems().stream().forEach(question -> {
+                if(question.getDiff()==1){
+                    shortEasyQuestionCount++;
+                }
+                if (question.getDiff()==2){
+                    shortMidQuestionCount++;
+                }
+                if (question.getDiff()==3){
+                    shortDiffQuestionCount++;
+                }
+            });
+        }
+        questionNumberCount=choseQuestionCount+judgeQuestionCount+shortQuestionCount;
+        easyQuestionCount=choseEasyQuestionCount+judgeEasyQuestionCount+shortEasyQuestionCount;
+        midQuestionCount=choseMidQuestionCount+judgeMidQuestionCount+shortMidQuestionCount;
+        diffQuestionCount=choseDiffQuestionCount+judgeDiffQuestionCount+shortDiffQuestionCount;
     }
     //修改分值
     public void changeScore(){
-        ObservableList<Question> collection=this.listView_chose.getItems();
-        collection.stream().filter(question -> question.getChecked()==true).forEach(question -> System.out.println(question));
-        listView_chose.refresh();
+        if(!list_chose.isEmpty()||!list_chose.isEmpty()||!list_short.isEmpty()){
+            TextInputDialog dialog = new TextInputDialog("分值");
+            dialog.setHeaderText("设置所选题目分值");
+            dialog.setContentText("输入分数:");
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()){
+                if(numberJudge.isInteger(result.get().trim())){
+                    Integer value=Integer.valueOf(result.get());
+                    if(list_chose.size()!=0&&listView_chose!=null){
+                        list_chose.filtered(question -> question.getChecked()==true).forEach(question -> question.setScore(value));
+                        listView_chose.refresh();
+                    }
+                    if(list_judge.size()!=0&&listView_judge!=null){
+                        list_judge.filtered(question -> question.getChecked()==true).forEach(question -> question.setScore(value));
+                        listView_judge.refresh();
+                    }
+                    if(list_short.size()!=0&&listView_short!=null){
+                        list_short.filtered(question -> question.getChecked()==true).forEach(question -> question.setScore(value));
+                        listView_short.refresh();
+                    }
+                    changePanel();
+                    setAllLabel();
+                }
+            }
+        }
     }
     //删除题目
     public void deleteQuestion(){
         if(list_chose.size()!=0&&listView_chose!=null){
-            listView_chose.getItems().stream().filter(question -> question.getChecked()==true).forEach(question -> System.out.println(question));
+            list_chose.removeIf(question -> question.getChecked()==true);
+            setListViewHeight(listView_chose,list_chose);
+            listView_chose.refresh();
         }
         if(list_judge.size()!=0&&listView_judge!=null){
-            listView_judge.getItems().stream().filter(question -> question.getChecked()==true).forEach(question -> System.out.println(question));
+            list_judge.removeIf(question -> question.getChecked()==true);
+            setListViewHeight(listView_judge,list_judge);
+            listView_judge.refresh();
         }
         if(list_short.size()!=0&&listView_short!=null){
-            listView_short.getItems().stream().filter(question -> question.getChecked()==true).forEach(question -> System.out.println(question));
+            list_short.removeIf(question -> question.getChecked()==true);
+            setListViewHeight(listView_short,list_short);
+            listView_short.refresh();
         }
+        changePanel();
+        setAllLabel();
     }
 }
