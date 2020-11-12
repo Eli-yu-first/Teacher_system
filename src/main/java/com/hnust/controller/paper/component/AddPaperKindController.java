@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 @FXMLController
 public class AddPaperKindController implements Initializable {
     @FXML
-    ComboBox comb;
+    public ComboBox comb;
     private String kind="选择题";
     @Override
     public void initialize(URL location, ResourceBundle resources) {
