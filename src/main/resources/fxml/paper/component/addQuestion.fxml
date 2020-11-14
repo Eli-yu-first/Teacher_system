@@ -35,7 +35,7 @@
             <CheckBox fx:id="cB"></CheckBox>
         </HBox>
         <HBox alignment="CENTER">
-            <Label text="课程:数据结构" style="-fx-font-weight: bold;-fx-font-size: 1.1em"></Label>
+            <Label text="课程:数据结构" style="-fx-font-weight: bold;-fx-font-size: 1.1em" fx:id="courseNameLLabel"></Label>
         </HBox>
         <HBox  spacing="20" alignment="CENTER">
             <Label text="题目难易程度:" style="-fx-font-weight: bold;-fx-font-size: 1.1em"></Label>
@@ -45,10 +45,13 @@
             <Label text="题型:选择题" style="-fx-font-weight: bold;-fx-font-size: 1.1em" fx:id="questionKindLabel"></Label>
         </HBox>
         <HBox alignment="CENTER">
-            <TextField></TextField>
-            <Button styleClass="btn,btn-primary" text="搜索"></Button>
+            <TextField fx:id="searchValueField"></TextField>
+            <Button styleClass="btn,btn-primary" text="搜索" onAction="#searchQuestion"></Button>
         </HBox>
     </HBox>
-    <ListView AnchorPane.topAnchor="165" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="15" fx:id="listView">
+    <ListView AnchorPane.topAnchor="165" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="45" fx:id="listView">
     </ListView>
+    <HBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+        <Pagination fx:id="page" />
+    </HBox>
 </AnchorPane>
