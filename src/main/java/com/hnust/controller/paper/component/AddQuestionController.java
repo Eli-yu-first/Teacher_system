@@ -2,9 +2,8 @@ package com.hnust.controller.paper.component;
 
 import com.hnust.controller.paper.GeneratePaperSecondController;
 import com.hnust.domain.Question;
-import com.hnust.domain.Visual1;
-import com.hnust.view.paper.GeneratePaperSecondView;
 import de.felixroske.jfxsupport.FXMLController;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,10 +19,10 @@ import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+
 
 /**
  * @program: demo
@@ -38,10 +37,50 @@ public class AddQuestionController implements Initializable {
     @FXML
     public ListView<Question> listView;
     @FXML
-    public Label label;
-    private List<Question> addList=new ArrayList();
+    public Label questionKindLabel;
+    @FXML
+    public Label checkedLabel;
+    @FXML
+    public Label easyQuestionLabel;
+    @FXML
+    public Label midQuestionLabel;
+    @FXML
+    public Label diffQuestionLabel;
+    @FXML
+    public CheckBox cB;
+    @FXML
+    public ComboBox comb;
+    //保存数据的集合
+    ObservableList<Question> list= FXCollections.observableArrayList();
+    private long checkedCount=0;
+    private long easyQuestionCount=0;
+    private long midQuestionCount=0;
+    private long diffQuestionCount=0;
+    //各种组件初始化操作
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //全选监听事件
+        cB.setSelected(false);
+        cB.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue==true){
+                listView.getItems().stream().forEach(question -> question.setChecked(true));
+                checkedCount=listView.getItems().size();
+                easyQuestionCount=listView.getItems().stream().filter(question -> question.getDiff()==1).count();
+                midQuestionCount=listView.getItems().stream().filter(question -> question.getDiff()==2).count();
+                diffQuestionCount=listView.getItems().stream().filter(question -> question.getDiff()==3).count();
+            }else{
+                if(listView.getItems().stream().anyMatch(question -> question.getChecked()==false)){
+
+                }else{
+                    listView.getItems().stream().forEach(question -> question.setChecked(false));
+                    this.clearCount();
+                }
+            }
+            this.setAllLabel();
+            listView.refresh();
+        });
+        comb.getItems().addAll("较易","中等","较难");
+        comb.getSelectionModel().select(0);
         listView.setItems(this.getQuestion());
         listView.setStyle("-fx-fixed-cell-size:230");
         listView.setCellFactory(new Callback<ListView<Question>, ListCell<Question>>() {
@@ -55,21 +94,37 @@ public class AddQuestionController implements Initializable {
                         if(empty==false){
                             AnchorPane anchorPane=new AnchorPane();
                             CheckBox checkBox=new CheckBox();
-                            checkBox.setSelected(item.getChecked());
+                            checkBox.selectedProperty().bindBidirectional(new SimpleBooleanProperty(item.getChecked()));
                             checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
                                 @Override
                                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                                     if(newValue==true){
                                         item.setChecked(true);
-                                        if(!addList.contains(item)){
-                                            addList.add(item);
+                                        checkedCount++;
+                                        if (item.getDiff()==1){
+                                            easyQuestionCount++;
+                                        }else if(item.getDiff()==2){
+                                            midQuestionCount++;
+                                        }else if(item.getDiff()==3){
+                                            diffQuestionCount++;
+                                        }
+                                        Boolean bl=listView.getItems().stream().anyMatch(question -> question.getChecked()==false);
+                                        if(bl==false){
+                                            cB.setSelected(true);
                                         }
                                     }else{
                                         item.setChecked(false);
-                                        if(addList.contains(item)){
-                                            addList.remove(item);
+                                        checkedCount--;
+                                        if (item.getDiff()==1){
+                                            easyQuestionCount--;
+                                        }else if(item.getDiff()==2){
+                                            midQuestionCount--;
+                                        }else if(item.getDiff()==3){
+                                            diffQuestionCount--;
                                         }
+                                        cB.setSelected(false);
                                     }
+                                    setAllLabel();
                                     listView.refresh();
                                 }
                             });
@@ -91,8 +146,18 @@ public class AddQuestionController implements Initializable {
                             AnchorPane.setTopAnchor(vBox, 15.0);
                             AnchorPane.setLeftAnchor(vBox, 50.0);
                             AnchorPane.setRightAnchor(vBox, 15.0);
-                            Label label3=new Label("较易");
-                            label3.setStyle("-fx-text-fill: green;-fx-font-weight: bold");
+                            Label label3=new Label();
+                            if(item.getDiff()==1){
+                                label3.setText("较易");
+                                label3.setStyle("-fx-text-fill: green;-fx-font-weight: bold");
+                            }else if(item.getDiff()==2){
+                                label3=new Label("中等");
+                                label3.setStyle("-fx-text-fill: blue;-fx-font-weight: bold");
+                            }
+                            else if(item.getDiff()==3){
+                                label3=new Label("较难");
+                                label3.setStyle("-fx-text-fill: red;-fx-font-weight: bold");
+                            }
                             HBox hBox=new HBox(label3);
                             hBox.setSpacing(5.0);
                             hBox.setAlignment(Pos.CENTER);
@@ -111,23 +176,42 @@ public class AddQuestionController implements Initializable {
             }
         });
     }
+    //获取数据
     public ObservableList getQuestion(){
-        Question q1=new Question(1,"我是谁","用不到",false);
-        Question q2=new Question(2,"我是谁","用不到",false);
-        Question q3=new Question(3,"我是谁","用不到",false);
-        Question q4=new Question(4,"我是谁","用不到",false);
-        Question q5=new Question(5,"我是谁","用不到",false);
-        ObservableList list= FXCollections.observableArrayList();
+        Question q1=new Question(1,"我是谁","用不到",false,1,10);
+        Question q2=new Question(2,"我是谁","用不到",false,1,10);
+        Question q3=new Question(3,"我是谁","用不到",false,1,10);
+        Question q4=new Question(4,"我是谁","用不到",false,2,10);
+        Question q5=new Question(5,"我是谁","用不到",false,3,10);
         list.addAll(q1,q2,q3,q4,q5);
+        //对数组进行排序
+        list=list.sorted(((o1, o2) -> o1.getDiff().compareTo(o2.getDiff())));
         return list;
     }
+    //设置页面对应显示
     public void setInitAppearance(String text){
-        this.label.setText(text);
+        this.questionKindLabel.setText(text);
     }
+    //设置所有Label面板
+    public void setAllLabel(){
+        checkedLabel.setText(String.valueOf(checkedCount));
+        easyQuestionLabel.setText(String.valueOf(easyQuestionCount));
+        midQuestionLabel.setText(String.valueOf(midQuestionCount));
+        diffQuestionLabel.setText(String.valueOf(diffQuestionCount));
+    }
+    //清除数据
+    public void clearCount(){
+        checkedCount=0;
+        easyQuestionCount=0;
+        midQuestionCount=0;
+        diffQuestionCount=0;
+    }
+    //获取列表中选中数据
     public List<Question> getAddList() {
-        return addList;
+        return list.filtered(question -> question.getChecked()==true);
     }
-    public void setAddList(List<Question> addList) {
-        this.addList = addList;
+    //关闭弹窗，恢复初始设置
+    public void close(){
+        cB.setSelected(false);
     }
 }

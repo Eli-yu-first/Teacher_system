@@ -18,4 +18,6 @@ public class Question {
     private String question;
     private String answer;
     private Boolean checked;
+    private Integer diff;
+    private Integer score;
 }
