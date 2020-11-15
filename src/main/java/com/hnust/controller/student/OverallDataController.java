@@ -29,11 +29,20 @@ public class OverallDataController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        initPieChartAccuracy();
-        initBarChartSubjectCount();
+        overAllDataWindow.parentProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue!=null){
+                initPieChartAccuracy();
+                initBarChartSubjectCount();
+            }else{
+                studentAccuracy.getChildren().clear();
+                charBar.getData().clear();
+            }
+        });
+        charBar.prefWidthProperty().bind(classSubjectCount.widthProperty());
     }
 
     public void initPieChartAccuracy(){
+        //System.out.println("每次运行一次");
         //假数据生成
         List<Visual2> visual2s=new ArrayList<>();
         Visual2 d1=new Visual2(200,793,"线性代数");
@@ -103,6 +112,5 @@ public class OverallDataController implements Initializable {
             }
         }
         charBar.getData().addAll(xys);
-        charBar.prefWidthProperty().bind(classSubjectCount.widthProperty());
     }
 }

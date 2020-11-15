@@ -13,11 +13,9 @@ import com.hnust.view.subject.SubjectListView;
 import de.felixroske.jfxsupport.AbstractFxmlView;
 import de.felixroske.jfxsupport.FXMLController;
 import de.felixroske.jfxsupport.GUIState;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -37,14 +35,12 @@ public class MainController implements Initializable{
 
     @FXML
     private Label navFont;
-    @FXML
-    private AnchorPane mainWindow;
+//    @FXML
+//    private AnchorPane mainWindow;
     @FXML
     private AnchorPane content;
-    @Autowired
-    private DataStore dataStore;
-
-    private Stage stage;
+//    @Autowired
+//    private DataStore dataStore;
 
     public ImageView header4Item3Image;
     public ImageView header1Item1Image;
@@ -81,71 +77,55 @@ public class MainController implements Initializable{
         //System.out.println(dataStore.getToken());
         Screen s=Screen.getPrimary();
         Rectangle2D visualBound=s.getVisualBounds();
-        stage=GUIState.getStage();
+        Stage stage = GUIState.getStage();
         stage.setMinWidth(visualBound.getWidth()*0.85);
         stage.setMinHeight(visualBound.getHeight()*0.8);
-        try {
-            skipView(personDataView);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        skipView("个人资料");
     }
 
     /**
      * 改变右侧content的界面
-     * @param view
-     * @throws IOException
+     * @param text
      */
-    public void skipView(AbstractFxmlView view) throws IOException {
-        content.getChildren().clear();
-        content.getChildren().add(view.getView());
-        AnchorPane.setBottomAnchor(view.getView(),0.0);
-        AnchorPane.setTopAnchor(view.getView(),0.0);
-        AnchorPane.setLeftAnchor(view.getView(),0.0);
-        AnchorPane.setRightAnchor(view.getView(),0.0);
-    }
-
-    public void itemClick(MouseEvent mouseEvent) throws IOException {
+    public void skipView(String text) {
         //设置全部隐藏
-                setAllItemImageInvisible();
-                //设置点击的显示
-                Text text=(Text) mouseEvent.getTarget();
-                AbstractFxmlView path=null;
-                String label=null;
-                switch (text.getText()) {
-                    case "个人资料":
-                        header1Item1Image.setVisible(true);
-                        label="个人信息管理  /  个人资料";
-                        path = personDataView;
-                        break;
-                    case "我的课程组":
-                        header1Item2Image.setVisible(true);
-                        path = myCourseGroupView;
-                        label="个人信息管理  /  我的课程组";
-                        break;
-                    case "题目列表":
-                        header2Item1Image.setVisible(true);
-                        label="题目管理  /  题目列表";
-                        path = subjectListView;
-                        break;
-                    case "批量导入":
-                        header2Item2Image.setVisible(true);
-                        path = batchImportView;
-                        label="题目管理  /  批量导入";
-                        break;
-                    case "总体数据查看":
-                        header3Item1Image.setVisible(true);
-                        path = overallDataView;
-                        label="学生管理  /  总体数据查看";
-                        break;
-                    case "详细数据查看":
-                        header3Item2Image.setVisible(true);
-                        path = detailDataView;
-                        label="学生管理  /  详细数据查看";
-                        break;
-                    case "试卷列表":
-                        header4Item1Image.setVisible(true);
-                        path = paperListView;
+        setAllItemImageInvisible();
+        AbstractFxmlView path=null;
+        String label=null;
+        switch (text) {
+            case "个人资料":
+                header1Item1Image.setVisible(true);
+                label="个人信息管理  /  个人资料";
+                path = personDataView;
+                break;
+            case "我的课程组":
+                header1Item2Image.setVisible(true);
+                path = myCourseGroupView;
+                label="个人信息管理  /  我的课程组";
+                break;
+            case "题目列表":
+                header2Item1Image.setVisible(true);
+                label="题目管理  /  题目列表";
+                path = subjectListView;
+                break;
+            case "批量导入":
+                header2Item2Image.setVisible(true);
+                path = batchImportView;
+                label="题目管理  /  批量导入";
+                break;
+            case "总体数据查看":
+                header3Item1Image.setVisible(true);
+                path = overallDataView;
+                label="学生管理  /  总体数据查看";
+                break;
+            case "详细数据查看":
+                header3Item2Image.setVisible(true);
+                path = detailDataView;
+                label="学生管理  /  详细数据查看";
+                break;
+            case "试卷列表":
+                header4Item1Image.setVisible(true);
+                path = paperListView;
                 label="试卷管理  /  试卷列表";
                 break;
             case "手动生成试卷":
@@ -160,7 +140,20 @@ public class MainController implements Initializable{
                 break;
         }
         navFont.setText(label);
-        skipView(path);
+        content.getChildren().clear();
+
+        assert path != null;
+        content.getChildren().add(path.getView());
+        AnchorPane.setBottomAnchor(path.getView(),0.0);
+        AnchorPane.setTopAnchor(path.getView(),0.0);
+        AnchorPane.setLeftAnchor(path.getView(),0.0);
+        AnchorPane.setRightAnchor(path.getView(),0.0);
+    }
+
+    public void itemClick(MouseEvent mouseEvent) throws IOException {
+        //设置点击的显示
+        Text text=(Text) mouseEvent.getTarget();
+        skipView(text.getText());
     }
 
     private void setAllItemImageInvisible() {

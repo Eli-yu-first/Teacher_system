@@ -39,7 +39,7 @@ public class MyCourseGroupController implements Initializable {
         courseGroup.setItems(com);
     }
 
-    public void ToSubjectList() throws IOException {  //题库跳转到题目列表
-        mainController.skipView(subjectListView);
+    public void ToSubjectList() {  //题库跳转到题目列表
+        mainController.skipView("题目列表");
     }
 }
