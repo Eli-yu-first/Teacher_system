@@ -30,13 +30,11 @@ public class GeneratePaperThirdController implements Initializable {
     @Autowired
     private MainController mainController;
     @Autowired
-    private GeneratePaperView generatePaperView;
-    @Autowired
-    private GeneratePaperSecondView generatePaperSecondView;
-    @Autowired
     private GeneratePaperSecondController generatePaperSecondController;
     @Autowired
     private GeneratePaperController generatePaperController;
+    @Autowired
+    private GeneratePaperDataStore generatePaperDataStore;
     @FXML
     public ScrollPane container;
     @FXML
@@ -78,13 +76,13 @@ public class GeneratePaperThirdController implements Initializable {
             }
         });
     }
-    public void next() throws IOException {
 
-        //mainController.skipView(generatePaperView);
-        //generatePaperSecondController.clear();
-        //generatePaperController.clearData();
+    public void next() throws IOException {
+        generatePaperDataStore.setFlag(0);
+        mainController.skipView("手动生成试卷");
     }
     public void back() throws IOException{
-        //mainController.skipView(generatePaperSecondView);
+        generatePaperDataStore.setFlag(2);
+        mainController.skipView("手动生成试卷II");
     }
 }

@@ -79,7 +79,16 @@ public class GeneratePaperController implements Initializable {
         dataStore.setTeacher_id("1");
         dataStore.setTeacher_name("qian");
         dataStore.setToken("12");
-        getData();
+        container.parentProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue!=null){
+               if(generatePaperDataStore.getFlag()!=1){
+                   clearData();
+               }
+               getData();
+            }else{
+                generatePaperDataStore.setFlag(0);
+            }
+        });
         listenChange();
         initApparent();
     }
@@ -140,6 +149,7 @@ public class GeneratePaperController implements Initializable {
         outExamTimeDatePicker.setValue(null);
         courseNameCombox.setItems(null);
         passRateTextField.setText("");
+        toggleGroup.selectToggle(aExamRadioButton);
     }
     //为页面相关表单发送请求获取数据并设置combox
     public void getData(){
@@ -203,7 +213,7 @@ public class GeneratePaperController implements Initializable {
     //保存并且进入下一步
     public void next() throws IOException {
         if(collectData()){
-            //mainController.skipView(generatePaperSecondView);
+            mainController.skipView("手动生成试卷II");
         }
     }
 }

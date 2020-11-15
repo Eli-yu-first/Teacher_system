@@ -51,18 +51,11 @@ public class GeneratePaperSecondController implements Initializable {
     @Autowired
     private MainController mainController;
     @Autowired
-    private GeneratePaperThirdView generatePaperThirdView;
-    @Autowired
-    private GeneratePaperView generatePaperView;
-    @Autowired
     private AddPaperKindView addPaperKindView;
     @Autowired
     private AddQuestionView addQuestionView;
     @Autowired
     private AddQuestionController addQuestionController;
-    //弹窗控制器
-    @Autowired
-    private AddPaperKindController addPaperKindController;
     @Autowired
     private GeneratePaperDataStore generatePaperDataStore;
     @Autowired
@@ -139,6 +132,13 @@ public class GeneratePaperSecondController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         scp_paper.setFitToWidth(true);
         listenChange();
+        container.parentProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue!=null){
+                if(generatePaperDataStore.getFlag()!=2){
+                    close();
+                }
+            }
+        });
     }
     //根据窗口改变，进行监听设置页面大小
     public void listenChange(){
@@ -181,6 +181,7 @@ public class GeneratePaperSecondController implements Initializable {
             }
         });
     }
+
     //显示添加题型弹窗
     public void addQuestionKind(){
         Dialog dialog=new Dialog();
@@ -196,23 +197,24 @@ public class GeneratePaperSecondController implements Initializable {
         dialog.getDialogPane().getButtonTypes().addAll(ok,cancel);
         Optional<ButtonType> result=dialog.showAndWait();
         if(result.get()==ok){
-            addQuestionKind(addPaperKindController.getKind());
+            addQuestionKind(generatePaperDataStore.getKind());
         }
     }
-    //跳转至下一页
-    public void next() throws IOException {
-        //mainController.skipView(generatePaperThirdView);
-    }
-    //回退至上一页
-    public void back() throws IOException {
-        //mainController.skipView(generatePaperView);
-    }
+
     //显示添加题目类型弹窗（选择题、判断题、简答题）
     public void addQuestionKind(String kind){
         addQuestionList(String.valueOf(getQuestionTypeId(kind)), kind);
     }
+
+    //根据ListView中元素的个数来动态设置对应列表高度设置
+    public void setListViewHeight(ListView<SubjectDataRecord>view,ObservableList<SubjectDataRecord> list){
+        view.setPrefHeight((double)(232*list.size()));
+        view.setStyle("-fx-fixed-cell-size:230");
+    }
+
     //为对应的ListView设置内容
     public void showData(ListView<SubjectDataRecord>view,ObservableList<SubjectDataRecord> list,List<SubjectDataRecord> addList,CheckBox cb){
+        addList.forEach(subjectDataRecord -> subjectDataRecord.setChecked(false));
         list.addAll(addList);
         view.setItems(list);
         setListViewHeight(view,list);
@@ -306,11 +308,7 @@ public class GeneratePaperSecondController implements Initializable {
             }
         });
     }
-    //根据ListView中元素的个数来动态设置对应列表高度设置
-    public void setListViewHeight(ListView<SubjectDataRecord>view,ObservableList<SubjectDataRecord> list){
-        view.setPrefHeight((double)(232*list.size()));
-        view.setStyle("-fx-fixed-cell-size:230");
-    }
+
     //添加选中的题目类型
     public void addQuestionList(String typeId,String type){
         if(!listViewMap.containsKey(typeId)){
@@ -363,6 +361,7 @@ public class GeneratePaperSecondController implements Initializable {
             paper_contain.getChildren().add(vBox);
         }
     }
+
     //添加题目按钮点击事件
     public EventHandler<ActionEvent> showAddQuestion(String type){
         EventHandler<ActionEvent> eventHandler=new EventHandler<ActionEvent>(){
@@ -385,18 +384,16 @@ public class GeneratePaperSecondController implements Initializable {
                 ButtonType cancel=new ButtonType("取消", ButtonBar.ButtonData.CANCEL_CLOSE);
                 dialog.getDialogPane().getButtonTypes().addAll(ok,cancel);
                 Optional<ButtonType> result=dialog.showAndWait();
-                if(result.get()==ok){
-                    showData(listViewMap.get(typeId), itemMap.get(typeId), addQuestionController.getAddList(),checkBoxMap.get(typeId));
+                if(result.get()==ok) {
+                    showData(listViewMap.get(typeId), itemMap.get(typeId), addQuestionController.getAddList(), checkBoxMap.get(typeId));
                     changePanel();
-                    addQuestionController.close();
-                }else{
-                    addQuestionController.close();
                 }
             }
         };
         return eventHandler;
     }
-    //获取题目类型对应的题目id TODO
+
+    //获取题目类型保存对应的题目id
     public void storeQuestionType(String typeName){
         for (QuestionType questionType:generatePaperDataStore.getQuestionTypes()){
             if(typeName.equals(questionType.getName().trim())){
@@ -405,6 +402,7 @@ public class GeneratePaperSecondController implements Initializable {
             }
         }
     }
+
     //根据题型，获取题型id
     public int getQuestionTypeId(String typeName){
         for (QuestionType questionType:generatePaperDataStore.getQuestionTypes()){
@@ -414,6 +412,32 @@ public class GeneratePaperSecondController implements Initializable {
         }
         return 0;
     }
+
+    //修改分值
+    public void changeScore() throws InterruptedException {
+        if(!listViewMap.isEmpty()){
+            TextInputDialog dialog = new TextInputDialog("分值");
+            dialog.setHeaderText("设置所选题目分值");
+            dialog.setContentText("输入分数:");
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()){
+                if(numberJudge.isInteger(result.get().trim())){
+                    Integer value=Integer.valueOf(result.get());
+                    for (Map.Entry<String,ListView<SubjectDataRecord>> entry: listViewMap.entrySet()){
+                        entry.getValue().getItems().filtered(subjectDataRecord -> subjectDataRecord.getChecked()==true).forEach(subjectDataRecord -> subjectDataRecord.setScore(value));
+                        entry.getValue().refresh();
+                    }
+                    changePanel();
+                }
+            }
+        }
+    }
+
+    //TODO 将题目设为隐藏
+    public void setQuestionDisable(){
+
+    }
+
     //面板值变化
     public void changePanel(){
         long questionNumberCount=0;
@@ -453,27 +477,14 @@ public class GeneratePaperSecondController implements Initializable {
         midQuestionLabel.setText(String.valueOf(midQuestionCount));
         diffQuestionLabel.setText(String.valueOf(diffQuestionCount));
         repeatedNumLabel.setText(String.valueOf(repeatedNumCount));
-        repeatedRateLabel.setText(String.format("%d%%",(repeatedNumCount*100)/questionNumberCount));
-    }
-    //修改分值
-    public void changeScore() throws InterruptedException {
-        if(!listViewMap.isEmpty()){
-            TextInputDialog dialog = new TextInputDialog("分值");
-            dialog.setHeaderText("设置所选题目分值");
-            dialog.setContentText("输入分数:");
-            Optional<String> result = dialog.showAndWait();
-            if (result.isPresent()){
-                if(numberJudge.isInteger(result.get().trim())){
-                    Integer value=Integer.valueOf(result.get());
-                    for (Map.Entry<String,ListView<SubjectDataRecord>> entry: listViewMap.entrySet()){
-                        entry.getValue().getItems().filtered(subjectDataRecord -> subjectDataRecord.getChecked()==true).forEach(subjectDataRecord -> subjectDataRecord.setScore(value));
-                        entry.getValue().refresh();
-                    }
-                    changePanel();
-                }
-            }
+        if(questionNumberCount!=0){
+            repeatedRateLabel.setText(String.format("%d%%",(repeatedNumCount*100)/questionNumberCount));
+        }
+        else{
+            repeatedRateLabel.setText("0%");
         }
     }
+
     //删除题目
     public void deleteQuestion(){
         for (Map.Entry<String,ListView<SubjectDataRecord>> entry: listViewMap.entrySet()){
@@ -482,15 +493,7 @@ public class GeneratePaperSecondController implements Initializable {
         }
         changePanel();
     }
-    //清除数据
-    public void clear(){
-        checkBoxMap.clear();
-        listViewMap.clear();
-        easyLabelMap.clear();
-        midLabelMap.clear();
-        diffLabelMap.clear();
-        itemMap.clear();
-    }
+
     //试卷查重
     public void recheck(){
         List<String> list=new ArrayList<>();
@@ -535,6 +538,7 @@ public class GeneratePaperSecondController implements Initializable {
             }
         }, dataStore.getToken(),dataStore.getTeacher_id(),generatePaperDataStore.getCourseId(), list);
     }
+
     //题目重复率
     public int repeatedNum(ListView<SubjectDataRecord> listView){
         List<SubjectDataRecord> list=listView.getItems().sorted((before, next) ->before.getSubjectData().getId().compareTo(next.getSubjectData().getId()));
@@ -554,5 +558,28 @@ public class GeneratePaperSecondController implements Initializable {
             }
         }
         return num;
+    }
+
+    //跳转至下一页
+    public void next() throws IOException {
+        mainController.skipView("手动生成试卷III");
+    }
+
+    //回退至上一页
+    public void back() throws IOException {
+        generatePaperDataStore.setFlag(1);
+        mainController.skipView("手动生成试卷");
+    }
+
+    //清除数据
+    public void close(){
+        paper_contain.getChildren().clear();
+        checkBoxMap.clear();
+        listViewMap.clear();
+        easyLabelMap.clear();
+        midLabelMap.clear();
+        diffLabelMap.clear();
+        itemMap.clear();
+        changePanel();
     }
 }
