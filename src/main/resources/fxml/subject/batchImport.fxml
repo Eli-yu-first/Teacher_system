@@ -4,53 +4,59 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="container" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFF;
-            -fx-border-width: 0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.hnust.controller.subject.BatchImportController">
-    <VBox alignment="BASELINE_LEFT"  prefHeight="178.0" prefWidth="1000.0" spacing="20" style="-fx-background-color: #EBFFFE;
-          -fx-font-size: 1.3em;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="25.0" fx:id="remind">
-        <Label prefHeight="40.0" text="    导入说明" />
-        <Label text="    1，本系统支持导入的题型" />
-        <Label text="    单选题，多选题，不定项选择题，填空题，判断题，问答题，理解题（一个大标题下有多个小问题），排序题，匹配题，完型填空题" />
-        <Label text="    2，导入题目的word文档必须按照模板要求来进行填写" />
-    </VBox>
-    <HBox alignment="CENTER" prefWidth="1100.0" spacing="30" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="230">
-        <padding>
-            <Insets left="40" />
-        </padding>
-        <Button prefWidth="200.0" style="-fx-font-size: 1.5em;" styleClass="btn,btn-info" text="下载Word文档" />
-        <Button onAction="#chooseFile" prefWidth="200.0" style="-fx-font-size: 1.5em;" styleClass="btn,btn-success" text="上传Word文档" />
-        <Label alignment="BASELINE_RIGHT" prefWidth="200.0" style="-fx-font-size: 1.5em;" text="题目所属课程" />
-        <ComboBox fx:id="comb" prefHeight="35.0" prefWidth="350.0">
-            <HBox.margin>
-                <Insets right="100.0" />
-            </HBox.margin>
-        </ComboBox>
-    </HBox>
-    <VBox AnchorPane.leftAnchor="20"  AnchorPane.rightAnchor="50" AnchorPane.bottomAnchor="0"  AnchorPane.topAnchor="280">
-        <TableView  fx:id="tableSize" style="-fx-background-color: red" maxHeight="Infinity">
-            <columns>
-                <TableColumn text="序号"></TableColumn>
-                <TableColumn text="内容"></TableColumn>
-                <TableColumn text="所属课程"></TableColumn>
-                <TableColumn text="所属章节"></TableColumn>
-                <TableColumn text="题目类型"></TableColumn>
-                <TableColumn text="题目难度"></TableColumn>
-                <TableColumn text="题目解析"></TableColumn>
-                <TableColumn text="知识点"></TableColumn>
-                <TableColumn text="答案"></TableColumn>
-                <TableColumn text="课程目标"></TableColumn>
-                <TableColumn text="权限"></TableColumn>
-                <TableColumn text="操作"></TableColumn>
-            </columns>
-        </TableView>
-        <HBox alignment="BASELINE_RIGHT"  spacing="30" >
-            <padding>
-                <Insets top="15" right="20"></Insets>
-            </padding>
-            <Button prefWidth="200.0" style="-fx-font-size: 1.5em;" styleClass="btn,btn-block" text="取消" />
-            <Button prefWidth="200.0" style="-fx-font-size: 1.5em;" styleClass="btn,btn-info" text="全部导入" />
-        </HBox>
-    </VBox>
+<AnchorPane fx:id="container" prefHeight="400.0" prefWidth="800.0"
+            style="-fx-background-color: #FFF;-fx-border-width: 0"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml" fx:controller="com.hnust.controller.subject.BatchImportController">
+    <ScrollPane fitToWidth="true" fitToHeight="true" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0"
+    AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0"
+    style="-fx-background-color: transparent">
+        <AnchorPane style="-fx-background-color: #ffffff">
+            <VBox alignment="CENTER_LEFT" spacing="20"
+                  style="-fx-background-color: #EBFFFE;"
+                  AnchorPane.leftAnchor="25" AnchorPane.rightAnchor="25" AnchorPane.topAnchor="25">
+                <Label text="    导入说明" />
+                <Label text="    1，本系统支持导入的题型" />
+                <Label text="    单选题，多选题，不定项选择题，填空题，判断题，问答题，理解题（一个大标题下有多个小问题），排序题，匹配题，完型填空题" />
+                <Label text="    2，导入题目的word文档必须按照模板要求来进行填写" />
+                <padding>
+                    <Insets top="15.0" left="10" right="10" bottom="15"/>
+                </padding>
+            </VBox>
+            <HBox alignment="CENTER" spacing="35" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+                  AnchorPane.topAnchor="200">
+                <Label style="-fx-font-size: 1em" text="题目所属课程" />
+                <ComboBox fx:id="comb" visibleRowCount="5" minWidth="150"/>
+                <Button fx:id="download" style="-fx-font-size: 1em" styleClass="btn,btn-info" text="下载Word文档" />
+                <Button fx:id="upload" style="-fx-font-size: 1em" styleClass="btn,btn-success" text="上传Word文档" />
+                <Button fx:id="getImport" style="-fx-font-size: 1em" styleClass="btn,btn-info" text="确认导入"/>
+            </HBox>
+
+            <VBox AnchorPane.topAnchor="250" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+                <padding>
+                    <Insets top="10" left="10" right="10" bottom="10"/>
+                </padding>
+                <ScrollPane fitToHeight="true" style="-fx-background-color: transparent">
+                    <TableView style="-fx-background-color: transparent"
+                               fx:id="tableSize"  minHeight="300">
+                        <columns>
+                            <TableColumn text="内容" minWidth="80"/>
+                            <TableColumn text="所属课程" minWidth="100"/>
+                            <TableColumn text="所属章节" minWidth="100"/>
+                            <TableColumn text="题目类型" minWidth="100"/>
+                            <TableColumn text="题目难度" minWidth="100"/>
+                            <TableColumn text="题目解析" minWidth="100"/>
+                            <TableColumn text="知识点" minWidth="90"/>
+                            <TableColumn text="答案" minWidth="80"/>
+                            <TableColumn text="课程目标" minWidth="100"/>
+                            <TableColumn text="操作" minWidth="80"/>
+                        </columns>
+                    </TableView>
+                </ScrollPane>
+                <HBox alignment="CENTER" spacing="10">
+                    <Pagination style="-fx-font-family: SimSun-ExtB;-fx-font-size: 1em"/>
+                </HBox>
+            </VBox>
+        </AnchorPane>
+    </ScrollPane>
 </AnchorPane>

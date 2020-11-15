@@ -34,7 +34,7 @@
                     </HBox>
                 </GridPane>
             </HBox>
-            <VBox AnchorPane.topAnchor="120" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+            <VBox AnchorPane.topAnchor="140" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
                 <padding>
                     <Insets top="10" left="10" right="10" bottom="10"/>
                 </padding>

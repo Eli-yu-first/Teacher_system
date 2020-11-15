@@ -12,19 +12,16 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.util.Callback;
-
-import javax.xml.bind.annotation.XmlList;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ResourceBundle;
 
 @FXMLController
 public class BatchImportController implements Initializable {
+    public Button download;
+    public Button upload;
+    public Button getImport;
+
     private ObservableList playListFiles =FXCollections.observableArrayList();
     @FXML
     AnchorPane container;
