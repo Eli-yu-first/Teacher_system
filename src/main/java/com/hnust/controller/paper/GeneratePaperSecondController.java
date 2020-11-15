@@ -189,11 +189,11 @@ public class GeneratePaperSecondController implements Initializable {
     }
     //跳转至下一页
     public void next() throws IOException {
-        mainController.skipView(generatePaperThirdView);
+        //mainController.skipView(generatePaperThirdView);
     }
     //回退至上一页
     public void back() throws IOException {
-        mainController.skipView(generatePaperView);
+        //mainController.skipView(generatePaperView);
     }
     //显示添加题目类型弹窗（选择题、判断题、简答题）
     public void addQuestionKind(String kind){

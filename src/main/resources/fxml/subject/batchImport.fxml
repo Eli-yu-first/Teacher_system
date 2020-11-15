@@ -54,7 +54,7 @@
                     </TableView>
                 </ScrollPane>
                 <HBox alignment="CENTER" spacing="10">
-                    <Pagination style="-fx-font-family: SimSun-ExtB;-fx-font-size: 1em"/>
+                    <Pagination style="-fx-font-size: 1em"/>
                 </HBox>
             </VBox>
         </AnchorPane>

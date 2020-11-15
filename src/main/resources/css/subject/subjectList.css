@@ -1,13 +1,13 @@
 .button1{
     -fx-font-size: 1.0em;
-    -fx-font-family: SimSun-ExtB;
+    /*-fx-font-family: SimSun-ExtB;*/
     /*-fx-background-color: #3333cc;*/
     -fx-text-fill: #ffffff
 }
 
 .button2{
     -fx-font-size: 1.0em;
-    -fx-font-family: SimSun-ExtB;
+    /*-fx-font-family: SimSun-ExtB;*/
     -fx-background-color: transparent
 }
 
@@ -22,5 +22,5 @@
 
 .fontText{
     -fx-font-size: 1.2em;
-    -fx-font-family: SimSun-ExtB
+    /*-fx-font-family: SimSun-ExtB*/
 }

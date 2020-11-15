@@ -13,6 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -40,6 +42,7 @@ public class SubjectListController implements Initializable {
             }else{
             }
         });
+        //System.out.println("只运行一次？");
 
     }
 
@@ -73,6 +76,6 @@ public class SubjectListController implements Initializable {
     }
 
     public void shiftToBatchImport(ActionEvent actionEvent) {
-
+        mainController.skipView("批量导入");
     }
 }

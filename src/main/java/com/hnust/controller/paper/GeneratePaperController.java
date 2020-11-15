@@ -199,7 +199,7 @@ public class GeneratePaperController implements Initializable {
     //保存并且进入下一步
     public void next() throws IOException {
         if(collectData()){
-            mainController.skipView(generatePaperSecondView);
+            //mainController.skipView(generatePaperSecondView);
         }
     }
 }

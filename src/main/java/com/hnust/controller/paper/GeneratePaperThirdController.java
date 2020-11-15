@@ -74,9 +74,9 @@ public class GeneratePaperThirdController implements Initializable {
         });
     }
     public void next() throws IOException {
-        mainController.skipView(generatePaperView);
+        //mainController.skipView(generatePaperView);
     }
     public void back() throws IOException{
-        mainController.skipView(generatePaperSecondView);
+        //mainController.skipView(generatePaperSecondView);
     }
 }
