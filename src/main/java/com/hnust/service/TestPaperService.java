@@ -18,4 +18,5 @@ public interface TestPaperService {
     void getCourseQuesList(Callback<List<QuestionType>> callback,String id,String course_id,String token);
     void getQuestion(Callback<SubjectInfo>callback,String token,String id,String course_id,String tye_id,String now_page);
     void getQuesByCon(Callback<SubjectInfo>callback,String token,String id,String course_id,String tye_id,String keyword,String now_page);
+    void checkPaperRepeat(Callback<List<RepeatQues>>callback,String token,String id,String course_id,List<String> subject_ids);
 }

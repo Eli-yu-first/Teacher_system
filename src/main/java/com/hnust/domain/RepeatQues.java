@@ -4,20 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
  * @program: demo
  * @author: 彭鑫淼
  * @description: 未知
- * @create: 2020-11-13 22:08
+ * @create: 2020-11-15 12:55
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubjectDataRecord {
-    private SubjectData subjectData;
-    private Integer score;
-    private Boolean repeated;
-    private Boolean checked;
+public class RepeatQues {
+    private String ques_id;
+    private String paper_name;
 }

@@ -1,7 +1,6 @@
 package com.hnust.controller.paper.component;
 
 import com.hnust.controller.paper.GeneratePaperSecondController;
-import com.hnust.domain.Question;
 import com.hnust.domain.SubjectData;
 import com.hnust.domain.SubjectDataRecord;
 import com.hnust.domain.SubjectInfo;
@@ -15,13 +14,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -94,7 +90,6 @@ public class AddQuestionController implements Initializable {
     }
     //请求数据 TODO(拿到类型ID)
     public void getQuestion(){
-        System.out.println("我来看看有没有"+generatePaperDataStore);
         testPaperService.getQuestion(new retrofit2.Callback<SubjectInfo>() {
             @Override
             public void onResponse(Call<SubjectInfo> call, Response<SubjectInfo> response) {
@@ -103,7 +98,7 @@ public class AddQuestionController implements Initializable {
                     public void run() {
                         list.clear();
                         response.body().getSubject().forEach(subjectData -> {
-                            list.add(new SubjectDataRecord(subjectData, 0,false));
+                            list.add(new SubjectDataRecord(subjectData, 0,false,false));
                         });
                         if(response.body().getTotal()%5==0){
                             setListViewItem(response.body().getTotal()/5);
@@ -119,18 +114,17 @@ public class AddQuestionController implements Initializable {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        SubjectDataRecord s1=new SubjectDataRecord(new SubjectData("1","123","12","1","1",1,"1","1",null,"1",1),1,false);
-                        SubjectDataRecord s2=new SubjectDataRecord(new SubjectData("1","123","12","1","1",2,"1","1",null,"1",1),2,false);
-                        SubjectDataRecord s3=new SubjectDataRecord(new SubjectData("1","123","12","1","1",1,"1","1",null,"1",1),3,false);
-                        SubjectDataRecord s4=new SubjectDataRecord(new SubjectData("1","123","12","1","1",3,"1","1",null,"1",1),1,false);
-                        SubjectDataRecord s5=new SubjectDataRecord(new SubjectData("1","123","12","1","1",1,"1","1",null,"1",1),1,false);
+                        SubjectDataRecord s1=new SubjectDataRecord(new SubjectData("1","123","12","1","1",1,"1","1",null,"1",1),1,false,false);
+                        SubjectDataRecord s2=new SubjectDataRecord(new SubjectData("1","123","12","1","1",2,"1","1",null,"1",1),2,false,false);
+                        SubjectDataRecord s3=new SubjectDataRecord(new SubjectData("3","123","12","1","1",1,"1","1",null,"1",1),3,false,false);
+                        SubjectDataRecord s4=new SubjectDataRecord(new SubjectData("3","123","12","1","1",3,"1","1",null,"1",1),1,false,false);
+                        SubjectDataRecord s5=new SubjectDataRecord(new SubjectData("5","123","12","1","1",1,"1","1",null,"1",1),1,false,false);
                         list.addAll(s1,s2,s3,s4,s5);
                         setListViewItem(3);
 
                     }
                 });
             }
-//            generatePaperDataStore.getQuesyionTypeId().toString()
         },dataStore.getToken(), dataStore.getTeacher_id(), generatePaperDataStore.getCourseId(),String.valueOf(generatePaperDataStore.getQuesyionTypeId()),String.valueOf(currentPage));
 
     }
@@ -168,7 +162,6 @@ public class AddQuestionController implements Initializable {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 currentPage=newValue.intValue()+1;
                 searchQuestion();
-                System.out.println(currentPage);
             }
         });
     }
@@ -317,7 +310,7 @@ public class AddQuestionController implements Initializable {
                         public void run() {
                             list.clear();
                             response.body().getSubject().forEach(subjectData -> {
-                                list.add(new SubjectDataRecord(subjectData, 3,false));
+                                list.add(new SubjectDataRecord(subjectData, 3,false,false));
                             });
                             if(response.body().getTotal()%5==0){
                                 setListViewItem(response.body().getTotal()/5);
@@ -340,7 +333,6 @@ public class AddQuestionController implements Initializable {
                 }
             }, dataStore.getToken(), dataStore.getTeacher_id(), generatePaperDataStore.getCourseId(),String.valueOf(generatePaperDataStore.getQuesyionTypeId()), searchValueField.getText().trim(),String.valueOf(currentPage));
         }else{
-            System.out.println("全局搜索");
             if(flag==1){
                 page.setCurrentPageIndex(0);
                 flag=0;

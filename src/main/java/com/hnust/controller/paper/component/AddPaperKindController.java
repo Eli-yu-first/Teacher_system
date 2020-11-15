@@ -61,7 +61,6 @@ public class AddPaperKindController implements Initializable {
                             list.add(questionType.getName());
                         });
                         setCombItem();
-                        System.out.println(generatePaperDataStore);
                     }
                 });
             }
@@ -72,9 +71,9 @@ public class AddPaperKindController implements Initializable {
                     @Override
                     public void run() {
                         list.clear();
-                        QuestionType q1=new QuestionType(1, "选择题");
-                        QuestionType q2=new QuestionType(2, "判断题");
-                        QuestionType q3=new QuestionType(3, "简答题");
+                        QuestionType q1=new QuestionType(2, "选择题");
+                        QuestionType q2=new QuestionType(3, "判断题");
+                        QuestionType q3=new QuestionType(4, "简答题");
                         List<QuestionType> list1=new ArrayList<>();
                         list1.add(q1);
                         list1.add(q2);

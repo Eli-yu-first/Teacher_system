@@ -49,8 +49,7 @@
                 </HBox>
                 <HBox AnchorPane.rightAnchor="50" alignment="CENTER" spacing="20">
                     <Button styleClass="btn,btn-success" prefHeight="40" style="-fx-font-size: 1.05em" onAction="#back">返回上一步</Button>
-                    <Button styleClass="btn,btn-warning,btn_appearance">试卷查重</Button>
-                    <Button styleClass="btn,btn-default,btn_appearance">试卷预览</Button>
+                    <Button styleClass="btn,btn-warning,btn_appearance" onAction="#recheck">试卷查重</Button>
                     <Button styleClass="btn,btn-info" prefHeight="40" style="-fx-font-size: 1.05em" onAction="#next">保存生成试卷</Button>
                 </HBox>
             </AnchorPane>
@@ -72,15 +71,15 @@
                     </HBox>
                     <HBox alignment="CENTER">
                         <Label text="题目重复数：" styleClass="paper_info"></Label>
-                        <Label text="0" styleClass="paper_info"></Label>
+                        <Label text="0" styleClass="paper_info" fx:id="repeatedNumLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
                         <Label text="总分：" styleClass="paper_info"></Label>
                         <Label text="0" styleClass="paper_info" fx:id="questionSumScoreLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
-                        <Label text="重复率：" styleClass="paper_info"></Label>
-                        <Label text="0" styleClass="paper_info"></Label>
+                        <Label text="重复率：" styleClass="paper_info" ></Label>
+                        <Label text="0%" styleClass="paper_info" fx:id="repeatedRateLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
                         <Label text="简单：" styleClass="paper_info"></Label>

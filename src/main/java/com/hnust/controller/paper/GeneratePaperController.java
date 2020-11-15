@@ -74,6 +74,11 @@ public class GeneratePaperController implements Initializable {
     private String defaultValue="暂未加入课程组";
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        dataStore.setCollege_id("1");
+        dataStore.setCollege_name("计算机科学与工程学院");
+        dataStore.setTeacher_id("1");
+        dataStore.setTeacher_name("qian");
+        dataStore.setToken("12");
         getData();
         listenChange();
         initApparent();
@@ -125,7 +130,6 @@ public class GeneratePaperController implements Initializable {
             generatePaperDataStore.setOutExamTime(outExamTimeDatePicker.getValue());
             generatePaperDataStore.setPassRate(passRateTextField.getText());
             generatePaperDataStore.setPaperKind(((RadioButton)toggleGroup.getSelectedToggle()).getText());
-            System.out.println(generatePaperDataStore);
             return true;
         }
         return false;

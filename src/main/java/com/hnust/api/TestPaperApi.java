@@ -1,10 +1,7 @@
 package com.hnust.api;
 
 import com.github.lianjiatech.retrofit.spring.boot.annotation.RetrofitClient;
-import com.hnust.domain.CourseData;
-import com.hnust.domain.QuestionType;
-import com.hnust.domain.SubjectInfo;
-import com.hnust.domain.Teacher;
+import com.hnust.domain.*;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.stereotype.Component;
 import retrofit2.Call;
@@ -33,4 +30,6 @@ public interface TestPaperApi {
     @GET("/testPaper/getQuesByCon")
     Call<SubjectInfo> getQuesByCon(@Query("token")String token,@Query("id")String id,@Query("course_id")String course_id,@Query("tye_id")String tye_id,@Query("keyword")String keyword,@Query("now_page")String now_page);
 
+    @GET("/testPaper/checkPaperRepeat")
+    Call<List<RepeatQues>> checkPaperRepeat(@Query("token") String token,@Query("id") String id,@Query("course_id")String course_id,@Query("subject_ids")List<String> subject_ids);
 }

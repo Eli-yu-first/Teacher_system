@@ -2,10 +2,7 @@ package com.hnust.service.impl;
 
 import com.hnust.api.TeacherApi;
 import com.hnust.api.TestPaperApi;
-import com.hnust.domain.CourseData;
-import com.hnust.domain.QuestionType;
-import com.hnust.domain.SubjectInfo;
-import com.hnust.domain.Teacher;
+import com.hnust.domain.*;
 import com.hnust.service.TestPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +38,10 @@ public class TestPaperServiceImpl implements TestPaperService {
     @Override
     public void getQuesByCon(Callback<SubjectInfo> callback, String token, String id, String course_id, String tye_id, String keyword, String now_page) {
         testPaperApi.getQuesByCon(token, id,course_id,tye_id,keyword,now_page).enqueue(callback);
+    }
+
+    @Override
+    public void checkPaperRepeat(Callback<List<RepeatQues>> callback, String token, String id, String course_id, List<String> subject_ids) {
+        testPaperApi.checkPaperRepeat(token,id,course_id,subject_ids).enqueue(callback);
     }
 }

@@ -4,9 +4,11 @@ import com.hnust.controller.MainController;
 import com.hnust.controller.paper.component.AddPaperKindController;
 import com.hnust.controller.paper.component.AddQuestionController;
 import com.hnust.domain.QuestionType;
+import com.hnust.domain.RepeatQues;
 import com.hnust.domain.SubjectData;
 import com.hnust.domain.SubjectDataRecord;
 import com.hnust.service.TestPaperService;
+import com.hnust.store.DataStore;
 import com.hnust.store.GeneratePaperDataStore;
 import com.hnust.utils.NumberJudge;
 import com.hnust.view.paper.GeneratePaperThirdView;
@@ -14,6 +16,7 @@ import com.hnust.view.paper.GeneratePaperView;
 import com.hnust.view.paper.component.AddPaperKindView;
 import com.hnust.view.paper.component.AddQuestionView;
 import de.felixroske.jfxsupport.FXMLController;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -28,10 +31,13 @@ import javafx.scene.layout.*;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
+import retrofit2.Call;
+import retrofit2.Response;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
@@ -59,6 +65,8 @@ public class GeneratePaperSecondController implements Initializable {
     private AddPaperKindController addPaperKindController;
     @Autowired
     private GeneratePaperDataStore generatePaperDataStore;
+    @Autowired
+    private DataStore dataStore;
     @Autowired
     private TestPaperService testPaperService;
     //字符判断工具
@@ -111,6 +119,10 @@ public class GeneratePaperSecondController implements Initializable {
     //简答
     @FXML
     public Label shortQuestionLabel;
+    @FXML
+    public Label repeatedNumLabel;
+    @FXML
+    public Label repeatedRateLabel;
 
     //容器宽度
     public Double width;
@@ -269,7 +281,19 @@ public class GeneratePaperSecondController implements Initializable {
                             hBox1.setAlignment(Pos.CENTER);
                             AnchorPane.setRightAnchor(hBox1, 33.0);
                             AnchorPane.setTopAnchor(hBox1, 40.0);
-                            anchorPane.getChildren().addAll(checkBox,vBox,hBox,hBox1);
+
+                            Label label6=new Label("与样卷重复");
+                            label6.setStyle("-fx-text-fill: red;-fx-font-weight: bold");
+                            HBox hBox2=new HBox(label6);
+                            hBox2.setSpacing(5.0);
+                            hBox2.setAlignment(Pos.CENTER);
+                            AnchorPane.setRightAnchor(hBox2, 0.0);
+                            AnchorPane.setTopAnchor(hBox2, 60.0);
+                            if(item.getRepeated()==false){
+                                anchorPane.getChildren().addAll(checkBox,vBox,hBox,hBox1);
+                            }else{
+                                anchorPane.getChildren().addAll(checkBox,vBox,hBox,hBox1,hBox2);
+                            }
                             anchorPane.setMaxHeight(200);
                             anchorPane.setPrefHeight(200);
                             this.setGraphic(anchorPane);
@@ -400,22 +424,25 @@ public class GeneratePaperSecondController implements Initializable {
         int choseQuestionCount=0;
         int judgeQuestionCount=0;
         int shortQuestionCount=0;
+        int repeatedNumCount=0;
         for (Map.Entry<String,ListView<SubjectDataRecord>> entry: listViewMap.entrySet()){
             questionNumberCount+=entry.getValue().getItems().size();
             easyQuestionCount += entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 1).count();
             midQuestionCount += entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 2).count();
             diffQuestionCount += entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 3).count();
-            if("1".equals(entry.getKey())){
+            if("2".equals(entry.getKey())){
                 choseQuestionCount=entry.getValue().getItems().size();
-            }else if("2".equals(entry.getKey())){
-                judgeQuestionCount=entry.getValue().getItems().size();
             }else if("3".equals(entry.getKey())){
+                judgeQuestionCount=entry.getValue().getItems().size();
+            }else if("4".equals(entry.getKey())){
                 shortQuestionCount=entry.getValue().getItems().size();
             }
+            repeatedNumCount+=repeatedNum(entry.getValue());
             easyLabelMap.get(entry.getKey()).setText(String.valueOf(entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 1).count()));
             midLabelMap.get(entry.getKey()).setText(String.valueOf(entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 2).count()));
             diffLabelMap.get(entry.getKey()).setText(String.valueOf(entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 3).count()));
             questionSumScoreCount += entry.getValue().getItems().stream().mapToLong(SubjectDataRecord::getScore).sum();
+            entry.getValue().refresh();
         }
         choseQuestionLabel.setText(String.valueOf(choseQuestionCount));
         judgeQuestionLabel.setText(String.valueOf(judgeQuestionCount));
@@ -425,6 +452,8 @@ public class GeneratePaperSecondController implements Initializable {
         easyQuestionLabel.setText(String.valueOf(easyQuestionCount));
         midQuestionLabel.setText(String.valueOf(midQuestionCount));
         diffQuestionLabel.setText(String.valueOf(diffQuestionCount));
+        repeatedNumLabel.setText(String.valueOf(repeatedNumCount));
+        repeatedRateLabel.setText(String.format("%d%%",(repeatedNumCount*100)/questionNumberCount));
     }
     //修改分值
     public void changeScore() throws InterruptedException {
@@ -452,5 +481,78 @@ public class GeneratePaperSecondController implements Initializable {
            setListViewHeight(entry.getValue(),itemMap.get(entry.getKey()));
         }
         changePanel();
+    }
+    //清除数据
+    public void clear(){
+        checkBoxMap.clear();
+        listViewMap.clear();
+        easyLabelMap.clear();
+        midLabelMap.clear();
+        diffLabelMap.clear();
+        itemMap.clear();
+    }
+    //试卷查重
+    public void recheck(){
+        List<String> list=new ArrayList<>();
+        for (Map.Entry<String,ListView<SubjectDataRecord>> entry: listViewMap.entrySet()) {
+            list.addAll(entry.getValue().getItems().stream().map(subjectDataRecord -> subjectDataRecord.getSubjectData().getId()).collect(Collectors.toList()));
+        }
+        testPaperService.checkPaperRepeat(new retrofit2.Callback<List<RepeatQues>>() {
+            @Override
+            public void onResponse(Call<List<RepeatQues>> call, Response<List<RepeatQues>> response) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (RepeatQues repeatQues:response.body()){
+                            for (Map.Entry<String,ListView<SubjectDataRecord>> entry: listViewMap.entrySet()) {
+                                entry.getValue().getItems().stream().forEach(subjectDataRecord -> {
+                                    if(subjectDataRecord.getSubjectData().getId()==repeatQues.getQues_id()){
+                                        subjectDataRecord.setRepeated(true);
+                                    }else{
+                                        subjectDataRecord.setRepeated(false);
+                                    }
+                                });
+                                entry.getValue().refresh();
+                            }
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<List<RepeatQues>> call, Throwable t) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (Map.Entry<String, ListView<SubjectDataRecord>> entry : listViewMap.entrySet()) {
+                            entry.getValue().getItems().stream().forEach(subjectDataRecord -> {
+                                subjectDataRecord.setRepeated(true);
+                            });
+                            entry.getValue().refresh();
+                        }
+                    }
+                });
+            }
+        }, dataStore.getToken(),dataStore.getTeacher_id(),generatePaperDataStore.getCourseId(), list);
+    }
+    //题目重复率
+    public int repeatedNum(ListView<SubjectDataRecord> listView){
+        List<SubjectDataRecord> list=listView.getItems().sorted((before, next) ->before.getSubjectData().getId().compareTo(next.getSubjectData().getId()));
+        int num=0;
+        for(int i=0;i<list.size()-1;i++){
+            int flag=0;
+            for(int j=i;j<list.size()-1;j++){
+                if(list.get(j).getSubjectData().getId().equals(list.get(j+1).getSubjectData().getId())){
+                    flag++;
+                    i++;
+                }else{
+                    break;
+                }
+            }
+            if (flag!=0){
+                num++;
+            }
+        }
+        return num;
     }
 }
