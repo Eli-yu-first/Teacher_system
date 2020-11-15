@@ -43,7 +43,7 @@
             <AnchorPane>
                 <HBox AnchorPane.leftAnchor="50" alignment="CENTER" spacing="20">
                     <Button styleClass="btn,btn-info,btn_appearance" onAction="#addQuestionKind">添加题型</Button>
-                    <Button styleClass="btn,btn-default,btn_appearance">设为隐藏</Button>
+                    <Button styleClass="btn,btn-default,btn_appearance" onAction="#setQuestionDisable">设为隐藏</Button>
                     <Button styleClass="btn,btn-success,btn_appearance" onAction="#changeScore">修改分值</Button>
                     <Button styleClass="btn,btn-danger,btn_appearance" onAction="#deleteQuestion">删除题目</Button>
                 </HBox>
