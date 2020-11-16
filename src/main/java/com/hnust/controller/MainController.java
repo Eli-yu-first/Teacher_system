@@ -32,11 +32,10 @@ import java.util.ResourceBundle;
 
 @FXMLController
 public class MainController implements Initializable{
-
     @FXML
     private Label navFont;
-//    @FXML
-//    private AnchorPane mainWindow;
+    @FXML
+    private AnchorPane mainWindow;
     @FXML
     private AnchorPane content;
 //    @Autowired
@@ -74,12 +73,12 @@ public class MainController implements Initializable{
     @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //System.out.println(dataStore.getToken());
+        //设置窗口自适应
         Screen s=Screen.getPrimary();
         Rectangle2D visualBound=s.getVisualBounds();
         Stage stage = GUIState.getStage();
-        stage.setMinWidth(visualBound.getWidth()*0.85);
-        stage.setMinHeight(visualBound.getHeight()*0.8);
+        stage.setMinWidth(visualBound.getWidth()*0.9);
+        stage.setMinHeight(visualBound.getHeight()*0.85);
         skipView("个人资料");
     }
 
@@ -162,5 +161,9 @@ public class MainController implements Initializable{
        header3Item1Image.setVisible(false);header3Item2Image.setVisible(false);
        header4Item1Image.setVisible(false);header4Item2Image.setVisible(false);
        header4Item3Image.setVisible(false);
+    }
+
+    public void shiftToPersonalData(MouseEvent mouseEvent) {
+        skipView("个人资料");
     }
 }
