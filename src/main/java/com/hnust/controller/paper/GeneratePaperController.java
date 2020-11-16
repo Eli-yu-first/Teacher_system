@@ -74,7 +74,21 @@ public class GeneratePaperController implements Initializable {
     private String defaultValue="暂未加入课程组";
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        getData();
+        dataStore.setCollege_id("1");
+        dataStore.setCollege_name("计算机科学与工程学院");
+        dataStore.setTeacher_id("1");
+        dataStore.setTeacher_name("qian");
+        dataStore.setToken("12");
+        container.parentProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue!=null){
+               if(generatePaperDataStore.getFlag()!=1){
+                   clearData();
+               }
+               getData();
+            }else{
+                generatePaperDataStore.setFlag(0);
+            }
+        });
         listenChange();
         initApparent();
     }
@@ -125,7 +139,6 @@ public class GeneratePaperController implements Initializable {
             generatePaperDataStore.setOutExamTime(outExamTimeDatePicker.getValue());
             generatePaperDataStore.setPassRate(passRateTextField.getText());
             generatePaperDataStore.setPaperKind(((RadioButton)toggleGroup.getSelectedToggle()).getText());
-            System.out.println(generatePaperDataStore);
             return true;
         }
         return false;
@@ -136,6 +149,7 @@ public class GeneratePaperController implements Initializable {
         outExamTimeDatePicker.setValue(null);
         courseNameCombox.setItems(null);
         passRateTextField.setText("");
+        toggleGroup.selectToggle(aExamRadioButton);
     }
     //为页面相关表单发送请求获取数据并设置combox
     public void getData(){
@@ -199,7 +213,7 @@ public class GeneratePaperController implements Initializable {
     //保存并且进入下一步
     public void next() throws IOException {
         if(collectData()){
-            //mainController.skipView(generatePaperSecondView);
+            mainController.skipView("手动生成试卷II");
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.hnust.controller.paper;
 
 import com.hnust.controller.MainController;
+import com.hnust.store.GeneratePaperDataStore;
 import com.hnust.view.paper.GeneratePaperSecondView;
 import com.hnust.view.paper.GeneratePaperView;
 import de.felixroske.jfxsupport.FXMLController;
@@ -27,21 +28,23 @@ import java.util.ResourceBundle;
 @FXMLController
 public class GeneratePaperThirdController implements Initializable {
     @Autowired
-    MainController mainController;
+    private MainController mainController;
     @Autowired
-    GeneratePaperView generatePaperView;
+    private GeneratePaperSecondController generatePaperSecondController;
     @Autowired
-    GeneratePaperSecondView generatePaperSecondView;
+    private GeneratePaperController generatePaperController;
+    @Autowired
+    private GeneratePaperDataStore generatePaperDataStore;
     @FXML
-    ScrollPane container;
+    public ScrollPane container;
     @FXML
-    AnchorPane contain;
+    public AnchorPane contain;
     @FXML
-    HBox contain_process;
+    public HBox contain_process;
     @FXML
-    HBox line1;
+    public HBox line1;
     @FXML
-    HBox line2;
+    public HBox line2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,10 +76,13 @@ public class GeneratePaperThirdController implements Initializable {
             }
         });
     }
+
     public void next() throws IOException {
-        //mainController.skipView(generatePaperView);
+        generatePaperDataStore.setFlag(0);
+        mainController.skipView("手动生成试卷");
     }
     public void back() throws IOException{
-        //mainController.skipView(generatePaperSecondView);
+        generatePaperDataStore.setFlag(2);
+        mainController.skipView("手动生成试卷II");
     }
 }

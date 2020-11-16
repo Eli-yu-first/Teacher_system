@@ -9,6 +9,7 @@
 <?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            fx:id="container"
             fx:controller="com.hnust.controller.paper.component.AddQuestionController" style="-fx-background-color: #FFF" >
     <Label text="从题库中选择题目" style="-fx-font-size: 1.8em;-fx-font-weight: bold" fx:id="label" AnchorPane.topAnchor="30" AnchorPane.leftAnchor="25"></Label>
     <HBox  AnchorPane.topAnchor="10" prefWidth="280" prefHeight="90" AnchorPane.rightAnchor="15">

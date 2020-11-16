@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.AnchorPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,13 +41,22 @@ public class AddPaperKindController implements Initializable {
     private GeneratePaperDataStore generatePaperDataStore;
     @FXML
     public ComboBox comb;
-    private String kind;
+    @FXML
+    public AnchorPane container;
+
     private ObservableList<String> list= FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setComb();
-        setCombKind();
+        container.parentProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue!=null){
+                setCombKind();
+            }else{
+                close();
+            }
+        });
     }
+
     //获取课程所对应的题目类型
     public void setCombKind() {
         testPaperService.getCourseQuesList(new Callback<List<QuestionType>>() {
@@ -61,7 +71,6 @@ public class AddPaperKindController implements Initializable {
                             list.add(questionType.getName());
                         });
                         setCombItem();
-                        System.out.println(generatePaperDataStore);
                     }
                 });
             }
@@ -72,9 +81,9 @@ public class AddPaperKindController implements Initializable {
                     @Override
                     public void run() {
                         list.clear();
-                        QuestionType q1=new QuestionType(1, "选择题");
-                        QuestionType q2=new QuestionType(2, "判断题");
-                        QuestionType q3=new QuestionType(3, "简答题");
+                        QuestionType q1=new QuestionType(2, "选择题");
+                        QuestionType q2=new QuestionType(3, "判断题");
+                        QuestionType q3=new QuestionType(4, "简答题");
                         List<QuestionType> list1=new ArrayList<>();
                         list1.add(q1);
                         list1.add(q2);
@@ -87,15 +96,17 @@ public class AddPaperKindController implements Initializable {
             }
         }, dataStore.getTeacher_id(), generatePaperDataStore.getCourseId(), dataStore.getToken());
     }
+
     //设置combox中的属性
     public void setComb(){
         comb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                kind= (String) newValue;
+                generatePaperDataStore.setKind((String)newValue);
             }
         });
     }
+
     //设置combox中数据
     public void setCombItem(){
         if (!list.isEmpty()){
@@ -105,7 +116,9 @@ public class AddPaperKindController implements Initializable {
         }
         comb.getSelectionModel().select(0);
     }
-    public String getKind() {
-        return kind;
+
+    //关闭，清空数据
+    public void close(){
+        comb.getItems().clear();
     }
 }

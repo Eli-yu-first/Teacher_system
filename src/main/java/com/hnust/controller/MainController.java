@@ -1,9 +1,7 @@
 package com.hnust.controller;
 
 import com.hnust.store.DataStore;
-import com.hnust.view.paper.AutoPaperView;
-import com.hnust.view.paper.GeneratePaperView;
-import com.hnust.view.paper.PaperListView;
+import com.hnust.view.paper.*;
 import com.hnust.view.personInfo.MyCourseGroupView;
 import com.hnust.view.personInfo.PersonDataView;
 import com.hnust.view.student.DetailDataView;
@@ -69,7 +67,10 @@ public class MainController implements Initializable{
     private SubjectListView subjectListView;
     @Autowired
     private AutoPaperView autoPaperView;
-
+    @Autowired
+    private GeneratePaperSecondView generatePaperSecondView;
+    @Autowired
+    private GeneratePaperThirdView generatePaperThirdView;
     @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -130,7 +131,17 @@ public class MainController implements Initializable{
             case "手动生成试卷":
                 header4Item2Image.setVisible(true);
                 path = generatePaperView;
-                label="试卷管理  /  手动生成试卷";
+                label="试卷管理  /  手动生成试卷  /  设置试卷基本信息";
+                break;
+            case "手动生成试卷II":
+                header4Item2Image.setVisible(true);
+                path = generatePaperSecondView;
+                label="试卷管理  /  手动生成试卷  /  选择题目";
+                break;
+            case "手动生成试卷III":
+                header4Item2Image.setVisible(true);
+                path = generatePaperThirdView;
+                label="试卷管理  /  手动生成试卷  /  保存试卷";
                 break;
             case "自动生成试卷":
                 header4Item3Image.setVisible(true);
