@@ -29,4 +29,5 @@ public class GeneratePaperDataStore {
     private String questionType;
     private int flag=0;
     private String kind;
+    private List<String> questions;
 }

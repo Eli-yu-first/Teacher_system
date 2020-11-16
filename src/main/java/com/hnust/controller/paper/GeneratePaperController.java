@@ -3,6 +3,7 @@ package com.hnust.controller.paper;
 import com.hnust.controller.MainController;
 import com.hnust.domain.CourseData;
 import com.hnust.domain.QuestionType;
+import com.hnust.domain.Result;
 import com.hnust.service.TestPaperService;
 import com.hnust.store.DataStore;
 import com.hnust.store.GeneratePaperDataStore;
@@ -76,9 +77,9 @@ public class GeneratePaperController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         dataStore.setCollege_id("1");
         dataStore.setCollege_name("计算机科学与工程学院");
-        dataStore.setTeacher_id("1");
-        dataStore.setTeacher_name("qian");
-        dataStore.setToken("12");
+        dataStore.setTeacher_id("10086");
+        dataStore.setTeacher_name("老师");
+        dataStore.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6IjEwMDg2IiwiaWQiOiIxMDA4NiIsImV4cCI6MTYwNjA5ODA0MiwiaWF0IjoxNjA1NDkzMjQyLCJqdGkiOiI2NTA2YTI4OTQ2OTk0OGNjOWIzNTUxZDFmOTU3Yzc5NSJ9.wPXP_8qha2lEKR6yHWWAKxRX20UqX7BIYDclHOBaobg");
         container.parentProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue!=null){
                if(generatePaperDataStore.getFlag()!=1){
@@ -151,31 +152,25 @@ public class GeneratePaperController implements Initializable {
         passRateTextField.setText("");
         toggleGroup.selectToggle(aExamRadioButton);
     }
+    //TODO 错误处理
     //为页面相关表单发送请求获取数据并设置combox
     public void getData(){
         //获取老师所加入课程的信息
-        testPaperService.getCourseData(new Callback<List<CourseData>>() {
+        testPaperService.getCourseData(new Callback<Result<List<CourseData>>>() {
             @Override
-            public void onResponse(Call<List<CourseData>> call, Response<List<CourseData>> response) {
+            public void onResponse(Call<Result<List<CourseData>>> call, Response<Result<List<CourseData>>>response) {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        list.clear();
-                        allList.clear();
-                        allList=response.body();
-                        Iterator<CourseData> iterator=response.body().iterator();
-                        while(iterator.hasNext()){
-                            list.add(iterator.next().getName());
-                        }
-                        setCourseNameCombox();
-                    }
-                });
-            }
-            @Override
-            public void onFailure(Call<List<CourseData>> call, Throwable t) {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
+//                        list.clear();
+//                        allList.clear();
+//                        allList=response.body().getData();
+//                        Iterator<CourseData> iterator=response.body().getData().iterator();
+//                        while(iterator.hasNext()){
+//                            list.add(iterator.next().getName());
+//                        }
+//                        setCourseNameCombox();
+
                         list.clear();
                         allList.clear();
                         allList.add(new CourseData("网络异常","1"));
@@ -184,6 +179,15 @@ public class GeneratePaperController implements Initializable {
                         allList.add(new CourseData("计算机网络","4"));
                         list.addAll("网络异常","操作系统","数据结构","计算机网络");
                         setCourseNameCombox();
+                    }
+                });
+            }
+            @Override
+            public void onFailure(Call<Result<List<CourseData>>>call, Throwable t) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("网络异常，请稍后重试");
                     }
                 });
             }
@@ -216,4 +220,5 @@ public class GeneratePaperController implements Initializable {
             mainController.skipView("手动生成试卷II");
         }
     }
+
 }

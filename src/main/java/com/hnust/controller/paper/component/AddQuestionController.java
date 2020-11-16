@@ -1,6 +1,7 @@
 package com.hnust.controller.paper.component;
 
 import com.hnust.controller.paper.GeneratePaperSecondController;
+import com.hnust.domain.Result;
 import com.hnust.domain.SubjectData;
 import com.hnust.domain.SubjectDataRecord;
 import com.hnust.domain.SubjectInfo;
@@ -105,27 +106,27 @@ public class AddQuestionController implements Initializable {
 
     //请求数据
     public void getQuestion(){
-        testPaperService.getQuestion(new retrofit2.Callback<SubjectInfo>() {
+        testPaperService.getQuestion(new retrofit2.Callback<Result<SubjectInfo>>() {
             @Override
-            public void onResponse(Call<SubjectInfo> call, Response<SubjectInfo> response) {
+            public void onResponse(Call<Result<SubjectInfo>> call, Response<Result<SubjectInfo>> response) {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
                         list.clear();
-                        response.body().getSubject().forEach(subjectData -> {
+                        response.body().getData().getSubject().forEach(subjectData -> {
                             list.add(new SubjectDataRecord(subjectData, 0,false,false));
                         });
-                        if(response.body().getTotal()%5==0){
-                            setListViewItem(response.body().getTotal()/5);
+                        if(response.body().getData().getTotal()%5==0){
+                            setListViewItem(response.body().getData().getTotal()/5);
                         }else{
-                            setListViewItem(response.body().getTotal()/5+1);
+                            setListViewItem(response.body().getData().getTotal()/5+1);
                         }
                     }
                 });
             }
 
             @Override
-            public void onFailure(Call<SubjectInfo> call, Throwable t) {
+            public void onFailure(Call<Result<SubjectInfo>> call, Throwable t) {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -140,7 +141,7 @@ public class AddQuestionController implements Initializable {
                     }
                 });
             }
-        },dataStore.getToken(), dataStore.getTeacher_id(), generatePaperDataStore.getCourseId(),String.valueOf(generatePaperDataStore.getQuesyionTypeId()),String.valueOf(currentPage));
+        },dataStore.getToken(),generatePaperDataStore.getCourseId(),String.valueOf(generatePaperDataStore.getQuesyionTypeId()),String.valueOf(currentPage));
 
     }
 
@@ -331,32 +332,31 @@ public class AddQuestionController implements Initializable {
                 lastSearch=searchValueField.getText().trim();
                 page.setCurrentPageIndex(0);
             }
-            testPaperService.getQuesByCon(new retrofit2.Callback<SubjectInfo>() {
+            testPaperService.getQuesByCon(new retrofit2.Callback<Result<SubjectInfo>>() {
                 @Override
-                public void onResponse(Call<SubjectInfo> call, Response<SubjectInfo> response) {
+                public void onResponse(Call<Result<SubjectInfo>> call, Response<Result<SubjectInfo>> response) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
                             list.clear();
-                            response.body().getSubject().forEach(subjectData -> {
+                            response.body().getData().getSubject().forEach(subjectData -> {
                                 list.add(new SubjectDataRecord(subjectData, 3,false,false));
                             });
-                            if(response.body().getTotal()%5==0){
-                                setListViewItem(response.body().getTotal()/5);
+                            if(response.body().getData().getTotal()%5==0){
+                                setListViewItem(response.body().getData().getTotal()/5);
                             }else{
-                                setListViewItem(response.body().getTotal()/5+1);
+                                setListViewItem(response.body().getData().getTotal()/5+1);
                             }
 
                         }
                     });
                 }
                 @Override
-                public void onFailure(Call<SubjectInfo> call, Throwable t) {
+                public void onFailure(Call<Result<SubjectInfo>> call, Throwable t) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            list.clear();
-                            setListViewItem(3);
+                            System.out.println("网络异常，请稍后重试");
                         }
                     });
                 }
