@@ -1,6 +1,7 @@
 package com.hnust.controller.paper.component;
 
 import com.hnust.domain.QuestionType;
+import com.hnust.domain.Result;
 import com.hnust.service.TestPaperService;
 import com.hnust.store.DataStore;
 import com.hnust.store.GeneratePaperDataStore;
@@ -59,15 +60,15 @@ public class AddPaperKindController implements Initializable {
 
     //获取课程所对应的题目类型
     public void setCombKind() {
-        testPaperService.getCourseQuesList(new Callback<List<QuestionType>>() {
+        testPaperService.getCourseQuesList(new Callback<Result<List<QuestionType>>>() {
             @Override
-            public void onResponse(Call<List<QuestionType>> call, Response<List<QuestionType>> response) {
+            public void onResponse(Call<Result<List<QuestionType>>> call, Response<Result<List<QuestionType>>> response) {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
                         list.clear();
-                        generatePaperDataStore.setQuestionTypes(response.body());
-                        response.body().forEach(questionType -> {
+                        generatePaperDataStore.setQuestionTypes(response.body().getData());
+                        response.body().getData().forEach(questionType -> {
                             list.add(questionType.getName());
                         });
                         setCombItem();
@@ -76,7 +77,7 @@ public class AddPaperKindController implements Initializable {
             }
 
             @Override
-            public void onFailure(Call<List<QuestionType>> call, Throwable t) {
+            public void onFailure(Call<Result<List<QuestionType>>> call, Throwable t) {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -94,7 +95,7 @@ public class AddPaperKindController implements Initializable {
                     }
                 });
             }
-        }, dataStore.getTeacher_id(), generatePaperDataStore.getCourseId(), dataStore.getToken());
+        },  dataStore.getToken(), generatePaperDataStore.getCourseId());
     }
 
     //设置combox中的属性
@@ -109,6 +110,7 @@ public class AddPaperKindController implements Initializable {
 
     //设置combox中数据
     public void setCombItem(){
+        System.out.println(generatePaperDataStore);
         if (!list.isEmpty()){
             comb.getItems().addAll(list);
         }else{

@@ -3,10 +3,7 @@ package com.hnust.controller.paper;
 import com.hnust.controller.MainController;
 import com.hnust.controller.paper.component.AddPaperKindController;
 import com.hnust.controller.paper.component.AddQuestionController;
-import com.hnust.domain.QuestionType;
-import com.hnust.domain.RepeatQues;
-import com.hnust.domain.SubjectData;
-import com.hnust.domain.SubjectDataRecord;
+import com.hnust.domain.*;
 import com.hnust.service.TestPaperService;
 import com.hnust.store.DataStore;
 import com.hnust.store.GeneratePaperDataStore;
@@ -454,11 +451,11 @@ public class GeneratePaperSecondController implements Initializable {
             easyQuestionCount += entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 1).count();
             midQuestionCount += entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 2).count();
             diffQuestionCount += entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 3).count();
-            if("2".equals(entry.getKey())){
+            if("222".equals(entry.getKey())){
                 choseQuestionCount=entry.getValue().getItems().size();
-            }else if("3".equals(entry.getKey())){
+            }else if("333".equals(entry.getKey())){
                 judgeQuestionCount=entry.getValue().getItems().size();
-            }else if("4".equals(entry.getKey())){
+            }else if("444".equals(entry.getKey())){
                 shortQuestionCount=entry.getValue().getItems().size();
             }
             repeatedNumCount+=repeatedNum(entry.getValue());
@@ -500,13 +497,13 @@ public class GeneratePaperSecondController implements Initializable {
         for (Map.Entry<String,ListView<SubjectDataRecord>> entry: listViewMap.entrySet()) {
             list.addAll(entry.getValue().getItems().stream().map(subjectDataRecord -> subjectDataRecord.getSubjectData().getId()).collect(Collectors.toList()));
         }
-        testPaperService.checkPaperRepeat(new retrofit2.Callback<List<RepeatQues>>() {
+        testPaperService.checkPaperRepeat(new retrofit2.Callback<Result<List<RepeatQues>>>() {
             @Override
-            public void onResponse(Call<List<RepeatQues>> call, Response<List<RepeatQues>> response) {
+            public void onResponse(Call<Result<List<RepeatQues>>> call, Response<Result<List<RepeatQues>>> response) {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        for (RepeatQues repeatQues:response.body()){
+                        for (RepeatQues repeatQues:response.body().getData()){
                             for (Map.Entry<String,ListView<SubjectDataRecord>> entry: listViewMap.entrySet()) {
                                 entry.getValue().getItems().stream().forEach(subjectDataRecord -> {
                                     if(subjectDataRecord.getSubjectData().getId()==repeatQues.getQues_id()){
@@ -523,16 +520,11 @@ public class GeneratePaperSecondController implements Initializable {
             }
 
             @Override
-            public void onFailure(Call<List<RepeatQues>> call, Throwable t) {
+            public void onFailure(Call<Result<List<RepeatQues>>> call, Throwable t) {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        for (Map.Entry<String, ListView<SubjectDataRecord>> entry : listViewMap.entrySet()) {
-                            entry.getValue().getItems().stream().forEach(subjectDataRecord -> {
-                                subjectDataRecord.setRepeated(true);
-                            });
-                            entry.getValue().refresh();
-                        }
+                        System.out.println("网络异常，请稍后重试");
                     }
                 });
             }
@@ -581,5 +573,14 @@ public class GeneratePaperSecondController implements Initializable {
         diffLabelMap.clear();
         itemMap.clear();
         changePanel();
+    }
+    //TODO
+    //获取试卷信息，并将其保存
+    public void storePaperData(){
+        List<String> list=new ArrayList<>();
+        for (Map.Entry<String,ListView<SubjectDataRecord>> entry: listViewMap.entrySet()) {
+            list.addAll(entry.getValue().getItems().stream().map(subjectDataRecord -> subjectDataRecord.getSubjectData().getId()).collect(Collectors.toList()));
+        }
+        generatePaperDataStore.setQuestions(list);
     }
 }

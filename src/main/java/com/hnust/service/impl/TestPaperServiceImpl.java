@@ -21,27 +21,28 @@ public class TestPaperServiceImpl implements TestPaperService {
     private TestPaperApi testPaperApi;
 
     @Override
-    public void getCourseData(Callback<List<CourseData>> callback, String id, String token) {
+    public void getCourseData(Callback<Result<List<CourseData>>> callback, String id, String token) {
         testPaperApi.getCourseData(id, token).enqueue(callback);
     }
 
     @Override
-    public void getCourseQuesList(Callback<List<QuestionType>> callback, String id, String course_id, String token) {
-        testPaperApi.getCourseQuesList(token, id, course_id).enqueue(callback);
+    public void getCourseQuesList(Callback<Result<List<QuestionType>>> callback, String token, String id) {
+        testPaperApi.getCourseQuesList(token, id).enqueue(callback);
+    }
+
+
+    @Override
+    public void getQuestion(Callback<Result<SubjectInfo>> callback, String token,String course_id, String type_id, String now_page) {
+        testPaperApi.getQuestion(token,course_id,type_id,now_page).enqueue(callback);
     }
 
     @Override
-    public void getQuestion(Callback<SubjectInfo> callback, String token, String id, String course_id, String tye_id, String now_page) {
-        testPaperApi.getQuestion(token, id,course_id,tye_id,now_page).enqueue(callback);
+    public void getQuesByCon(Callback<Result<SubjectInfo>> callback, String token, String id, String course_id, String type_id, String keyword, String now_page) {
+        testPaperApi.getQuesByCon(token, id,course_id,type_id,keyword,now_page).enqueue(callback);
     }
 
     @Override
-    public void getQuesByCon(Callback<SubjectInfo> callback, String token, String id, String course_id, String tye_id, String keyword, String now_page) {
-        testPaperApi.getQuesByCon(token, id,course_id,tye_id,keyword,now_page).enqueue(callback);
-    }
-
-    @Override
-    public void checkPaperRepeat(Callback<List<RepeatQues>> callback, String token, String id, String course_id, List<String> subject_ids) {
+    public void checkPaperRepeat(Callback<Result<List<RepeatQues>>> callback, String token, String id, String course_id, List<String> subject_ids) {
         testPaperApi.checkPaperRepeat(token,id,course_id,subject_ids).enqueue(callback);
     }
 }
