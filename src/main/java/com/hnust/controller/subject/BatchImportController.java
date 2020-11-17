@@ -4,7 +4,6 @@ import com.hnust.api.TestPaperApi;
 import com.hnust.controller.subject.component.AnswerWindowPaperController;
 import com.hnust.controller.subject.component.WindowPaperController;
 import com.hnust.domain.Data;
-import com.hnust.domain.Question;
 import com.hnust.domain.Result;
 import com.hnust.mock.DataList;
 import com.hnust.util.IDCell;
@@ -66,9 +65,7 @@ public class BatchImportController implements Initializable {
     public VBox remind;
     @FXML
     public TableView tableSize;
-    //删除
-    private ObservableList<Question> list_delete= FXCollections.observableArrayList();
-    private ListView<Question> listView_delete;
+
     //全选标记位置
     SimpleBooleanProperty flag=new SimpleBooleanProperty(false);
 
