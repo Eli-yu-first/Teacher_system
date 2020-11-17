@@ -48,7 +48,6 @@ public class AutoPaperController implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
 
-
         ObservableList com= FXCollections.observableArrayList();
         com.add("选择一");
         com.add("选择二");
@@ -61,8 +60,7 @@ public class AutoPaperController implements Initializable {
         r2.setToggleGroup(toggleGroup);
     }
 
-
     public void toAuto2() throws IOException {
-        autoMainController.skipView(autoPaper2View);
+        autoMainController.skipPage(autoPaper2View);
     }
 }

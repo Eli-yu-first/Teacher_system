@@ -2,6 +2,7 @@ package com.hnust.controller.paper;
 
 import com.hnust.controller.paper.component.AddPaperKindController;
 import com.hnust.domain.Visual1;
+import com.hnust.store.DataTest;
 import com.hnust.view.paper.AutoPaper3View;
 import com.hnust.view.paper.component.AddPaperKindView;
 import javafx.beans.value.ChangeListener;
@@ -107,6 +108,9 @@ public class AutoPaper2Controller implements Initializable {
     //获取简答题较难的题目个数
     public String short_diffNum = "0";
 
+    @Autowired
+    DataTest dataTest;
+
     public void initialize(URL location, ResourceBundle resources) {
         scp_autoPaper.setFitToWidth(true);
         listenChange();
@@ -147,7 +151,7 @@ public class AutoPaper2Controller implements Initializable {
     }
 
     public void toAuto3() throws IOException {
-        autoMainController2.skipView(autoPaper3View);
+        autoMainController2.skipPage(autoPaper3View);
 
         try {
             //获取选择题的个数
@@ -198,7 +202,7 @@ public class AutoPaper2Controller implements Initializable {
         Optional<ButtonType> result=dialog.showAndWait();
         if(result.get()==ok){
             //获取选择的信息，赋值给type
-            type = addPaperKindController.getKind();
+            type = dataTest.getKind();
             addKind(type);
         }
     }

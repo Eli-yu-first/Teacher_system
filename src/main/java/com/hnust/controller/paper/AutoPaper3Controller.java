@@ -2,7 +2,8 @@ package com.hnust.controller.paper;
 
 import com.hnust.controller.MainController;
 import com.hnust.controller.paper.component.AddPaperKindController;
-import com.hnust.domain.Question;
+import com.hnust.domain.QuestionType;
+import com.hnust.domain.SubjectDataRecord;
 import com.hnust.domain.Visual1;
 import com.hnust.store.DataTest;
 import com.hnust.view.paper.AutoPaper2View;
@@ -72,54 +73,56 @@ public class AutoPaper3Controller implements Initializable {
 
     //试卷表格
     public void showData(){
-        ListView view = new ListView();
+        QuestionType questionType = new QuestionType(1,"yy2y3y");
+        QuestionType questionType1 = new QuestionType(2,"yy4yy");
+        QuestionType questionType2 = new QuestionType(3,"y2y5yy");
+        QuestionType questionType3 = new QuestionType(4,"yyy7y");
+        QuestionType questionType4 = new QuestionType(5,"yyy8y");
         ObservableList list=FXCollections.observableArrayList();
-        list.addAll(dataTest.getData().toString());
+        list.addAll(questionType,questionType1,questionType2,questionType3,questionType4);
+        ListView<QuestionType> view = new ListView<>();
         view.setItems(list);
-        view.setPrefHeight((double)(213*list.size()));
+        view.setPrefHeight((double)(210*list.size()));
         view.setStyle("-fx-fixed-cell-size:210");
         autoPaper_contain3.getChildren().add(view);
-        /*view.setCellFactory(new Callback<ListView, ListCell>() {
+        view.setCellFactory(new Callback<ListView<QuestionType>, ListCell<QuestionType>>() {
             @Override
-            public ListCell call(ListView param) {
-                AnchorPane anchorPane = new AnchorPane();
-                CheckBox checkBox = new CheckBox();
-                *//*AnchorPane.setTopAnchor(checkBox,15.0);
-                AnchorPane.setLeftAnchor(checkBox,10.0);*//*
-                Label label1 = new Label(dataTest.getData().toString());
-                label1.getStyleClass().add("question");
-                label1.setWrapText(true);
-                label1.setMaxHeight(180);
-                Label label2 = new Label(dataTest.getOption().toString());
-                label2.getStyleClass().add("question");
-                label2.setWrapText(true);
-                VBox vBox = new VBox(width*0.2);
-                vBox.setSpacing(10);
-                *//*AnchorPane.setTopAnchor(vBox,15.0);
-                AnchorPane.setLeftAnchor(vBox,50.0);
-                AnchorPane.setRightAnchor(vBox,125.0);*//*
-                Label label3=new Label("分值：");
-                Label label4=new Label("3分");
-                HBox hBox=new HBox(label3,label4);
-                hBox.setSpacing(5.0);
-                hBox.setAlignment(Pos.CENTER);
-                *//*AnchorPane.setRightAnchor(hBox,20.0);
-                AnchorPane.setTopAnchor(hBox,18.0);*//*
-                Label label5 = new Label("较易");
-                label5.setStyle("-fx-text-fill: green;-fx-font-weight: bold");
-                HBox hBox1 = new HBox(label5);
-                hBox1.setSpacing(5.0);
-                hBox1.setAlignment(Pos.CENTER);
-                *//*AnchorPane.setTopAnchor(hBox1,40.0);
-                AnchorPane.setRightAnchor(hBox1,33.0);*//*
-                anchorPane.getChildren().addAll(checkBox,vBox,hBox,hBox1);
-                anchorPane.setMaxHeight(200);
-                anchorPane.setPrefHeight(200);
+            public ListCell<QuestionType> call(ListView<QuestionType> param) {
+                ListCell<QuestionType> cell=new ListCell<QuestionType>(){
+                    @Override
+                    protected void updateItem(QuestionType item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if(empty==false){
+                            Label label=new Label(item.getName());
+                            Label label2=new Label(item.getId().toString());
+                            VBox vBox = new VBox(label,label2);
 
-
-                return null;
+                            this.setGraphic(vBox);
+//                            AnchorPane anchorPane=new AnchorPane();
+//                            Label label1=new Label("题目类型: ");
+//                            Label label = new Label();
+//                            label1.getStyleClass().add("question");
+//                            label1.setWrapText(true);
+//                            label1.setMaxHeight(180);
+//
+//                            VBox vBox=new VBox(label1);
+//                            vBox.setMaxWidth(width);
+//                            vBox.setSpacing(10);
+//                            AnchorPane.setTopAnchor(vBox, 15.0);
+//                            AnchorPane.setLeftAnchor(vBox, 50.0);
+//                            AnchorPane.setRightAnchor(vBox, 125.0);
+//                            anchorPane.getChildren().addAll(vBox);
+//                            anchorPane.setMaxHeight(150);
+//                            anchorPane.setPrefHeight(150);
+//                            this.setGraphic(anchorPane);
+                        }else{
+                            this.setGraphic(null);
+                        }
+                    }
+                };
+                return cell;
             }
-        });*/
+        });
     }
 
     //根据窗口改变，进行监听设置页面大小
@@ -155,13 +158,12 @@ public class AutoPaper3Controller implements Initializable {
             }
         });
     }
-
     public void toAuto2() throws IOException {
-        autoMainController3.skipView(autoPaper2View);
+        autoMainController3.skipPage(autoPaper2View);
     }
 
     public void toAuto4() throws IOException {
-        autoMainController3.skipView(autoPaper4View);
+        autoMainController3.skipPage(autoPaper4View);
     }
 
 }
