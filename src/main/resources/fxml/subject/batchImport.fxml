@@ -19,7 +19,7 @@
         <padding>
             <Insets left="40" />
         </padding>
-        <Button prefWidth="200.0" style="-fx-font-size: 1.5em;" styleClass="btn,btn-info" text="下载Word文档" />
+        <Button  onAction="#downloadFile" prefWidth="200.0" style="-fx-font-size: 1.5em;" styleClass="btn,btn-info" text="下载Word文档" />
         <Button onAction="#chooseFile" prefWidth="200.0" style="-fx-font-size: 1.5em;" styleClass="btn,btn-success" text="上传Word文档" />
         <Label alignment="BASELINE_RIGHT" prefWidth="200.0" style="-fx-font-size: 1.5em;" text="题目所属课程" />
         <ComboBox fx:id="comb" prefHeight="35.0" prefWidth="350.0">
@@ -29,21 +29,7 @@
         </ComboBox>
     </HBox>
     <VBox AnchorPane.leftAnchor="20"  AnchorPane.rightAnchor="50" AnchorPane.bottomAnchor="0"  AnchorPane.topAnchor="280">
-        <TableView  fx:id="tableSize" style="-fx-background-color: red" maxHeight="Infinity">
-            <columns>
-                <TableColumn text="序号"></TableColumn>
-                <TableColumn text="内容"></TableColumn>
-                <TableColumn text="所属课程"></TableColumn>
-                <TableColumn text="所属章节"></TableColumn>
-                <TableColumn text="题目类型"></TableColumn>
-                <TableColumn text="题目难度"></TableColumn>
-                <TableColumn text="题目解析"></TableColumn>
-                <TableColumn text="知识点"></TableColumn>
-                <TableColumn text="答案"></TableColumn>
-                <TableColumn text="课程目标"></TableColumn>
-                <TableColumn text="权限"></TableColumn>
-                <TableColumn text="操作"></TableColumn>
-            </columns>
+        <TableView  fx:id="tableSize" maxHeight="Infinity">
         </TableView>
         <HBox alignment="BASELINE_RIGHT"  spacing="30" >
             <padding>

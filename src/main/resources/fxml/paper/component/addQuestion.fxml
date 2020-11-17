@@ -9,40 +9,50 @@
 <?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            fx:id="container"
             fx:controller="com.hnust.controller.paper.component.AddQuestionController" style="-fx-background-color: #FFF" >
     <Label text="从题库中选择题目" style="-fx-font-size: 1.8em;-fx-font-weight: bold" fx:id="label" AnchorPane.topAnchor="30" AnchorPane.leftAnchor="25"></Label>
-    <HBox  AnchorPane.topAnchor="10" prefWidth="250" prefHeight="90" AnchorPane.rightAnchor="135">
-        <AnchorPane style="-fx-background-color: #E6F7FF" prefWidth="255">
+    <HBox  AnchorPane.topAnchor="10" prefWidth="280" prefHeight="90" AnchorPane.rightAnchor="15">
+        <AnchorPane style="-fx-background-color: #E6F7FF" prefWidth="280">
             <Label text="信息统计" AnchorPane.topAnchor="12" AnchorPane.leftAnchor="10" style="-fx-font-weight: bold;-fx-font-size: 1.2em" ></Label>
-            <Label text="已选择:1题 较易:0 中等:1 较难:0" AnchorPane.topAnchor="40" AnchorPane.leftAnchor="10"></Label>
+            <HBox AnchorPane.topAnchor="40" AnchorPane.leftAnchor="10">
+                <Label text="已选择："></Label>
+                <Label text="0" fx:id="checkedLabel"></Label>
+                <Label text="题"></Label>
+                <Label text=" 较易："></Label>
+                <Label text="0" fx:id="easyQuestionLabel"></Label>
+                <Label text=" 中等："></Label>
+                <Label text="0" fx:id="midQuestionLabel"></Label>
+                <Label text=" 较难："></Label>
+                <Label text="0" fx:id="diffQuestionLabel"></Label>
+            </HBox>
         </AnchorPane>
     </HBox>
-    <VBox AnchorPane.topAnchor="10" AnchorPane.rightAnchor="15" spacing="15">
-        <Button text="确定" styleClass="btn,btn-primary,btn_svbg"></Button>
-        <Button text="取消" styleClass="btn,btn-default,btn_svbg"></Button>
-    </VBox>
     <HBox AnchorPane.topAnchor="110" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="0" prefHeight="55" style="-fx-background-color: #f2f2f2" spacing="50">
         <padding>
             <Insets left="15"></Insets>
         </padding>
         <HBox alignment="CENTER">
-            <CheckBox></CheckBox>
+            <CheckBox fx:id="cB"></CheckBox>
         </HBox>
         <HBox alignment="CENTER">
-            <Label text="课程:数据结构" style="-fx-font-weight: bold;-fx-font-size: 1.1em"></Label>
+            <Label text="课程:数据结构" style="-fx-font-weight: bold;-fx-font-size: 1.1em" fx:id="courseNameLLabel"></Label>
         </HBox>
         <HBox  spacing="20" alignment="CENTER">
             <Label text="题目难易程度:" style="-fx-font-weight: bold;-fx-font-size: 1.1em"></Label>
-            <ComboBox prefWidth="150"></ComboBox>
+            <ComboBox prefWidth="150" fx:id="comb"></ComboBox>
         </HBox>
         <HBox alignment="CENTER">
-            <Label text="题型:选择题" style="-fx-font-weight: bold;-fx-font-size: 1.1em"></Label>
+            <Label text="题型:选择题" style="-fx-font-weight: bold;-fx-font-size: 1.1em" fx:id="questionKindLabel"></Label>
         </HBox>
         <HBox alignment="CENTER">
-            <TextField></TextField>
-            <Button styleClass="btn,btn-primary" text="搜索"></Button>
+            <TextField fx:id="searchValueField"></TextField>
+            <Button styleClass="btn,btn-primary" text="搜索" onAction="#searchQuestion"></Button>
         </HBox>
     </HBox>
-    <ListView AnchorPane.topAnchor="165" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="15" fx:id="listView">
+    <ListView AnchorPane.topAnchor="165" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="45" fx:id="listView">
     </ListView>
+    <HBox alignment="CENTER" spacing="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+        <Pagination fx:id="page" />
+    </HBox>
 </AnchorPane>

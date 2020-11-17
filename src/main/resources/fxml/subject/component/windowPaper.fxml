@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600" prefWidth="1000" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hnust.controller.subject.component.WindowPaperController">
+    <HBox alignment="CENTER" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="10">
+        <Label style="-fx-font-size: 1.3em;-fx-font-weight: bold" text="修改题目信息" />
+    </HBox>
+    <HBox alignment="TOP_CENTER" spacing="15" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="50">
+        <padding>
+            <Insets left="10" />
+        </padding>
+        <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="100.0" style="-fx-font-size: 1.5em;" text="题目类型" />
+        <ComboBox fx:id="comb1" style="-fx-pref-height: 45;-fx-pref-width: 200" />
+        <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="100.0" style="-fx-font-size: 1.5em;" text="题目权限" />
+        <ComboBox fx:id="comb2" style="-fx-pref-height: 45;-fx-pref-width: 200" />
+        <Label alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="100.0" style="-fx-font-size: 1.5em;" text="难度:" />
+        <RadioButton fx:id="r1" style="-fx-pref-height: 40">较难</RadioButton>
+        <RadioButton fx:id="r2" style="-fx-pref-height: 40">中等</RadioButton>
+        <RadioButton fx:id="r3" style="-fx-pref-height: 40">较易</RadioButton>
+    </HBox>
+    <HBox alignment="TOP_CENTER" spacing="15" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="150">
+        <padding>
+            <Insets left="10" />
+        </padding>
+        <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="100.0" style="-fx-font-size: 1.5em;" text="所属课程" textOverrun="CLIP" />
+        <ComboBox fx:id="comb3" style="-fx-pref-height: 45;-fx-pref-width: 200" />
+        <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="120.0" style="-fx-font-size: 1.5em;" text="题目所属章节" />
+        <ComboBox fx:id="comb4" style="-fx-pref-height: 45;-fx-pref-width: 500" />
+    </HBox>
+    <HBox alignment="TOP_CENTER" spacing="15" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="250">
+        <padding>
+            <Insets left="10" />
+        </padding>
+        <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="80.0" style="-fx-font-size: 1.5em;" text="知识点" />
+        <TextField prefHeight="45.0" prefWidth="250" styleClass="text-input" />
+        <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="100.0" style="-fx-font-size: 1.5em;" text="课程目标" />
+        <ComboBox fx:id="comb5" style="-fx-pref-height: 45;-fx-pref-width: 500" />
+    </HBox>
+    <HBox alignment="TOP_CENTER" spacing="15" AnchorPane.bottomAnchor="15" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="350">
+        <padding>
+            <Insets left="10" />
+        </padding>
+        <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="100.0" style="-fx-font-size: 1.5em;" text="题目内容" />
+        <TextArea prefHeight="100.0" prefWidth="390" styleClass="text-input" wrapText="true"/>
+        <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="100.0" style="-fx-font-size: 1.5em;" text="题目解析" />
+        <TextArea prefHeight="100.0" prefWidth="390" styleClass="text-input" wrapText="true" />
+    </HBox>
+
+</AnchorPane>

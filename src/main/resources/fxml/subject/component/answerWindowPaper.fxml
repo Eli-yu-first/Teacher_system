@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600" prefWidth="1000" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hnust.controller.subject.component.AnswerWindowPaperController">
+    <HBox AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="10" alignment="CENTER">
+        <Label text="答案详情" style="-fx-font-size: 1.3em;-fx-font-weight: bold"></Label>
+    </HBox>
+    <ScrollPane AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20"  AnchorPane.topAnchor="50" >
+        <AnchorPane  style="-fx-background-color: #FFF">
+            <VBox  style="-fx-background-color: #FFF" spacing="15" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0" >
+            </VBox>
+        </AnchorPane>
+    </ScrollPane>
+
+</AnchorPane>

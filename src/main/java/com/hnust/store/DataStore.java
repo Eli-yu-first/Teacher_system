@@ -10,4 +10,8 @@ import org.springframework.stereotype.Component;
 @Data
 public class DataStore {
     private String token;
+    private String college_id;
+    private String college_name;
+    private String teacher_id;
+    private String teacher_name;
 }

@@ -42,15 +42,14 @@
             <!--           按钮-->
             <AnchorPane>
                 <HBox AnchorPane.leftAnchor="50" alignment="CENTER" spacing="20">
-                    <Button styleClass="btn,btn-info,btn_appearance" onAction="#addPaperKind">添加题型</Button>
-                    <Button styleClass="btn,btn-default,btn_appearance">设为隐藏</Button>
+                    <Button styleClass="btn,btn-info,btn_appearance" onAction="#addQuestionKind">添加题型</Button>
+                    <Button styleClass="btn,btn-default,btn_appearance" onAction="#setQuestionDisable">设为隐藏</Button>
                     <Button styleClass="btn,btn-success,btn_appearance" onAction="#changeScore">修改分值</Button>
                     <Button styleClass="btn,btn-danger,btn_appearance" onAction="#deleteQuestion">删除题目</Button>
                 </HBox>
                 <HBox AnchorPane.rightAnchor="50" alignment="CENTER" spacing="20">
                     <Button styleClass="btn,btn-success" prefHeight="40" style="-fx-font-size: 1.05em" onAction="#back">返回上一步</Button>
-                    <Button styleClass="btn,btn-warning,btn_appearance">试卷查重</Button>
-                    <Button styleClass="btn,btn-default,btn_appearance">试卷预览</Button>
+                    <Button styleClass="btn,btn-warning,btn_appearance" onAction="#recheck">试卷查重</Button>
                     <Button styleClass="btn,btn-info" prefHeight="40" style="-fx-font-size: 1.05em" onAction="#next">保存生成试卷</Button>
                 </HBox>
             </AnchorPane>
@@ -68,39 +67,43 @@
                     <Label text="试卷信息统计" style="-fx-font-size: 1.4em;-fx-font-weight: bold"></Label>
                     <HBox alignment="CENTER">
                         <Label text="题目数：" styleClass="paper_info"></Label>
-                        <Label text="1" styleClass="paper_info" ></Label>
+                        <Label text="0" styleClass="paper_info" fx:id="questionNumberLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
                         <Label text="题目重复数：" styleClass="paper_info"></Label>
-                        <Label text="1" styleClass="paper_info"></Label>
+                        <Label text="0" styleClass="paper_info" fx:id="repeatedNumLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
                         <Label text="总分：" styleClass="paper_info"></Label>
-                        <Label text="1" styleClass="paper_info"></Label>
+                        <Label text="0" styleClass="paper_info" fx:id="questionSumScoreLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
-                        <Label text="重复率：" styleClass="paper_info"></Label>
-                        <Label text="1" styleClass="paper_info"></Label>
+                        <Label text="重复率：" styleClass="paper_info" ></Label>
+                        <Label text="0%" styleClass="paper_info" fx:id="repeatedRateLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
                         <Label text="简单：" styleClass="paper_info"></Label>
-                        <Label text="1" styleClass="paper_info"></Label>
+                        <Label text="0" styleClass="paper_info" fx:id="easyQuestionLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
                         <Label text="中等：" styleClass="paper_info"></Label>
-                        <Label text="1" styleClass="paper_info"></Label>
+                        <Label text="0" styleClass="paper_info" fx:id="midQuestionLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
                         <Label text="较难：" styleClass="paper_info"></Label>
-                        <Label text="1" styleClass="paper_info"></Label>
+                        <Label text="0" styleClass="paper_info" fx:id="diffQuestionLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
                         <Label text="选择：" styleClass="paper_info"></Label>
-                        <Label text="1" styleClass="paper_info"></Label>
+                        <Label text="0" styleClass="paper_info" fx:id="choseQuestionLabel"></Label>
                     </HBox>
                     <HBox alignment="CENTER">
-                        <Label text="填空：" styleClass="paper_info"></Label>
-                        <Label text="1" styleClass="paper_info"></Label>
+                        <Label text="判断：" styleClass="paper_info"></Label>
+                        <Label text="0" styleClass="paper_info" fx:id="judgeQuestionLabel"></Label>
+                    </HBox>
+                    <HBox alignment="CENTER">
+                        <Label text="简答：" styleClass="paper_info"></Label>
+                        <Label text="0" styleClass="paper_info" fx:id="shortQuestionLabel"></Label>
                     </HBox>
                 </VBox>
             </AnchorPane>
