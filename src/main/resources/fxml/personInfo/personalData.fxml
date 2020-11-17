@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.hnust.controller.personInfo.PersonDataController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Label>个人信息</Label>
+<AnchorPane prefHeight="470.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hnust.controller.personInfo.PersonDataController">
+
+
+
+    <VBox alignment="CENTER_LEFT" maxWidth="Infinity" prefHeight="470.0" prefWidth="391.0" spacing="10" style="-fx-padding: 60px" VBox.vgrow="ALWAYS">
+        <Text>用户信息：张三老师</Text>
+        <Text>学院</Text>
+        <HBox>
+            <TextField />
+            <Button>申请修改学院</Button>
+        </HBox>
+        <Text>教工号</Text>
+        <TextField />
+        <Text>姓名</Text>
+        <TextField />
+        <Text>手机号</Text>
+        <TextField layoutY="300" />
+        <Text>邮箱</Text>
+        <TextField />
+        <Button>更新信息</Button>
+        <padding>
+            <Insets left="20" top="20" />
+        </padding>
+    </VBox>
+
+
+
+    <VBox alignment="CENTER" layoutX="430.0" layoutY="-14.0" prefHeight="497.0" prefWidth="440.0" spacing="10" style="-fx-padding: 20px">
+        <Text>我加入的课程</Text>
+        <ListView maxWidth="500.0" minWidth="400.0" prefHeight="200.0" />
+        <Button>+申请加入课程组</Button>
+    </VBox>
+
+
+
 </AnchorPane>
