@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hnust.controller.paper.component.EditInfoController" style="-fx-background-color: #FFF" prefWidth="500">
+    <HBox AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="10" alignment="CENTER">
+        <Label text="修改信息" style="-fx-font-size: 1.3em;-fx-font-weight: bold"></Label>
+    </HBox>
+    <HBox AnchorPane.topAnchor="60" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"  alignment="CENTER">
+       <Label text="姓名:  " style="-fx-font-size: 1.0em"></Label>
+       <TextField fx:id="teacherNameEdit" style="-fx-max-width: 320" promptText="请输入姓名"/>
+    </HBox>
+    <HBox AnchorPane.topAnchor="110" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="16"  alignment="CENTER">
+        <Label text="手机号:  " style="-fx-font-size: 1.0em"></Label>
+        <TextField fx:id="teacherPhoneEdit" style="-fx-max-width: 320" promptText="请输入手机号"/>
+    </HBox>
+    <HBox AnchorPane.topAnchor="160" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"  alignment="CENTER">
+        <Label text="邮箱:  " style="-fx-font-size: 1.0em"></Label>
+        <TextField fx:id="teacherMailEdit" style="-fx-max-width: 320" promptText="请输入邮箱"/>
+    </HBox>
+</AnchorPane>
+
