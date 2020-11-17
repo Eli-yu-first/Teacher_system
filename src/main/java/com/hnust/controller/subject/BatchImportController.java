@@ -1,9 +1,14 @@
 package com.hnust.controller.subject;
 
+import com.hnust.api.TestPaperApi;
+import com.hnust.controller.subject.component.AnswerWindowPaperController;
 import com.hnust.controller.subject.component.WindowPaperController;
 import com.hnust.domain.Data;
+import com.hnust.domain.Question;
+import com.hnust.domain.Result;
 import com.hnust.mock.DataList;
 import com.hnust.util.IDCell;
+import com.hnust.view.subject.component.AnswerWindowPaperView;
 import com.hnust.view.subject.component.WindowPaperView;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -24,20 +29,32 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import retrofit2.Call;
 
-import java.io.File;
+import java.io.*;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 @FXMLController
 public class BatchImportController implements Initializable {
     ObservableList<Data> list= DataList.initData();
+
+    @Autowired
+    TestPaperApi testPaperApi;
+
     private ObservableList playListFiles =FXCollections.observableArrayList();
+    //查看答案
+    @Autowired
+    private AnswerWindowPaperController answerWindowPaperController;
+    @Autowired
+    private AnswerWindowPaperView answerWindowPaperView;
+    //修改题目
     @Autowired
     private WindowPaperController windowPaperController;
-
     @Autowired
     private WindowPaperView windowPaperView;
     @FXML
@@ -49,8 +66,14 @@ public class BatchImportController implements Initializable {
     public VBox remind;
     @FXML
     public TableView tableSize;
+    //删除
+    private ObservableList<Question> list_delete= FXCollections.observableArrayList();
+    private ListView<Question> listView_delete;
     //全选标记位置
     SimpleBooleanProperty flag=new SimpleBooleanProperty(false);
+
+    private int helpVar = 0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableSize.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -65,11 +88,16 @@ public class BatchImportController implements Initializable {
         checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                TableColumn tableColumn= (TableColumn) tableSize.getColumns().get(0);
-                for (Object Data: tableSize.getItems()) {
-                    Data data = (Data) Data;
-                    data.setChecked(newValue);
-                }
+                    if(helpVar==1){
+                        helpVar=0;
+                    }else {
+                        //TableColumn tableColumn = (TableColumn) tableSize.getColumns().get(0);
+                        for (Object Data : tableSize.getItems()) {
+                            Data data = (Data) Data;
+                            data.setChecked(newValue);
+                        }
+                    }
+
             }
         });
         tc_chk.setGraphic(checkBox);//表头全选框
@@ -89,7 +117,6 @@ public class BatchImportController implements Initializable {
                             CheckBox checkBox=new CheckBox();
                             checkBox.setSelected(item);
                             //给CheckBox添加变化事件
-                            ////TODO
                             checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
                                 @Override
                                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -104,7 +131,9 @@ public class BatchImportController implements Initializable {
                                         }
                                     }
                                     if(check==0){
+                                        helpVar = 1;
                                         flag.set(false);
+                                        helpVar = 0;
                                     }else{
                                         flag.set(true);
                                     }
@@ -158,6 +187,28 @@ public class BatchImportController implements Initializable {
                             hBox.setAlignment(Pos.CENTER);
                             hBox.setSpacing(10);
                             Hyperlink h=new Hyperlink("查看答案");
+                            //点击弹窗
+                            h.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    Dialog dialog=new Dialog();
+                                    DialogPane dialogPane=new DialogPane();
+                                    dialogPane.setStyle("-fx-background-color: #FFF;-fx-border-width: 2;-fx-border-color: #ADADAD");
+                                    dialogPane.setContent(answerWindowPaperView.getView());
+                                    dialog.setDialogPane(dialogPane);
+                                    dialog.setTitle("答案详情");
+                                    dialog.initStyle(StageStyle.UNDECORATED);
+                                    dialog.setGraphic(null);
+                                    ButtonType ok=new ButtonType("确定", ButtonBar.ButtonData.OK_DONE);
+                                    ButtonType cancel=new ButtonType("取消", ButtonBar.ButtonData.CANCEL_CLOSE);
+                                    dialog.getDialogPane().getButtonTypes().addAll(ok,cancel);
+                                    Optional<ButtonType> result=dialog.showAndWait();
+                                    if(result.get()==ok){
+                                        //System.out.println(answerWindowPaperController.getKind());
+                                        //addKind(windowPaperController.getKind());
+                                    }
+                                }
+                            });
                             hBox.getChildren().addAll(h);
                             this.setGraphic(hBox);
                         }
@@ -188,7 +239,7 @@ public class BatchImportController implements Initializable {
                             hBox.setAlignment(Pos.CENTER);
                             hBox.setSpacing(10);
                             Hyperlink h1=new Hyperlink("详情");
-                            //增加弹窗
+                            //增加详情弹窗
                             h1.setOnAction(new EventHandler<ActionEvent>(){
                                 @Override
                                 public void handle(ActionEvent event) {
@@ -197,7 +248,7 @@ public class BatchImportController implements Initializable {
                                     dialogPane.setStyle("-fx-background-color: #FFF;-fx-border-width: 2;-fx-border-color: #ADADAD");
                                     dialogPane.setContent(windowPaperView.getView());
                                     dialog.setDialogPane(dialogPane);
-                                    dialog.setTitle("题型添加");
+                                    //dialog.setTitle("题型添加");
                                     dialog.initStyle(StageStyle.UNDECORATED);
                                     dialog.setGraphic(null);
                                     ButtonType ok=new ButtonType("确定", ButtonBar.ButtonData.OK_DONE);
@@ -211,8 +262,38 @@ public class BatchImportController implements Initializable {
                                 }
                             });
                             Hyperlink h2=new Hyperlink("删除");
+                            h2.setOnAction(new EventHandler<ActionEvent>(){
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    val remove = list.remove(getIndex());
+                                    System.out.println(remove);
+                                    tableSize.refresh();
+                                }
+                            });
                             h1.getStyleClass().add("color");
                             Hyperlink h3=new Hyperlink("修改");
+                            //增加修改弹窗
+                            h3.setOnAction(new EventHandler<ActionEvent>(){
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    Dialog dialog=new Dialog();
+                                    DialogPane dialogPane=new DialogPane();
+                                    dialogPane.setStyle("-fx-background-color: #FFF;-fx-border-width: 2;-fx-border-color: #ADADAD");
+                                    dialogPane.setContent(windowPaperView.getView());
+                                    dialog.setDialogPane(dialogPane);
+                                    dialog.setTitle("修改");
+                                    dialog.initStyle(StageStyle.UNDECORATED);
+                                    dialog.setGraphic(null);
+                                    ButtonType ok=new ButtonType("确定", ButtonBar.ButtonData.OK_DONE);
+                                    ButtonType cancel=new ButtonType("取消", ButtonBar.ButtonData.CANCEL_CLOSE);
+                                    dialog.getDialogPane().getButtonTypes().addAll(ok,cancel);
+                                    Optional<ButtonType> result=dialog.showAndWait();
+                                    if(result.get()==ok){
+                                        System.out.println(windowPaperController.getKind());
+                                        //addKind(windowPaperController.getKind());
+                                    }
+                                }
+                            });
                             hBox.getChildren().addAll(h1,h2,h3);
                             this.setGraphic(hBox);
                         }
@@ -266,18 +347,19 @@ public class BatchImportController implements Initializable {
         File file = fileChooser.showOpenDialog(null);
         System.out.println(file.getPath());
     }
-    /*public void downloadFile(ActionEvent event) throws IOException {
+    public void downloadFile(ActionEvent event) throws IOException {
 
-        File dirFile = new File(filePath);
+        File dirFile = new File(System.getProperty("user.dir"));
         //文件路径不存在时，自动创建目录
         if(!dirFile.exists()){
             dirFile.mkdir();
         }
-
-        URLConnection connection = theURL.openConnection();
-        InputStream in = connection.getInputStream();
-        // test.txt 这里的text与下载文件名称最好一致
-        FileOutputStream os = new FileOutputStream(filePath+"\\test.txt");
+        Call<Result<File>> result = testPaperApi.getTem();
+        Result<File> resultFile = result.execute().body();
+        File file = resultFile.getData();
+        FileInputStream in = new FileInputStream(file);
+        // 这里的text与下载文件名称最好一致
+        FileOutputStream os = new FileOutputStream(System.getProperty("user.dir")+file.getName());
         byte[] buffer = new byte[4 * 1024];
         int read;
         while ((read = in.read(buffer)) > 0) {
@@ -286,6 +368,6 @@ public class BatchImportController implements Initializable {
         os.close();
         in.close();
     }
-*/
+
 
 }

@@ -19,7 +19,7 @@
         <padding>
             <Insets left="40" />
         </padding>
-        <Button prefWidth="200.0" style="-fx-font-size: 1.5em;" styleClass="btn,btn-info" text="下载Word文档" />
+        <Button  onAction="#downloadFile" prefWidth="200.0" style="-fx-font-size: 1.5em;" styleClass="btn,btn-info" text="下载Word文档" />
         <Button onAction="#chooseFile" prefWidth="200.0" style="-fx-font-size: 1.5em;" styleClass="btn,btn-success" text="上传Word文档" />
         <Label alignment="BASELINE_RIGHT" prefWidth="200.0" style="-fx-font-size: 1.5em;" text="题目所属课程" />
         <ComboBox fx:id="comb" prefHeight="35.0" prefWidth="350.0">

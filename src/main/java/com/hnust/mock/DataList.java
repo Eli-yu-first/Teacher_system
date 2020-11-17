@@ -3,12 +3,13 @@ package com.hnust.mock;
 import com.hnust.domain.Data;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Hyperlink;
 
 public class DataList {
     public static ObservableList<Data> initData() {
         ObservableList<Data> list = FXCollections.observableArrayList();
         Data d1 = new Data(1, "aaaaaaaaaaaaaaa", "a", "a", "a", "a",
-                "a", "a", "a", "a","a","a");
+                "a", "a", "h", "a","a","a");
         Data d2 = new Data(1, "a", "a", "a", "a", "a",
                 "a", "a", "a", "a","a","a");
         Data d3 = new Data(1, "a", "a", "a", "a", "a",

@@ -44,9 +44,9 @@
             <Insets left="10" />
         </padding>
         <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="100.0" style="-fx-font-size: 1.5em;" text="题目内容" />
-        <TextField prefHeight="100.0" prefWidth="390" styleClass="text-input" />
+        <TextArea prefHeight="100.0" prefWidth="390" styleClass="text-input" wrapText="true"/>
         <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="100.0" style="-fx-font-size: 1.5em;" text="题目解析" />
-        <TextField prefHeight="100.0" prefWidth="390" styleClass="text-input" />
+        <TextArea prefHeight="100.0" prefWidth="390" styleClass="text-input" wrapText="true" />
     </HBox>
 
 </AnchorPane>
