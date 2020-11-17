@@ -7,12 +7,12 @@
 
 .itemFont{
     -fx-cursor: hand;
-    -fx-font-size: 15;
+    -fx-font-size: 1.3em;
     -fx-font-family: SimSun-ExtB;
 }
 
 .headerFont{
-    -fx-font-size: 18;
+    -fx-font-size: 1.6em;
     -fx-font-family: SimSun-ExtB;
 }
 
