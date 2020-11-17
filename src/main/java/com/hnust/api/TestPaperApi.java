@@ -10,6 +10,19 @@ import retrofit2.http.*;
 import java.util.List;
 import java.util.Map;
 
+import com.github.lianjiatech.retrofit.spring.boot.annotation.RetrofitClient;
+import com.hnust.domain.Result;
+import com.hnust.domain.Visual2;
+import org.springframework.stereotype.Component;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.List;
+
 /**
  * 创建人：zhangRuWang
  * 创建时间：2020/10/28
@@ -34,4 +47,6 @@ public interface TestPaperApi {
 
     @GET("/api/teacher/testPaper/checkPaperRepeat")
     Call<Result<List<RepeatQues>>> checkPaperRepeat(@Query("token") String token,@Query("id") String id,@Query("course_id")String course_id,@Query("subject_ids")List<String> subject_ids);
+    @GET("download/question")
+    Call<Result<File>> getTem();
 }
