@@ -22,6 +22,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import retrofit2.Call;
@@ -265,22 +267,15 @@ public class AddQuestionController implements Initializable {
                             });
                             AnchorPane.setTopAnchor(checkBox, 15.0);
                             AnchorPane.setLeftAnchor(checkBox, 10.0);
-                            Label label1=new Label("1.这是一个选择题（）是一个选择题（是一个选择题（是一个选择题（是一个选择题（是一个选择题（是一个选择题（" +
-                                    "是一个选择题（是一个选择题（是一个选择题（是一个选择题（" +
-                                    "是一个选择题（是一个选择题（是一个选择题（是一个选择题（" +
-                                    "是一个选择题（是一个选择题（是一个选择题（是一个选择题（");
-                            label1.getStyleClass().add("question");
-                            label1.setWrapText(true);
-                            label1.setMaxHeight(180);
-                            Label label2=new Label("A. 1  B. 2  C. 3  D. 4");
-                            label2.getStyleClass().add("question");
-                            label2.setWrapText(true);
-                            VBox vBox=new VBox(label1,label2);
-                            vBox.setMaxWidth(generatePaperSecondController.width*0.2);
+                            WebView webView=new WebView();
+                            WebEngine webEngine=webView.getEngine();
+                            webEngine.loadContent(item.getSubjectData().getContent());
+                            webView.setMaxHeight(180);
+                            VBox vBox=new VBox(webView);
                             vBox.setSpacing(10);
                             AnchorPane.setTopAnchor(vBox, 15.0);
                             AnchorPane.setLeftAnchor(vBox, 50.0);
-                            AnchorPane.setRightAnchor(vBox, 15.0);
+                            AnchorPane.setRightAnchor(vBox, 40.0);
                             Label label3=new Label();
                             if(item.getSubjectData().getDifficult()==1){
                                 label3.setText("较易");
@@ -302,6 +297,7 @@ public class AddQuestionController implements Initializable {
                             anchorPane.setMaxHeight(200);
                             anchorPane.setPrefHeight(200);
                             this.setGraphic(anchorPane);
+                            this.setStyle("-fx-background-color: #FFF;-fx-border-color: #F0F0F0;-fx-border-width: 2px");
                         }else{
                             this.setGraphic(null);
                         }

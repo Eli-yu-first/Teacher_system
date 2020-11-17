@@ -82,9 +82,9 @@ public class AddPaperKindController implements Initializable {
                     @Override
                     public void run() {
                         list.clear();
-                        QuestionType q1=new QuestionType(2, "选择题");
-                        QuestionType q2=new QuestionType(3, "判断题");
-                        QuestionType q3=new QuestionType(4, "简答题");
+                        QuestionType q1=new QuestionType(2222, "选择题");
+                        QuestionType q2=new QuestionType(3333, "判断题");
+                        QuestionType q3=new QuestionType(4444, "简答题");
                         List<QuestionType> list1=new ArrayList<>();
                         list1.add(q1);
                         list1.add(q2);

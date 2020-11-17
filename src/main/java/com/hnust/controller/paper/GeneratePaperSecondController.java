@@ -25,6 +25,8 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -238,31 +240,26 @@ public class GeneratePaperSecondController implements Initializable {
                                     cb.setSelected(false);
                                 }
                             });
-                            AnchorPane.setTopAnchor(checkBox, 15.0);
+                            AnchorPane.setTopAnchor(checkBox, 7.0);
                             AnchorPane.setLeftAnchor(checkBox, 10.0);
-                            Label label1=new Label("1.这是一个选择题（）是一个选择题（是一个选择题（是一个选择题（是一个选择题（是一个选择题（是一个选择题（" +
-                                    "是一个选择题（是一个选择题（是一个选择题（是一个选择题（" +
-                                    "是一个选择题（是一个选择题（是一个选择题（是一个选择题（" +
-                                    "是一个选择题（是一个选择题（是一个选择题（是一个选择题（");
-                            label1.getStyleClass().add("question");
-                            label1.setWrapText(true);
-                            label1.setMaxHeight(180);
-                            Label label2=new Label("A. 1  B. 2  C. 3  D. 4");
-                            label2.getStyleClass().add("question");
-                            label2.setWrapText(true);
-                            VBox vBox=new VBox(label1,label2);
-                            vBox.setMaxWidth(width*0.2);
+                            WebView webView=new WebView();
+                            WebEngine webEngine=webView.getEngine();
+                            webEngine.loadContent(item.getSubjectData().getContent());
+                            webView.setMaxHeight(180);
+                            VBox vBox=new VBox(webView);
                             vBox.setSpacing(10);
-                            AnchorPane.setTopAnchor(vBox, 15.0);
-                            AnchorPane.setLeftAnchor(vBox, 50.0);
-                            AnchorPane.setRightAnchor(vBox, 125.0);
+                            AnchorPane.setTopAnchor(vBox, 7.0);
+                            AnchorPane.setLeftAnchor(vBox, 35.0);
+                            AnchorPane.setRightAnchor(vBox, 70.0);
                             Label label3=new Label("分值：");
                             Label label4=new Label(String.valueOf(item.getScore()));
+                            label3.setStyle("-fx-text-fill: #000");
+                            label4.setStyle("-fx-text-fill: #000");
                             HBox hBox=new HBox(label3,label4);
                             hBox.setSpacing(5.0);
                             hBox.setAlignment(Pos.CENTER);
-                            AnchorPane.setRightAnchor(hBox, 20.0);
-                            AnchorPane.setTopAnchor(hBox, 18.0);
+                            AnchorPane.setRightAnchor(hBox, 5.0);
+                            AnchorPane.setTopAnchor(hBox, 12.0);
                             Label label5=new Label();
                             if(item.getSubjectData().getDifficult()==1){
                                 label5.setText("较易");
@@ -280,7 +277,6 @@ public class GeneratePaperSecondController implements Initializable {
                             hBox1.setAlignment(Pos.CENTER);
                             AnchorPane.setRightAnchor(hBox1, 33.0);
                             AnchorPane.setTopAnchor(hBox1, 40.0);
-
                             Label label6=new Label("与样卷重复");
                             label6.setStyle("-fx-text-fill: red;-fx-font-weight: bold");
                             HBox hBox2=new HBox(label6);
@@ -296,6 +292,7 @@ public class GeneratePaperSecondController implements Initializable {
                             anchorPane.setMaxHeight(200);
                             anchorPane.setPrefHeight(200);
                             this.setGraphic(anchorPane);
+                            this.setStyle("-fx-background-color: #FFF;-fx-border-color: #F0F0F0;-fx-border-width: 2px");
                         }else{
                             this.setGraphic(null);
                         }
@@ -403,7 +400,7 @@ public class GeneratePaperSecondController implements Initializable {
     //根据题型，获取题型id
     public int getQuestionTypeId(String typeName){
         for (QuestionType questionType:generatePaperDataStore.getQuestionTypes()){
-            if(questionType.getName()==typeName){
+            if(typeName.equals(questionType.getName())){
                 return questionType.getId();
             }
         }
@@ -451,11 +448,11 @@ public class GeneratePaperSecondController implements Initializable {
             easyQuestionCount += entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 1).count();
             midQuestionCount += entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 2).count();
             diffQuestionCount += entry.getValue().getItems().stream().filter(subjectDataRecord -> subjectDataRecord.getSubjectData().getDifficult() == 3).count();
-            if("222".equals(entry.getKey())){
+            if("2222".equals(entry.getKey())){
                 choseQuestionCount=entry.getValue().getItems().size();
-            }else if("333".equals(entry.getKey())){
+            }else if("3333".equals(entry.getKey())){
                 judgeQuestionCount=entry.getValue().getItems().size();
-            }else if("444".equals(entry.getKey())){
+            }else if("4444".equals(entry.getKey())){
                 shortQuestionCount=entry.getValue().getItems().size();
             }
             repeatedNumCount+=repeatedNum(entry.getValue());
