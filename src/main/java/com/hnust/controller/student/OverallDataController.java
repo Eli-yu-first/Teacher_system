@@ -38,7 +38,6 @@ public class OverallDataController implements Initializable {
                 charBar.getData().clear();
             }
         });
-        charBar.prefWidthProperty().bind(classSubjectCount.widthProperty());
     }
 
     public void initPieChartAccuracy(){
@@ -112,5 +111,6 @@ public class OverallDataController implements Initializable {
             }
         }
         charBar.getData().addAll(xys);
+        charBar.prefWidthProperty().bind(classSubjectCount.widthProperty());
     }
 }

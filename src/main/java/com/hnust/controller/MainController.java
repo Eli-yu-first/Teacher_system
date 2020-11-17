@@ -84,7 +84,7 @@ public class MainController implements Initializable{
     }
 
     /**
-     * 改变右侧content的界面
+     * 改变右侧content的界面,并按钮切换
      * @param text
      */
     public void skipView(String text) {
@@ -150,14 +150,7 @@ public class MainController implements Initializable{
                 break;
         }
         navFont.setText(label);
-        content.getChildren().clear();
-
-        assert path != null;
-        content.getChildren().add(path.getView());
-        AnchorPane.setBottomAnchor(path.getView(),0.0);
-        AnchorPane.setTopAnchor(path.getView(),0.0);
-        AnchorPane.setLeftAnchor(path.getView(),0.0);
-        AnchorPane.setRightAnchor(path.getView(),0.0);
+        skipPage(path);
     }
 
     public void itemClick(MouseEvent mouseEvent) throws IOException {
@@ -176,5 +169,15 @@ public class MainController implements Initializable{
 
     public void shiftToPersonalData(MouseEvent mouseEvent) {
         skipView("个人资料");
+    }
+
+    public void skipPage(AbstractFxmlView path){
+        content.getChildren().clear();
+        assert path != null;
+        content.getChildren().add(path.getView());
+        AnchorPane.setBottomAnchor(path.getView(),0.0);
+        AnchorPane.setTopAnchor(path.getView(),0.0);
+        AnchorPane.setLeftAnchor(path.getView(),0.0);
+        AnchorPane.setRightAnchor(path.getView(),0.0);
     }
 }
