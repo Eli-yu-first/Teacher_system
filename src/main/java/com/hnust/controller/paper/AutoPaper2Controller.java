@@ -89,23 +89,23 @@ public class AutoPaper2Controller implements Initializable {
     public Button btn_short;
 
     //获取选择题的较易题目的个数
-    public String choice_easyNum;
+    public String choice_easyNum = "0";
     //获取选择题中等题目的个数
-    public String choice_midNum;
+    public String choice_midNum = "0";
     //获取选择题较难的题目个数
-    public String choice_diffNum;
+    public String choice_diffNum = "0";
     //获取判断题目的较易题目的个数
-    public String judge_easyNum;
+    public String judge_easyNum = "0";
     //获取选择题中等题目的个数
-    public String judge_midNum;
+    public String judge_midNum = "0";
     // 获取选择题较难的题目个数
-    public String judge_diffNum;
+    public String judge_diffNum = "0";
     //获取简答题目的较易题目的个数
-    public String short_easyNum;
+    public String short_easyNum = "0";
     //获取简答题中等题目的个数
-    public String short_midNum;
+    public String short_midNum = "0";
     //获取简答题较难的题目个数
-    public String short_diffNum;
+    public String short_diffNum = "0";
 
     public void initialize(URL location, ResourceBundle resources) {
         scp_autoPaper.setFitToWidth(true);
@@ -148,18 +148,27 @@ public class AutoPaper2Controller implements Initializable {
 
     public void toAuto3() throws IOException {
         autoMainController2.skipView(autoPaper3View);
-        /*//获取选择题的个数
-        choice_easyNum = easy_num_chose.getText();
-        choice_midNum = mid_num_chose.getText();
-        choice_diffNum = diff_num_chose.getText();
-        //获取判断题的个数.
-        judge_easyNum = easy_num_judge.getText();
-        judge_midNum = mid_num_judge.getText();
-        judge_diffNum = diff_num_judge.getText();
-        //获取简答题的个数
-        short_easyNum = easy_num_short.getText();
-        short_midNum = mid_num_short.getText();
-        short_diffNum = diff_num_short.getText();*/
+
+        try {
+            //获取选择题的个数
+            choice_easyNum = easy_num_chose.getText();
+            choice_midNum = mid_num_chose.getText();
+            choice_diffNum = diff_num_chose.getText();
+            //获取判断题的个数.
+            judge_easyNum = easy_num_judge.getText();
+            judge_midNum = mid_num_judge.getText();
+            judge_diffNum = diff_num_judge.getText();
+            //获取简答题的个数
+            short_easyNum = easy_num_short.getText();
+            short_midNum = mid_num_short.getText();
+            short_diffNum = diff_num_short.getText();
+
+        }catch (Exception e) {
+            System.out.println("出错啦！！！");
+
+        }
+
+
         /*
         System.out.println(choice_easyNum);
         System.out.println(choice_midNum);

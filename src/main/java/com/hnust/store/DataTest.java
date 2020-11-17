@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class DataTest {
     private int num = 5;
-    private String data = "这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目";
+    private String data = "这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目"
+            + "这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目"
+            + "这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目，这是一个题目";
     private String option = "A:1 B:2 C:3 D:4";
 }
