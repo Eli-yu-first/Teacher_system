@@ -44,7 +44,7 @@
             <Insets left="40"/>
         </padding>
         <Button styleClass="btn,btn-info" style="-fx-font-size: 1.0em" prefWidth="120.0" text="设为样卷"/>
-        <Button styleClass="btn,btn-danger" style="-fx-font-size: 1.0em" prefWidth="100.0" text="删除"/>
+        <Button styleClass="btn,btn-danger" style="-fx-font-size: 1.0em" prefWidth="100.0" text="删除" onAction="#delete"/>
         <Button styleClass="btn,btn-info" style="-fx-font-size: 1.0em" prefWidth="120.0" text="取消样卷"/>
     </HBox>
     <VBox AnchorPane.leftAnchor="30" AnchorPane.topAnchor="110" AnchorPane.bottomAnchor="0" fx:id="vbox1" AnchorPane.rightAnchor="20">
@@ -53,6 +53,7 @@
         </padding>
         <TableView fx:id="tableView"  minHeight="300" minWidth="500" styleClass="table" >
             <columns>
+                <TableColumn text="多选" fx:id="columnChoice"></TableColumn>
                 <TableColumn text="科目" fx:id="columnSubject"></TableColumn>
                 <TableColumn text="创建人" fx:id="columnPerson"></TableColumn>
                 <TableColumn text="创建时间"  fx:id="columnTime"></TableColumn>
