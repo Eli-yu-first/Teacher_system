@@ -5,68 +5,60 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.hnust.controller.subject.SubjectListController"
-            style="-fx-background-color: #FFF;-fx-border-width: 0">
-    <ScrollPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0" fx:id="container" style="-fx-background-color: #FFF">
-        <VBox style="-fx-background-color: #FFF" fx:id="in_container">
-            <HBox alignment="CENTER_LEFT" spacing="10" >
-                <padding>
-                    <Insets left="20" top="20"/>
-                </padding>
-                <Label style="-fx-font-size: 1.2em;" text="所属课程" />
-                <ComboBox prefWidth="230" fx:id="comb">
-                    <HBox.margin>
-                        <Insets right="50.0" />
-                    </HBox.margin>
-                </ComboBox>
-                <Label text="题目搜索" style="-fx-font-size: 1.2em;"/>
-                <TextField >
-                    <HBox.margin>
-                        <Insets right="50.0" />
-                    </HBox.margin>
-                </TextField>
-                <Button styleClass="btn,btn-info" text="搜索" prefWidth="120.0" style="-fx-font-size: 1.0em">
-                    <HBox.margin>
-                        <Insets right="50.0" />
-                    </HBox.margin>
-                </Button>
-                <Button styleClass="btn,btn-default" text="重置" prefWidth="120.0" style="-fx-font-size: 1.0em"/>
+            fx:id="subjectListWindow"
+            fx:controller="com.hnust.controller.subject.SubjectListController">
+    <ScrollPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+                AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0"
+                style="-fx-background-color: transparent"
+                fitToWidth="true" fitToHeight="true">
+        <AnchorPane style="-fx-background-color: #ffffff">
+            <HBox alignment="CENTER" AnchorPane.rightAnchor="20"
+                  AnchorPane.leftAnchor="10" AnchorPane.topAnchor="40"
+                  prefHeight="30">
+                <GridPane vgap="20" hgap="10">
+                    <HBox minWidth="250" alignment="CENTER" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label styleClass="fontText" text="所属课程:" />
+                        <ComboBox fx:id="comb" minWidth="175" visibleRowCount="5"/>
+                    </HBox>
+                    <HBox minWidth="250" alignment="CENTER" spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                        <Label text="题目搜索:" styleClass="fontText"/>
+                        <TextField/>
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="2">
+                        <Button  styleClass="btn,btn-info,button1" text="搜索" prefWidth="100" />
+                        <Button styleClass="btn,btn-default,button2" text="重置" prefWidth="100"/>
+                    </HBox>
+                    <HBox spacing="20" alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Button styleClass="btn,btn-info,button1" prefWidth="100.0" text="新增题目"/>
+                        <Button onAction="#shiftToBatchImport" styleClass="btn,btn-default,button2" prefWidth="100.0" text="导入题目"/>
+                    </HBox>
+                </GridPane>
             </HBox>
-            <HBox spacing="20" alignment="CENTER_LEFT">
+            <VBox AnchorPane.topAnchor="140" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
                 <padding>
-                    <Insets left="20" top="20"/>
+                    <Insets top="10" left="10" right="10" bottom="10"/>
                 </padding>
-                <Button styleClass="btn,btn-info" style="-fx-font-size: 1.0em;" prefWidth="120.0" text="新增题目"></Button>
-                <Button styleClass="btn,btn-default" style="-fx-font-size: 1.0em;"  prefWidth="120.0" text="导入题目"></Button>
-            </HBox>
-            <VBox  fx:id="vbox1" maxWidth="Infinity" VBox.vgrow="ALWAYS">
-                <padding>
-                    <Insets top="10" left="10" right="10"></Insets>
-                </padding>
-<!--                VBox.vgrow="ALWAYS" maxHeight="Infinity"-->
-                <TableView style="-fx-background-color: red" fx:id="tableSize"  minHeight="300" VBox.vgrow="ALWAYS"  minWidth="500" prefWidth="500">
-                    <columns>
-                        <TableColumn text="序号"></TableColumn>
-                        <TableColumn text="内容"></TableColumn>
-                        <TableColumn text="所属课程"></TableColumn>
-                        <TableColumn text="所属章节"></TableColumn>
-                        <TableColumn text="题目类型"></TableColumn>
-                        <TableColumn text="题目难度"></TableColumn>
-                        <TableColumn text="题目解析"></TableColumn>
-                        <TableColumn text="知识点"></TableColumn>
-                        <TableColumn text="答案"></TableColumn>
-                        <TableColumn text="课程目标"></TableColumn>
-                        <TableColumn text="权限"></TableColumn>
-                        <TableColumn text="操作"></TableColumn>
-                    </columns>
-                </TableView>
+                <ScrollPane fitToHeight="true" style="-fx-background-color: transparent">
+                    <TableView style="-fx-background-color: transparent"
+                               fx:id="tableSize"  minHeight="300">
+                        <columns>
+                            <TableColumn text="内容" minWidth="80"/>
+                            <TableColumn text="所属课程" minWidth="100"/>
+                            <TableColumn text="所属章节" minWidth="100"/>
+                            <TableColumn text="题目类型" minWidth="100"/>
+                            <TableColumn text="题目难度" minWidth="100"/>
+                            <TableColumn text="题目解析" minWidth="100"/>
+                            <TableColumn text="知识点" minWidth="90"/>
+                            <TableColumn text="答案" minWidth="80"/>
+                            <TableColumn text="课程目标" minWidth="100"/>
+                            <TableColumn text="操作" minWidth="80"/>
+                        </columns>
+                    </TableView>
+                </ScrollPane>
                 <HBox alignment="CENTER" spacing="10">
-                    <Pagination></Pagination>
-                    <Label text="跳 至" />
-                    <TextField fx:id="toPage" prefWidth="45" />
-                    <Label text="页" />
+                    <Pagination style="-fx-font-size: 1em"/>
                 </HBox>
             </VBox>
-        </VBox>
+        </AnchorPane>
     </ScrollPane>
 </AnchorPane>

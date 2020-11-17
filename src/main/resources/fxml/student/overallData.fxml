@@ -9,7 +9,7 @@
             prefWidth="1040" style="-fx-background-color: #ffffff"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.hnust.controller.student.OverallDataController">
-    <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+    <ScrollPane style="-fx-background-color: transparent" fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <AnchorPane style="-fx-background-color: #ffffff">
             <AnchorPane prefHeight="350" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
                 <VBox alignment="CENTER_LEFT" prefHeight="30" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="15">

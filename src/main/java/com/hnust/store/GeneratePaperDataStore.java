@@ -1,7 +1,12 @@
 package com.hnust.store;
 
+import com.hnust.domain.QuestionType;
 import lombok.Data;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @program: demo
@@ -13,4 +18,16 @@ import org.springframework.stereotype.Component;
 @Data
 public class GeneratePaperDataStore {
     private String course;
+    private LocalDate examTimeData;
+    private String courseId;
+    private String courseName;
+    private LocalDate outExamTime;
+    private String passRate;
+    private String paperKind;
+    private List<QuestionType> questionTypes;
+    private Integer quesyionTypeId;
+    private String questionType;
+    private int flag=0;
+    private String kind;
+    private List<String> questions;
 }
