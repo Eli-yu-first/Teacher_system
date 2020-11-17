@@ -93,11 +93,14 @@ public class AutoPaper3Controller implements Initializable {
                     protected void updateItem(QuestionType item, boolean empty) {
                         super.updateItem(item, empty);
                         if(empty==false){
+                            AnchorPane anchorPane = new AnchorPane();
+                            CheckBox checkBox = new CheckBox();
                             Label label=new Label(item.getName());
                             Label label2=new Label(item.getId().toString());
                             VBox vBox = new VBox(label,label2);
+                            anchorPane.getChildren().addAll(vBox);
 
-                            this.setGraphic(vBox);
+                            this.setGraphic(anchorPane);
 //                            AnchorPane anchorPane=new AnchorPane();
 //                            Label label1=new Label("题目类型: ");
 //                            Label label = new Label();
